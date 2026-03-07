@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "GastonGUI",
+			"path": "../../../PycharmProjects/GastonGUI"
+		}
+	],
+	"settings": {}
+}

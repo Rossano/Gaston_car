@@ -1,0 +1,23 @@
+# Build directories
+build/
+Debug/
+Release/
+
+# IDE and editor files
+.vscode/
+.clangd
+*.swp
+*.swo
+*~
+
+# STM32CubeMX files
+*.ioc.backup
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak

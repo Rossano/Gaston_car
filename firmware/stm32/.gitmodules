@@ -1,0 +1,4 @@
+[submodule "Gaston_Motor"]
+	path = Gaston_Motor
+	url = C:/Users/rossa/STM32CubeIDE/ws_bob_robot/Gaston_Motor
+	branch = PythonGUI

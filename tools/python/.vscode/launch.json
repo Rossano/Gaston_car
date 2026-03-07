@@ -1,0 +1,7 @@
+{
+  "name": "Python BLE",
+  "type": "python",
+  "request": "launch",
+  "program": "wxBLE_Queue.py",
+  "cwd": "${workspaceFolder:GastonGUI}"
+}
