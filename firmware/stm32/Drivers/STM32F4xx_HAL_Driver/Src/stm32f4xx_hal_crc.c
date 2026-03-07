@@ -9,7 +9,6 @@
   *           + Peripheral Control functions
   *           + Peripheral State functions
   *
-<<<<<<< HEAD
   ******************************************************************************
   * @attention
   *
@@ -21,8 +20,6 @@
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-=======
->>>>>>> 6503406ba0a9f92bfb0325a558ed63026d2a0e5d
   @verbatim
  ===============================================================================
                      ##### How to use this driver #####
@@ -43,20 +40,6 @@
 
   @endverbatim
   ******************************************************************************
-<<<<<<< HEAD
-=======
-  * @attention
-  *
-  * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
-  *
-  ******************************************************************************
->>>>>>> 6503406ba0a9f92bfb0325a558ed63026d2a0e5d
   */
 
 /* Includes ------------------------------------------------------------------*/
@@ -86,13 +69,8 @@
   */
 
 /** @defgroup CRC_Exported_Functions_Group1 Initialization and de-initialization functions
-<<<<<<< HEAD
   *  @brief    Initialization and Configuration functions.
   *
-=======
- *  @brief    Initialization and Configuration functions.
- *
->>>>>>> 6503406ba0a9f92bfb0325a558ed63026d2a0e5d
 @verbatim
  ===============================================================================
             ##### Initialization and de-initialization functions #####
@@ -169,11 +147,7 @@ HAL_StatusTypeDef HAL_CRC_DeInit(CRC_HandleTypeDef *hcrc)
   __HAL_CRC_DR_RESET(hcrc);
 
   /* Reset IDR register content */
-<<<<<<< HEAD
   __HAL_CRC_SET_IDR(hcrc, 0);
-=======
-  CLEAR_BIT(hcrc->Instance->IDR, CRC_IDR_IDR);
->>>>>>> 6503406ba0a9f92bfb0325a558ed63026d2a0e5d
 
   /* DeInit the low level hardware */
   HAL_CRC_MspDeInit(hcrc);
@@ -223,13 +197,8 @@ __weak void HAL_CRC_MspDeInit(CRC_HandleTypeDef *hcrc)
   */
 
 /** @defgroup CRC_Exported_Functions_Group2 Peripheral Control functions
-<<<<<<< HEAD
   *  @brief    management functions.
   *
-=======
- *  @brief    management functions.
- *
->>>>>>> 6503406ba0a9f92bfb0325a558ed63026d2a0e5d
 @verbatim
  ===============================================================================
                       ##### Peripheral Control functions #####
@@ -316,13 +285,8 @@ uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t
   */
 
 /** @defgroup CRC_Exported_Functions_Group3 Peripheral State functions
-<<<<<<< HEAD
   *  @brief    Peripheral State functions.
   *
-=======
- *  @brief    Peripheral State functions.
- *
->>>>>>> 6503406ba0a9f92bfb0325a558ed63026d2a0e5d
 @verbatim
  ===============================================================================
                       ##### Peripheral State functions #####
@@ -339,11 +303,7 @@ uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t
   * @param  hcrc CRC handle
   * @retval HAL state
   */
-<<<<<<< HEAD
 HAL_CRC_StateTypeDef HAL_CRC_GetState(const CRC_HandleTypeDef *hcrc)
-=======
-HAL_CRC_StateTypeDef HAL_CRC_GetState(CRC_HandleTypeDef *hcrc)
->>>>>>> 6503406ba0a9f92bfb0325a558ed63026d2a0e5d
 {
   /* Return CRC handle state */
   return hcrc->State;
@@ -366,8 +326,3 @@ HAL_CRC_StateTypeDef HAL_CRC_GetState(CRC_HandleTypeDef *hcrc)
 /**
   * @}
   */
-<<<<<<< HEAD
-=======
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
->>>>>>> 6503406ba0a9f92bfb0325a558ed63026d2a0e5d
