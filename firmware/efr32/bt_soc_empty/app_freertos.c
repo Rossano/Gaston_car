@@ -40,7 +40,7 @@
 #include "sl_bluetooth.h"
 
 #define APP_TASK_NAME          "app_task"
-#define APP_TASK_STACK_SIZE    512u
+#define APP_TASK_STACK_SIZE    1024u
 #define APP_TASK_PRIO          24u
 #define APP_MUTEX_WAIT         100 // Timeout to wait for mutex in ticks
 
@@ -54,16 +54,6 @@ static SemaphoreHandle_t app_semaphore_handle = NULL;
 // Mutex handle
 static SemaphoreHandle_t app_mutex_handle = NULL;
 
-// My Application Init
-void my_application_init(void)
-{
-  // CLI task and queues should be created after the Simplicity SDK
-  // second-stage initialization (which initializes the Bluetooth
-  // stack). Creating user tasks too early can consume heap that the
-  // stack needs during its initialization and prevent the stack from
-  // starting. The actual CLI creation is done in `app_init()`.
-}
-
 // Application Runtime Init.
 void app_init_bt(void)
 {
@@ -76,12 +66,12 @@ void app_init_bt(void)
                     APP_TASK_PRIO,
                     &app_task_handle);
   app_assert(ret == pdPASS, "Application task creation failed.");
-/*  // Create the semaphore
+  // Create the semaphore
   app_semaphore_handle = xSemaphoreCreateCounting(UINT16_MAX, 0);
   app_assert(app_semaphore_handle != NULL, "Semaphore creation failed.");
   // Create the mutex
   app_mutex_handle = xSemaphoreCreateRecursiveMutex();
-  app_assert(app_mutex_handle != NULL, "Mutex creation failed."); */
+  app_assert(app_mutex_handle != NULL, "Mutex creation failed.");
 }
 
 /******************************************************************************
@@ -92,18 +82,17 @@ static void app_task(void *p_arg)
   (void)p_arg;
   uint8_t i = 0;
   uint8_t j = 0;
-  uint8_t buffer[] = "Tick\n\r";
-
-  my_application_init();
+  uint8_t buffer[] = "Tick\r\n";
 
   while (1) {
     app_process_action();
-    vTaskDelay(pdMS_TO_TICKS(10));
-    if (++i == 50) {
+    vTaskDelay(pdMS_TO_TICKS(10)); 
+    if(++i == 50) {
       sl_led_toggle(&sl_led_led0);
-      i = 0;
+      i =0;
       if(++j == 40) {
         j = 0;
+        // send_spp_data_buf(buffer,6);
       }
     }
   }
@@ -142,4 +131,10 @@ bool app_mutex_acquire(void)
 void app_mutex_release(void)
 {
   (void)xSemaphoreGiveRecursive(app_mutex_handle);
+}
+
+void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName)
+{
+  __BKPT(0);
+  while(1);
 }

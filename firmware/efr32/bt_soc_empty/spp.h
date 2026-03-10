@@ -56,14 +56,14 @@ typedef struct
 /* Common local functions*/
 void print_stats(ts_counters *p_counters);
 void reset_variables();
-void send_spp_data(uint8_t *data, uint8_t len);
+void send_spp_data();  //uint8_t *);
 
 /******************************************************************************
  *    Local Variables
  ******************************************************************************/
 
 // The advertising set handle allocated from Bluetooth stack.
-extern uint8_t advertising_set_handle;
+//extern uint8_t advertising_set_handle;
 extern uint8_t conn_handle;
 extern uint8_t main_state;
 extern uint32_t service_handle;

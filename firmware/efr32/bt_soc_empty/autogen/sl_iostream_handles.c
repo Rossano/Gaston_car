@@ -4,11 +4,9 @@
 
 const sl_iostream_instance_info_t *sl_iostream_instances_info[] = {
 
-    &sl_iostream_instance_stm32_info,
-  
     &sl_iostream_instance_vcom_info,
   
-    &sl_iostream_instance_stm32_info,
+    &sl_iostream_instance_STM32_info,
   
 };
 

@@ -27,25 +27,28 @@
  * 3. This notice may not be removed or altered from any source distribution.
  *
  ******************************************************************************/
-#include "sl_common.h"
-#include "sl_iostream_handles.h"
-#include "sl_bluetooth.h"
-#include "gatt_db.h"
-#include "app.h"
-
-#include "app_log.h"
 #include "sl_bt_api.h"
+#include "sli_bt_api.h"
 #include "sl_main_init.h"
 #include "app_assert.h"
-#include "sl_simple_led_instances.h"
+#include "app.h"
 
 #include "spp.h"
 #include "cli.h"
 #include <string.h>
+#include "sl_iostream_handles.h"
+#include "sl_iostream_init_usart_instances.h"
+#include "sl_simple_led_instances.h"
+#include "sli_bt_api.h"
+#include "gatt_db.h"
+#include "app_log.h"
+
 
 #define SL_BT_RTOS_APPLICATION_PRIORITY    10u
 
 QueueHandle_t cli_queue;
+uint8_t connection_handle = 0xff;
+//uint8_t advertising_set_handle = 0;
 
 uint8_t buffer[CLI_COMMAND_MAX_LEN];
 uint8_t buffer_stm32[CLI_COMMAND_MAX_LEN];
@@ -53,92 +56,103 @@ __ALIGNED(8) static StackType_t thread_application_stk[250 & 0xFFFFFFF8u];
 __ALIGNED(4) static StaticTask_t thread_application_cb;
 uint8_t led0_state = 0;
 uint16_t sent_len = 0;
+uint16_t max_mtu_out;
 uint8_t b[20], len = 0;
-uint8_t len_stm32 = 0;
+uint8_t  len_stm32 = 0;
+
+// The advertising set handle allocated from Bluetooth stack.
+static uint8_t advertising_set_handle = 0xff;
+
+void __my_fault_handler()
+{
+  while (1);
+} 
 
 // Application Init.
 void app_init(void)
 {
-  // Create CLI queues and task here (after SDK second-stage init)
-  // so the Bluetooth stack has initialized and heap is available.
-  cli_queue = xQueueCreate(4, CLI_COMMAND_MAX_LEN);
-  if (cli_queue == NULL) {
-    app_log("Failed to create CLI queue\n");
-  }
-
-  uartQueue = xQueueCreate(UART_RX_QUEUE_LEN, sizeof(uint8_t));
-  if (uartQueue == NULL) {
-    app_log("Failed to create UART RX queue\n");
-  }
-
   /////////////////////////////////////////////////////////////////////////////
   // Put your additional application init code here!                         //
   // This is called once during start-up.                                    //
   /////////////////////////////////////////////////////////////////////////////
 
+    // Create CLI queues and task here (after SDK second-stage init)
+  // so the Bluetooth stack has initialized and heap is available.
+  cli_queue = xQueueCreate(4, CLI_COMMAND_MAX_LEN);
+  if (cli_queue == NULL) {
+    app_log("Failed to create CLI queue\n");
+    __my_fault_handler();
+  }
+
+  uartQueue = xQueueCreate(UART_RX_QUEUE_LEN, sizeof(uint8_t));
+  if (uartQueue == NULL) {
+    app_log("Failed to create UART RX queue\n");
+    __my_fault_handler();
+  }
 }
 
 // Application Process Action.
 void app_process_action(void)
-{ 
+{
   char ch;
-  
-  if (STATE_SPP_MODE == main_state) {
+
+  if (app_is_process_required()) {
     /////////////////////////////////////////////////////////////////////////////
     // Put your additional application code here!                              //
     // This is will run each time app_proceed() is called.                     //
     // Do not call blocking functions from here!                               //
     /////////////////////////////////////////////////////////////////////////////
-    uint8_t handled = 0;
+    if (STATE_SPP_MODE == main_state) {
+      uint8_t handled = 0;
 
-    if (sl_iostream_getchar(sl_iostream_vcom_handle, &ch) == SL_STATUS_OK) {
-      handled = 1;
-      // check if it is a EOL
-      if ((ch != '\n' && ch != '\r') && len < CLI_COMMAND_MAX_LEN-1) {
-        // store the char only if the buffer is not full
-        buffer[len++] = (uint8_t)ch;
-      }
-      else {
-        // EOL or buffer full, could handle overflow here
-        // Send the buffer only if BLE is connected and buffer is not empty
-        send_spp_data(buffer, len);
-        for (int i = 0; i < CLI_COMMAND_MAX_LEN-1; i++) {
-          buffer[i] = 0;
+      if (sl_iostream_getchar(sl_iostream_vcom_handle, &ch) == SL_STATUS_OK) {
+        handled = 1;
+        // check if it is a EOL
+        if ((ch != '\n' && ch != '\r') && len < CLI_COMMAND_MAX_LEN-1) {
+          // store the char only if the buffer is not full
+          buffer[len++] = (uint8_t)ch;
         }
-        if (len == CLI_COMMAND_MAX_LEN-1) {
-          buffer[0] = (uint8_t)ch; // store the last char if buffer was full
-          len = 1; // reset if buffer was full
+        else {
+          // EOL or buffer full, could handle overflow here
+          // Send the buffer only if BLE is connected and buffer is not empty
+          send_spp_data(buffer, len);
+          for (int i = 0; i < CLI_COMMAND_MAX_LEN-1; i++) {
+            buffer[i] = 0;
+          }
+          if (len == CLI_COMMAND_MAX_LEN-1) {
+            buffer[0] = (uint8_t)ch; // store the last char if buffer was full
+            len = 1; // reset if buffer was full
+          } else {
+            len = 0; // reset normally
+          }
+        }
+      }
+
+      /* Poll anche dallo stream STM32 */
+      if (sl_iostream_getchar(sl_iostream_STM32_handle, &ch) == SL_STATUS_OK) {
+        handled = 1;
+        if ((ch != '\n' && ch != '\r') && len_stm32 < CLI_COMMAND_MAX_LEN-1) {
+          buffer_stm32[len_stm32++] = (uint8_t)ch;
         } else {
-          len = 0; // reset normally
+          send_spp_data(buffer_stm32, len_stm32);
+          for (int i = 0; i < CLI_COMMAND_MAX_LEN-1; i++) {
+            buffer_stm32[i] = 0;
+          }
+          if (len_stm32 == CLI_COMMAND_MAX_LEN-1) {
+            buffer_stm32[0] = (uint8_t)ch;
+            len_stm32 = 1;
+          } else {
+            len_stm32 = 0;
+          }
         }
       }
-    }
 
-    /* Poll anche dallo stream STM32 */
-    if (sl_iostream_getchar(sl_iostream_stm32_handle, &ch) == SL_STATUS_OK) {
-      handled = 1;
-      if ((ch != '\n' && ch != '\r') && len_stm32 < CLI_COMMAND_MAX_LEN-1) {
-        buffer_stm32[len_stm32++] = (uint8_t)ch;
-      } else {
-        send_spp_data(buffer_stm32, len_stm32);
-        for (int i = 0; i < CLI_COMMAND_MAX_LEN-1; i++) {
-          buffer_stm32[i] = 0;
-        }
-        if (len_stm32 == CLI_COMMAND_MAX_LEN-1) {
-          buffer_stm32[0] = (uint8_t)ch;
-          len_stm32 = 1;
-        } else {
-          len_stm32 = 0;
-        }
+      if (!handled) {
+        // non c'erano dati: attendi un po' per non usare CPU al 100%
+        vTaskDelay(pdMS_TO_TICKS(10));
       }
-    }
-
-    if (!handled) {
-      // non c'erano dati: attendi un po' per non usare CPU al 100%
-      vTaskDelay(pdMS_TO_TICKS(10));
     }
   }
-  return;
 }
 
 /**************************************************************************//**
@@ -149,7 +163,6 @@ void app_process_action(void)
  *****************************************************************************/
 void sl_bt_on_event(sl_bt_msg_t *evt)
 {
-  uint16_t max_mtu_out;
   sl_status_t sc;
 
   switch (SL_BT_MSG_ID(evt->header)) {
@@ -157,7 +170,8 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
     // This event indicates the device has started and the radio is ready.
     // Do not call any stack command before receiving this boot event!
     case sl_bt_evt_system_boot_id:
-      app_log("SPP Role: SPP Server\r\n");
+      conn_handle = evt->data.evt_connection_opened.connection;
+      app_log("SPP Role: SPP Server\r\nConnection opened\r\n");
       reset_variables();
       sc = sl_bt_gatt_server_set_max_mtu(247, &max_mtu_out);
       app_assert_status(sc);
@@ -200,9 +214,9 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
       break;
 
     case sl_bt_evt_connection_parameters_id:
-      app_log("Conn.parameters: interval %u units\r\n",
+      app_log("Conne. parameters: interval %u units\r\n",
               evt->data.evt_connection_parameters.interval);
-      break;
+      break;  
 
     case sl_bt_evt_gatt_mtu_exchanged_id:
       // Calculate maximum data per one notification / write-without-response,
@@ -213,7 +227,7 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
       min_packet_size = max_packet_size;
       app_log("MTU exchanged: %d\r\n", evt->data.evt_gatt_mtu_exchanged.mtu);
       break;
-
+    
     // -------------------------------
     // This event indicates that a connection was closed.
     case sl_bt_evt_connection_closed_id:
@@ -222,10 +236,11 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
         sl_power_manager_remove_em_requirement(SL_POWER_MANAGER_EM1);
       }
       reset_variables();
+      app_log("Connection closed\r\n");
       // Generate data for advertising
-      // sc = sl_bt_legacy_advertiser_generate_data(advertising_set_handle,
-      //                                            sl_bt_advertiser_general_discoverable);
-      // app_assert_status(sc);
+      sc = sl_bt_legacy_advertiser_generate_data(advertising_set_handle,
+                                                 sl_bt_advertiser_general_discoverable);
+      app_assert_status(sc);
 
       // Restart advertising after client has disconnected.
       sc = sl_bt_legacy_advertiser_start(advertising_set_handle,
@@ -265,53 +280,36 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
         break;
 
         case sl_bt_evt_gatt_server_attribute_value_id: //sl_bt_evt_gatt_server_user_read_request_id:
-            {
-              // Read from the client
-              uint8_t *data = evt->data.evt_gatt_server_attribute_value.value.data;
-              uint8_t len = evt->data.evt_gatt_server_attribute_value.value.len;
-              app_log("Checkpoint 1: received %u bytes\r\n", len);
-              if (len != 0) {
-                for (uint8_t i = 0; i < len; i++) {
-                  sl_iostream_putchar(sl_iostream_vcom_handle, data[i]);
-                }
-                counters.num_pack_received++;
-                counters.num_bytes_received += len;
-              }
+        {
+          // Read from the client
+          app_log("Checkpoint 1: %s", evt->data.evt_gatt_server_attribute_value.value.data);
+          if (evt->data.evt_gatt_server_attribute_value.value.len != 0) {
+            for (uint8_t i = 0;
+                 i < evt->data.evt_gatt_server_attribute_value.value.len; i++) {
+              sl_iostream_putchar(
+                sl_iostream_vcom_handle,
+                evt->data.evt_gatt_server_attribute_value.value.data[i]);
             }
-            break;
+            counters.num_pack_received++;
+            counters.num_bytes_received +=
+              evt->data.evt_gatt_server_attribute_value.value.len;
+          }
+        }
+        break;
+        
     // -------------------------------
     // Default event handler.
     default:
       break;
   }
+  app_proceed();
 }
 
 // Function to send CLI output over BLE
 void send_cli_data_over_ble(const char* data, size_t len)
 {
-  // Use the shared connection handle defined in `spp.c` (extern in `spp.h`).
-  // `conn_handle` is set on connection open and cleared on close.
-  if (conn_handle != 0xFF) {
-    // send_notification returns sl_status_t
-    sl_status_t res = sl_bt_gatt_server_send_notification(conn_handle,
-                                                          gattdb_My_SPP_Write,
-                                                          (uint16_t)len,
-                                                          (const uint8_t *)data);
-    if (res != SL_STATUS_OK) {
-      app_log("send_cli_data_over_ble: notify failed: 0x%04x\r\n", res);
-    }
-  } else {
-    app_log("send_cli_data_over_ble: no connection\r\n");
+  if(connection_handle) {
+      //sl_bt_gatt_server_notify(connection_handle,
+      //                         evt)
   }
-}
-
-void send_cli_output(const char *msg)
-{
-  size_t len = strlen(msg);
-  // Send over VCOM
-  for (size_t i = 0; i < len; i++) {
-    sl_iostream_putchar(sl_iostream_vcom_handle, msg[i]);
-  }
-  // Send over BLE SPP
-  send_cli_data_over_ble(msg, len);
 }

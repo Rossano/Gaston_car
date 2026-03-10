@@ -11,7 +11,7 @@
 
 
 // Include instance config 
- #include "sl_iostream_usart_stm32_config.h"
+ #include "sl_iostream_usart_STM32_config.h"
 
 // MACROs for generating name and IRQ handler function  
 #define SL_IOSTREAM_USART_CONCAT_PASTER(first, second, third)        first ##  second ## third
@@ -50,43 +50,43 @@ static sl_power_manager_em_transition_event_handle_t events_handle;
 #endif // SL_CATALOG_POWER_MANAGER_PRESENT
 
 
-sl_status_t sl_iostream_usart_init_stm32(void);
+sl_status_t sl_iostream_usart_init_STM32(void);
 
 
 // Instance(s) handle and context variable 
 
-static sl_iostream_uart_t sl_iostream_stm32;
-sl_iostream_t *sl_iostream_stm32_handle = &sl_iostream_stm32.stream;
-sl_iostream_uart_t *sl_iostream_uart_stm32_handle = &sl_iostream_stm32;
-static sl_iostream_usart_context_t  context_stm32;
-static uint8_t  rx_buffer_stm32[SL_IOSTREAM_USART_STM32_RX_BUFFER_SIZE];
-static sli_iostream_uart_periph_t uart_periph_stm32 = {
+static sl_iostream_uart_t sl_iostream_STM32;
+sl_iostream_t *sl_iostream_STM32_handle = &sl_iostream_STM32.stream;
+sl_iostream_uart_t *sl_iostream_uart_STM32_handle = &sl_iostream_STM32;
+static sl_iostream_usart_context_t  context_STM32;
+static uint8_t  rx_buffer_STM32[SL_IOSTREAM_USART_STM32_RX_BUFFER_SIZE];
+static sli_iostream_uart_periph_t uart_periph_STM32 = {
   .rx_irq_number = SL_IOSTREAM_USART_RX_IRQ_NUMBER(SL_IOSTREAM_USART_STM32_PERIPHERAL_NO),
 #if defined(SL_CATALOG_POWER_MANAGER_PRESENT)
   .tx_irq_number = SL_IOSTREAM_USART_TX_IRQ_NUMBER(SL_IOSTREAM_USART_STM32_PERIPHERAL_NO),
 #endif
 };
-sl_iostream_instance_info_t sl_iostream_instance_stm32_info = {
-  .handle = &sl_iostream_stm32.stream,
-  .name = "stm32",
+sl_iostream_instance_info_t sl_iostream_instance_STM32_info = {
+  .handle = &sl_iostream_STM32.stream,
+  .name = "STM32",
   .type = SL_IOSTREAM_TYPE_UART,
   .periph_id = SL_IOSTREAM_USART_STM32_PERIPHERAL_NO,
-  .init = sl_iostream_usart_init_stm32,
+  .init = sl_iostream_usart_init_STM32,
 };
 
 
 
-sl_status_t sl_iostream_usart_init_stm32(void)
+sl_status_t sl_iostream_usart_init_STM32(void)
 {
   sl_status_t status;
-  USART_InitAsync_TypeDef init_stm32 = USART_INITASYNC_DEFAULT;
-  init_stm32.baudrate = SL_IOSTREAM_USART_STM32_BAUDRATE;
-  init_stm32.parity = SL_IOSTREAM_USART_STM32_PARITY;
-  init_stm32.stopbits = SL_IOSTREAM_USART_STM32_STOP_BITS;
+  USART_InitAsync_TypeDef init_STM32 = USART_INITASYNC_DEFAULT;
+  init_STM32.baudrate = SL_IOSTREAM_USART_STM32_BAUDRATE;
+  init_STM32.parity = SL_IOSTREAM_USART_STM32_PARITY;
+  init_STM32.stopbits = SL_IOSTREAM_USART_STM32_STOP_BITS;
 #if (_SILICON_LABS_32B_SERIES > 0)
-  init_stm32.hwFlowControl = SL_IOSTREAM_USART_STM32_FLOW_CONTROL_TYPE != uartFlowControlSoftware ? SL_IOSTREAM_USART_STM32_FLOW_CONTROL_TYPE : usartHwFlowControlNone;
+  init_STM32.hwFlowControl = SL_IOSTREAM_USART_STM32_FLOW_CONTROL_TYPE != uartFlowControlSoftware ? SL_IOSTREAM_USART_STM32_FLOW_CONTROL_TYPE : usartHwFlowControlNone;
 #endif
-  sl_iostream_usart_config_t config_stm32 = { 
+  sl_iostream_usart_config_t config_STM32 = { 
     .usart = SL_IOSTREAM_USART_STM32_PERIPHERAL,
     .clock = SL_IOSTREAM_USART_CLOCK_REF(SL_IOSTREAM_USART_STM32_PERIPHERAL_NO),
     .tx_port = SL_IOSTREAM_USART_STM32_TX_PORT,
@@ -119,37 +119,37 @@ sl_status_t sl_iostream_usart_init_stm32(void)
 #endif
   };
 
-  sl_iostream_dma_config_t rx_dma_config_stm32 = {.src = (uint8_t *)&SL_IOSTREAM_USART_STM32_PERIPHERAL->RXDATA,
+  sl_iostream_dma_config_t rx_dma_config_STM32 = {.src = (uint8_t *)&SL_IOSTREAM_USART_STM32_PERIPHERAL->RXDATA,
                                                         .xfer_cfg = IOSTREAM_LDMA_TFER_CFG_PERIPH(SL_IOSTREAM_USART_RX_DMA_SIGNAL(SL_IOSTREAM_USART_STM32_PERIPHERAL_NO))};
 
-  sl_iostream_dma_config_t tx_dma_config_stm32 = {.dst = (uint8_t *)&SL_IOSTREAM_USART_STM32_PERIPHERAL->TXDATA,
+  sl_iostream_dma_config_t tx_dma_config_STM32 = {.dst = (uint8_t *)&SL_IOSTREAM_USART_STM32_PERIPHERAL->TXDATA,
                                                         .xfer_cfg = IOSTREAM_LDMA_TFER_CFG_PERIPH(SL_IOSTREAM_USART_TX_DMA_SIGNAL(SL_IOSTREAM_USART_STM32_PERIPHERAL_NO))};
 
-  sl_iostream_uart_config_t uart_config_stm32 = {
-    .rx_dma_cfg = rx_dma_config_stm32,
-    .tx_dma_cfg = tx_dma_config_stm32,
-    .rx_buffer = rx_buffer_stm32,
+  sl_iostream_uart_config_t uart_config_STM32 = {
+    .rx_dma_cfg = rx_dma_config_STM32,
+    .tx_dma_cfg = tx_dma_config_STM32,
+    .rx_buffer = rx_buffer_STM32,
     .rx_buffer_length = SL_IOSTREAM_USART_STM32_RX_BUFFER_SIZE,
     .lf_to_crlf = SL_IOSTREAM_USART_STM32_CONVERT_BY_DEFAULT_LF_TO_CRLF,
     .enable_high_frequency = true,
     .rx_when_sleeping = SL_IOSTREAM_USART_STM32_RESTRICT_ENERGY_MODE_TO_ALLOW_RECEPTION,
-    .uart_periph = &uart_periph_stm32
+    .uart_periph = &uart_periph_STM32
   };
-  uart_config_stm32.sw_flow_control = SL_IOSTREAM_USART_STM32_FLOW_CONTROL_TYPE == uartFlowControlSoftware;
+  uart_config_STM32.sw_flow_control = SL_IOSTREAM_USART_STM32_FLOW_CONTROL_TYPE == uartFlowControlSoftware;
 
 
 #if defined(SL_IOSTREAM_USART_STM32_ASYNC_TX)
-  uart_config_stm32.async_tx_enabled = SL_IOSTREAM_USART_STM32_ASYNC_TX;
+  uart_config_STM32.async_tx_enabled = SL_IOSTREAM_USART_STM32_ASYNC_TX;
 #else
-  uart_config_stm32.async_tx_enabled = false;
+  uart_config_STM32.async_tx_enabled = false;
 #endif
 
   // Instantiate usart instance 
-  status = sl_iostream_usart_init(&sl_iostream_stm32,
-                                  &uart_config_stm32,
-                                  &init_stm32,
-                                  &config_stm32,
-                                  &context_stm32);
+  status = sl_iostream_usart_init(&sl_iostream_STM32,
+                                  &uart_config_STM32,
+                                  &init_STM32,
+                                  &config_STM32,
+                                  &context_STM32);
   EFM_ASSERT(status == SL_STATUS_OK);
 
   
@@ -169,7 +169,7 @@ void sl_iostream_usart_init_instances(void)
 
   // Instantiate usart instance(s) 
   
-  status = sl_iostream_usart_init_stm32();
+  status = sl_iostream_usart_init_STM32();
   EFM_ASSERT(status == SL_STATUS_OK);
   
 }
@@ -178,12 +178,12 @@ void sl_iostream_usart_init_instances(void)
 // STM32 IRQ Handler
 void SL_IOSTREAM_USART_TX_IRQ_HANDLER(SL_IOSTREAM_USART_STM32_PERIPHERAL_NO)(void)
 {
-  sl_iostream_usart_irq_handler(&sl_iostream_stm32);
+  sl_iostream_usart_irq_handler(&sl_iostream_STM32);
 }
 
 void SL_IOSTREAM_USART_RX_IRQ_HANDLER(SL_IOSTREAM_USART_STM32_PERIPHERAL_NO)(void)
 {
-  sl_iostream_usart_irq_handler(&sl_iostream_stm32);
+  sl_iostream_usart_irq_handler(&sl_iostream_STM32);
 }
 
 
@@ -191,9 +191,9 @@ void SL_IOSTREAM_USART_RX_IRQ_HANDLER(SL_IOSTREAM_USART_STM32_PERIPHERAL_NO)(voi
 #if defined(SL_CATALOG_POWER_MANAGER_PRESENT) 
 #if !defined(SL_CATALOG_KERNEL_PRESENT)
  
-sl_power_manager_on_isr_exit_t sl_iostream_usart_stm32_sleep_on_isr_exit(void)
+sl_power_manager_on_isr_exit_t sl_iostream_usart_STM32_sleep_on_isr_exit(void)
 {
-  return sl_iostream_uart_sleep_on_isr_exit(&sl_iostream_stm32);
+  return sl_iostream_uart_sleep_on_isr_exit(&sl_iostream_STM32);
 }
 
 #endif // SL_CATALOG_KERNEL_PRESENT
@@ -225,15 +225,15 @@ static void events_handler(sl_power_manager_em_t from,
   #endif // _SILICON_LABS_32B_SERIES_2
   if (to == SL_POWER_MANAGER_EM0) {
      
-    if (sl_iostream_uart_stm32_handle->stream.context != NULL) {
-      sl_iostream_uart_wakeup(sl_iostream_uart_stm32_handle);
+    if (sl_iostream_uart_STM32_handle->stream.context != NULL) {
+      sl_iostream_uart_wakeup(sl_iostream_uart_STM32_handle);
     }
     
   } else if (to < SL_POWER_MANAGER_EM2){
     // Only prepare for sleep to EM1 or less, since USART doesn't run in EM2
      
-    if (sl_iostream_uart_stm32_handle->stream.context != NULL) {
-      sl_iostream_uart_prepare_for_sleep(sl_iostream_uart_stm32_handle);
+    if (sl_iostream_uart_STM32_handle->stream.context != NULL) {
+      sl_iostream_uart_prepare_for_sleep(sl_iostream_uart_STM32_handle);
     }
     
   }
