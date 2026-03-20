@@ -37,8 +37,19 @@
 #include "sl_bluetooth.h"
 #include "gatt_db.h"
 
+#define CLI_TASK_STACK_SIZE 512
+#define CLI_TASK_PRIORITY 24
+
 // The advertising set handle allocated from Bluetooth stack.
 //static uint8_t advertising_set_handle = 0xff;
+
+QueueHandle_t cli_queue; 
+uint8_t led0_state = 0;
+uint16_t sent_len = 0;
+uint8_t b[20], len = 0;
+uint8_t len_stm32 = 0;
+uint8_t buffer[CLI_COMMAND_MAX_LEN];
+uint8_t buffer_stm32[CLI_COMMAND_MAX_LEN];
 
 // Application Init.
 void app_init(void)
@@ -47,6 +58,24 @@ void app_init(void)
   // Put your additional application init code here!                         //
   // This is called once during start-up.                                    //
   /////////////////////////////////////////////////////////////////////////////
+  BaseType_t ret; 
+
+  // Create CLI queues and task here (after SDK second-stage init)
+  // so the Bluetooth stack has initialized and heap is available.
+  cli_queue = xQueueCreate(4, CLI_COMMAND_MAX_LEN);
+  if (cli_queue == NULL) {
+    app_log("Failed to create CLI queue\n");
+  }
+
+  uartQueue = xQueueCreate(UART_RX_QUEUE_LEN, sizeof(uint8_t));
+  if (uartQueue == NULL) {
+    app_log("Failed to create UART RX queue\n");
+  }
+
+  ret = xTaskCreate(cli_task, "CLI Task", CLI_TASK_STACK_SIZE, NULL, CLI_TASK_PRIORITY, NULL);
+  if (ret != pdPASS) {
+    app_log("Failed to create CLI task\n");
+  }
 }
 
 // Application Process Action.
@@ -57,7 +86,65 @@ void app_process_action(void)
     // Put your additional application code here!                              //
     // This is will run each time app_proceed() is called.                     //
     // Do not call blocking functions from here!                               //
-    /////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////////
+      char ch;
+    
+    if (STATE_SPP_MODE == main_state) {
+      /////////////////////////////////////////////////////////////////////////////
+      // Put your additional application code here!                              //
+      // This is will run each time app_proceed() is called.                     //
+      // Do not call blocking functions from here!                               //
+      /////////////////////////////////////////////////////////////////////////////
+      uint8_t handled = 0;
+
+      if (sl_iostream_getchar(sl_iostream_vcom_handle, &ch) == SL_STATUS_OK) {
+        handled = 1;
+        // check if it is a EOL
+        if ((ch != '\n' && ch != '\r') && len < CLI_COMMAND_MAX_LEN-1) {
+          // store the char only if the buffer is not full
+          buffer[len++] = (uint8_t)ch;
+        }
+        else {
+          // EOL or buffer full, could handle overflow here
+          // Send the buffer only if BLE is connected and buffer is not empty
+          send_spp_data(buffer, len);
+          for (int i = 0; i < CLI_COMMAND_MAX_LEN-1; i++) {
+            buffer[i] = 0;
+          }
+          if (len == CLI_COMMAND_MAX_LEN-1) {
+            buffer[0] = (uint8_t)ch; // store the last char if buffer was full
+            len = 1; // reset if buffer was full
+          } else {
+            len = 0; // reset normally
+          }
+        }
+      }
+
+      // /* Poll anche dallo stream STM32 */
+      // if (sl_iostream_getchar(sl_iostream_stm32_handle, &ch) == SL_STATUS_OK) {
+      //   handled = 1;
+      //   if ((ch != '\n' && ch != '\r') && len_stm32 < CLI_COMMAND_MAX_LEN-1) {
+      //     buffer_stm32[len_stm32++] = (uint8_t)ch;
+      //   } else {
+      //     send_spp_data(buffer_stm32, len_stm32);
+      //     for (int i = 0; i < CLI_COMMAND_MAX_LEN-1; i++) {
+      //       buffer_stm32[i] = 0;
+      //     }
+      //     if (len_stm32 == CLI_COMMAND_MAX_LEN-1) {
+      //       buffer_stm32[0] = (uint8_t)ch;
+      //       len_stm32 = 1;
+      //     } else {
+      //       len_stm32 = 0;
+      //     }
+      //   }
+      // }
+
+      if (!handled) {
+        // non c'erano dati: attendi un po' per non usare CPU al 100%
+        vTaskDelay(pdMS_TO_TICKS(10));
+      }
+    }
+    return;
   }
 }
 
