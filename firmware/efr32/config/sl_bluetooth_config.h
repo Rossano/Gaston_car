@@ -99,6 +99,7 @@
 // <i> if the LE Power Control feature is enabled.
 // <i> When this configuration is passed into stack initialization, the stack
 // <i> will select the closest value that the device supports.
+// <i> API sl_bt_system_set_tx_power() can be used to set the minimum TX power at runtime.
 // <i> API sl_bt_system_get_tx_power_setting() can be used to query the selected value.
 #define SL_BT_CONFIG_MIN_TX_POWER     (-30)
 
@@ -108,6 +109,7 @@
 // <i> advertising, scanning and DTM testing.
 // <i> When this configuration is passed into stack initialization, the stack
 // <i> will select the closest value that the device supports.
+// <i> API sl_bt_system_set_tx_power() can be used to set the maximum TX power at runtime.
 // <i> API sl_bt_system_get_tx_power_setting() can be used to query the selected value.
 #define SL_BT_CONFIG_MAX_TX_POWER     (80)
 

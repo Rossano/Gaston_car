@@ -1,7 +1,7 @@
 {
     "folders": [
         {
-            "path": "..\\efr32\\bt_soc_empty"
+            "path": "..\\efr32"
         }
     ],
     "siWorkspaceRoot": "C:\\Users\\rossa\\Projects\\Gaston_car\\firmware\\efr32"
