@@ -33,23 +33,33 @@ void cli_task(void *pvParameters)
 {
   (void)pvParameters;
   char ch;
-  uint8_t b;
+  uint8_t buffer[CLI_COMMAND_MAX_LEN];
+  uint8_t len = 0;
+
+  // Clear buffer
+  memset(buffer, 0, sizeof(buffer));
 
   for (;;) {
+    // Read character from VCOM
     if (sl_iostream_getchar(sl_iostream_vcom_handle, &ch) == SL_STATUS_OK) {
-      b = (uint8_t)ch;
-      // inoltra via BLE se connesso
-      if (conn_handle != 0xFF) {
-        sl_status_t res = sl_bt_gatt_server_send_notification(conn_handle,
-                                                              gattdb_My_SPP_Write,
-                                                              1,
-                                                              &b);
-        if (res != SL_STATUS_OK) {
-          app_log("notify failed: 0x%04x\r\n", res);
+      // Is it a new line ?
+      if ((ch != '\n') && (ch != '\r')) {
+        // Not a new line, so buffer it
+        if (len < CLI_COMMAND_MAX_LEN - 1) {
+          buffer[len] = (uint8_t)ch;
+          len++;
         }
+      } else {
+        // New line character received, so send the buffer
+        if (len > 0) {
+          send_spp_data(buffer, len);
+        }
+        // Reset buffer
+        memset(buffer, 0, sizeof(buffer));
+        len = 0;
       }
     } else {
-      // non c'erano dati: attendi un po' per non usare CPU al 100%
+      // No data available, so yield the task
       vTaskDelay(pdMS_TO_TICKS(10));
     }
   }
