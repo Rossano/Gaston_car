@@ -11,7 +11,7 @@
 #include "FreeRTOS.h"
 #include "queue.h"
 
-#define UART_RX_QUEUE_LEN   128
+#define UART_RX_QUEUE_LEN   2
 
 extern TaskHandle_t cli_task_handle;
 
