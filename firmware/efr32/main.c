@@ -38,7 +38,7 @@
 #include "sl_main_process_action.h"
 #endif // SL_CATALOG_KERNEL_PRESENT
 
-#if 1
+#if 0
 
 #include "sl_main_init.h"
 #include "sl_main_kernel.h"
