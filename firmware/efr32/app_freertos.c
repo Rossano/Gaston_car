@@ -36,6 +36,8 @@
 #include "app_assert.h"
 #include "app.h"
 #include "sl_simple_led_instances.h"
+#include "cli.h"
+#include "queue.h"
 
 #define APP_TASK_NAME          "app_task"
 #define APP_TASK_STACK_SIZE    512u
@@ -63,6 +65,14 @@ void app_init_bt(void)
   initialized = true;
 
   BaseType_t ret;
+
+  // Create Queues FIRST, before tasks start using them
+  cli_queue = xQueueCreate(1, CLI_COMMAND_MAX_LEN);
+  app_assert(cli_queue != NULL, "CLI queue creation failed.");
+
+  uartQueue = xQueueCreate(UART_RX_QUEUE_LEN, sizeof(uint8_t));
+  app_assert(uartQueue != NULL, "UART RX queue creation failed.");
+
   // Create the task for sl_app_process_action
   ret = xTaskCreate(app_task,
                     APP_TASK_NAME,
@@ -71,6 +81,19 @@ void app_init_bt(void)
                     APP_TASK_PRIO,
                     &app_task_handle);
   app_assert(ret == pdPASS, "Application task creation failed.");
+  ret = xTaskCreate(cli_task,
+                      "cli_task",
+                      1024,
+                      NULL,
+                      20,
+                      &cli_task_handle);
+  app_assert(ret == pdPASS, "CLI task creation failed.");
+  if(ret != pdPASS) {
+    app_log("Failed to create CLI task\n");
+  }
+  else {
+    app_log("CLI task created successfully\n");
+  }
   // Create the semaphore
   app_semaphore_handle = xSemaphoreCreateCounting(UINT16_MAX, 0);
   app_assert(app_semaphore_handle != NULL, "Semaphore creation failed.");
