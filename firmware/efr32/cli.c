@@ -35,14 +35,20 @@ void cli_task(void *pvParameters)
   char ch;
   uint8_t buffer[CLI_COMMAND_MAX_LEN];
   uint8_t len = 0;
+  uint8_t handled_data;
+  uint8_t byte_from_queue;
 
   // Clear buffer
   memset(buffer, 0, sizeof(buffer));
 
   for (;;) {
+    handled_data = 0;
+
+    // Direction 1: VCOM -> BLE
     // Read character from VCOM
     if (sl_iostream_getchar(sl_iostream_vcom_handle, &ch) == SL_STATUS_OK) {
-      // Is it a new line ?
+      handled_data = 1;
+      // Is it a new line?
       if ((ch != '\n') && (ch != '\r')) {
         // Not a new line, so buffer it
         if (len < CLI_COMMAND_MAX_LEN - 1) {
@@ -58,8 +64,16 @@ void cli_task(void *pvParameters)
         memset(buffer, 0, sizeof(buffer));
         len = 0;
       }
-    } else {
-      // No data available, so yield the task
+    }
+
+    // Direction 2: BLE (via queue) -> VCOM
+    if (xQueueReceive(uartQueue, &byte_from_queue, 0) == pdPASS) {
+      handled_data = 1;
+      sl_iostream_putchar(sl_iostream_vcom_handle, byte_from_queue);
+    }
+
+    // If no data was handled in either direction, delay the task to yield CPU
+    if (!handled_data) {
       vTaskDelay(pdMS_TO_TICKS(10));
     }
   }
