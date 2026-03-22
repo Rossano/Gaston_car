@@ -58,27 +58,7 @@ void app_init(void)
   // Put your additional application init code here!                         //
   // This is called once during start-up.                                    //
   /////////////////////////////////////////////////////////////////////////////
-  BaseType_t ret; 
-
-  // Create CLI queues and task here (after SDK second-stage init)
-  // so the Bluetooth stack has initialized and heap is available.
-  cli_queue = xQueueCreate(1, CLI_COMMAND_MAX_LEN);
-  if (cli_queue == NULL) {
-    app_log("Failed to create CLI queue\n");
-  }
-
-  uartQueue = xQueueCreate(UART_RX_QUEUE_LEN, sizeof(uint8_t));
-  if (uartQueue == NULL) {
-    app_log("Failed to create UART RX queue\n");
-  }
-
-  ret = xTaskCreate(cli_task, "CLI Task", CLI_TASK_STACK_SIZE, NULL, CLI_TASK_PRIORITY, NULL);
-  if (ret != pdPASS) {
-    app_log("Failed to create CLI task\n");
-  }
-  else {
-    app_log("CLI task created successfully\n");
-  }
+  
 }
 
 // Application Process Action.
@@ -135,11 +115,15 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
     // -------------------------------
     // This event indicates that a new connection was opened.
     case sl_bt_evt_connection_opened_id:
+      // Save the connection handle for SPP data transfer
+      conn_handle = evt->data.evt_connection_opened.connection;
+      main_state = STATE_CONNECTED;
       break;
 
     // -------------------------------
     // This event indicates that a connection was closed.
     case sl_bt_evt_connection_closed_id:
+      reset_variables(); // Reset handles and state
       // Generate data for advertising
       sc = sl_bt_legacy_advertiser_generate_data(advertising_set_handle,
                                                  sl_bt_advertiser_general_discoverable);
@@ -179,16 +163,20 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
         }
         break;
 
-        case sl_bt_evt_gatt_server_attribute_value_id: //sl_bt_evt_gatt_server_user_read_request_id:
+        case sl_bt_evt_gatt_server_attribute_value_id:
         {
           // Read from the client
           app_log("Checkpoint 1: %s", evt->data.evt_gatt_server_attribute_value.value.data);
+          // Data is not null-terminated, use explicit length formatting or hex dump
+          app_log("Checkpoint 1: Received %d bytes\n", evt->data.evt_gatt_server_attribute_value.value.len);
           if (evt->data.evt_gatt_server_attribute_value.value.len != 0) {
             for (uint8_t i = 0;
                  i < evt->data.evt_gatt_server_attribute_value.value.len; i++) {
-              sl_iostream_putchar(
-                sl_iostream_vcom_handle,
-                evt->data.evt_gatt_server_attribute_value.value.data[i]);
+              // Push data to the UART queue
+              if (xQueueSend(uartQueue, &evt->data.evt_gatt_server_attribute_value.value.data[i], (TickType_t)0) != pdPASS) {
+                // Queue is full, data is dropped
+                app_log("UART RX queue full\r\n");
+              }
             }
             counters.num_pack_received++;
             counters.num_bytes_received +=
