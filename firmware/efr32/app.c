@@ -43,7 +43,7 @@
 // The advertising set handle allocated from Bluetooth stack.
 //static uint8_t advertising_set_handle = 0xff;
 
-QueueHandle_t cli_queue; 
+//QueueHandle_t cli_queue; 
 uint8_t led0_state = 0;
 uint16_t sent_len = 0;
 uint8_t b[20], len = 0;
@@ -58,7 +58,12 @@ void app_init(void)
   // Put your additional application init code here!                         //
   // This is called once during start-up.                                    //
   /////////////////////////////////////////////////////////////////////////////
+  app_log("🟣 [APP_INIT] Starting\n");
   
+  // Impedisce al sistema di scendere sotto la modalità EM0 (Active)
+  //sl_power_manager_add_em_requirement(SL_POWER_MANAGER_EM0);
+  
+  app_log("🟣 [APP_INIT] EXIT\n");
 }
 
 // Application Process Action.
