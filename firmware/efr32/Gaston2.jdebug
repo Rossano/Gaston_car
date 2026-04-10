@@ -5,7 +5,7 @@
 **********************************************************************
 
 File          : 
-Created       : 22. Mar 2026 16:03
+Created       : 24. Mar 2026 21:43
 Ozone Version : V3.40b
 */
 
@@ -29,12 +29,12 @@ void OnProjectLoad (void) {
   Project.SetTargetIF ("SWD");
   Project.SetTIFSpeed ("4 MHz");
   Project.AddSvdFile ("$(InstallDir)/Config/CPU/Cortex-M33F.svd");
-  Project.SetJLinkScript ("$(InstallDir)/EFR32bg22.JlinkScript");
+  Project.SetJLinkScript ("C:/Users/rossa/.silabs/slt/installs/archive/exx32-v6.0.32/EFR32Series2/Series2.JLinkScript");
   //
   // User settings
   //
-  Project.SetOSPlugin ("FreeRTOSPlugin_Cortex-M");
   File.Open ("$(ProjectDir)/cmake_gcc/build/base/bt_soc_gaston.out");
+  Project.SetOSPlugin ("FreeRTOSPlugin_Cortex-M");
 }
 
 /*********************************************************************
