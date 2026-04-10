@@ -10,7 +10,7 @@ referenced in this SBOM.)
 -->
 <bom xmlns="http://cyclonedx.org/schema/bom/1.6" version="1">
   <metadata>
-    <timestamp>2026-03-20T22:36:26Z</timestamp>
+    <timestamp>2026-04-01T23:57:06Z</timestamp>
     <authors>
       <author>
         <name>Silicon Laboratories, Inc.</name>
@@ -97,6 +97,16 @@ referenced in this SBOM.)
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_feature_legacy_scanner" type="library">
           <name>Scanner for legacy advertisements</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>MSLA</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_feature_sm" type="library">
+          <name>Security Manager</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -455,6 +465,36 @@ referenced in this SBOM.)
             </ancestors>
           </pedigree>
         </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:nvm3_source" type="library">
+          <name>NVM3 Core (source)</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:nvm3_default_config" type="library">
+          <name>NVM3 Default Config</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_crypto" type="library">
+          <name>Bluetooth Core Crypto Configuration</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>MSLA</expression>
+          </licenses>
+        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:psa_crypto_config" type="library">
           <name>Configuration</name>
           <version>2025.12.1</version>
@@ -595,6 +635,16 @@ referenced in this SBOM.)
             <expression>MSLA</expression>
           </licenses>
         </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:nvm3_optimization_disable" type="library">
+          <name>NVM3 disable optimization</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:sli_protocol_crypto" type="library">
           <name>Accelerated Crypto Primitives (CRYPTO and RADIOAES)</name>
           <version>2025.12.1</version>
@@ -697,6 +747,16 @@ referenced in this SBOM.)
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:rail_lib_singleprotocol" type="library">
           <name>RAIL Library, Single Protocol</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>MSLA</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_feature_builtin_bonding_database" type="library">
+          <name>Built-in Bluetooth bonding database</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -1031,6 +1091,16 @@ referenced in this SBOM.)
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:device_peripheral" type="library">
           <name>Device Manager Peripheral</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:nvm3_default" type="library">
+          <name>NVM3 Default Instance</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -1429,6 +1499,16 @@ referenced in this SBOM.)
             <expression>Zlib</expression>
           </licenses>
         </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:nvm3_default_flash_backend" type="library">
+          <name>NVM3 back-end for default instance in flash</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:rail_lib_singleprotocol_alpha_chips" type="library">
           <name>RAIL Library, Single Protocol for Alpha Chips</name>
           <version>2025.12.1</version>
@@ -1591,6 +1671,16 @@ referenced in this SBOM.)
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:emlib_burtc" type="library">
           <name>BURTC</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:psa_its" type="library">
+          <name>PSA Persistent Storage Support (ITS)</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>

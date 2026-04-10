@@ -23,6 +23,7 @@
 #include "sli_crypto.h"
 #include "sl_iostream_init_instances.h"
 #include "cmsis_os2.h"
+#include "nvm3_default.h"
 #include "sl_cos.h"
 #include "sl_iostream_handles.h"
 
@@ -48,6 +49,7 @@ void sl_platform_init(void)
   sl_board_preinit();
   sl_clock_manager_runtime_init();
   sl_board_init();
+  nvm3_initDefault();
 }
 
 void sli_internal_init_early(void)
