@@ -10,6 +10,7 @@
 #include "sl_iostream_handles.h"
 #include "sl_bluetooth.h"
 #include "gatt_db.h"
+#include "task.h"
 #include "app.h"
 
 #include "app_log.h"
@@ -89,7 +90,11 @@ void send_spp_data(uint8_t *data, uint8_t len)
                                                   len,
                                                   data);
       counters.num_writes++;
-      app_log("Check_point 2: %s\r\n", data);
+      
+      if (result == SL_STATUS_NO_MORE_RESOURCE) {
+        // Buffer pieno: aspetta 1 tick (o 1ms) per lasciare tempo allo stack di trasmettere
+        vTaskDelay(pdMS_TO_TICKS(1));
+      }
     } while (result == SL_STATUS_NO_MORE_RESOURCE);
 
     if (result != 0) {
