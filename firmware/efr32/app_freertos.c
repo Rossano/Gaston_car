@@ -33,7 +33,8 @@
 #include "task.h"
 #include "semphr.h"
 #include "sl_main_init.h"
-#include "app_assert.h"
+//#include "app_assert.h"
+#include "app_log.h"
 #include "app.h"
 #include "sl_simple_led_instances.h"
 #include "cli.h"
@@ -58,20 +59,37 @@ static SemaphoreHandle_t app_mutex_handle = NULL;
 // Application Runtime Init.
 void app_init_bt(void)
 {
+  app_log("🔵 [1] app_init_bt() ENTRY\n");
+  
   static bool initialized = false;
+  app_log("🔵 [2] initialized=%d\n", initialized);
+  
   if (initialized) {
+    app_log("🟢 [3] Already init, RETURN\n");
     return;
   }
   initialized = true;
-
+  
+  app_log("🟡 [4] Starting init...\n");
+  
   BaseType_t ret;
 
   // Create Queues FIRST, before tasks start using them
   cli_queue = xQueueCreate(1, CLI_COMMAND_MAX_LEN);
-  app_assert(cli_queue != NULL, "CLI queue creation failed.");
+  if(cli_queue != NULL) {
+    app_log("CLI queue created successfully\n");
+  }
+  else {
+    app_log("Failed to create CLI queue\n");
+  }
 
   uartQueue = xQueueCreate(UART_RX_QUEUE_LEN, sizeof(uint8_t));
-  app_assert(uartQueue != NULL, "UART RX queue creation failed.");
+  if(uartQueue != NULL) {
+    app_log("UART RX queue created successfully\n");
+  }
+  else {
+    app_log("Failed to create UART RX queue\n");
+  }
 
   // Create the task for sl_app_process_action
   ret = xTaskCreate(app_task,
@@ -80,14 +98,19 @@ void app_init_bt(void)
                     NULL,
                     APP_TASK_PRIO,
                     &app_task_handle);
-  app_assert(ret == pdPASS, "Application task creation failed.");
+  if (ret != pdPASS) {
+    app_log("Failed to create app task\n");
+  }
+  else {
+    app_log("App task created successfully\n");
+  }
+  
   ret = xTaskCreate(cli_task,
                       "cli_task",
                       1024,
                       NULL,
                       20,
                       &cli_task_handle);
-  app_assert(ret == pdPASS, "CLI task creation failed.");
   if(ret != pdPASS) {
     app_log("Failed to create CLI task\n");
   }
@@ -96,10 +119,23 @@ void app_init_bt(void)
   }
   // Create the semaphore
   app_semaphore_handle = xSemaphoreCreateCounting(UINT16_MAX, 0);
-  app_assert(app_semaphore_handle != NULL, "Semaphore creation failed.");
+  if(app_semaphore_handle != NULL) {
+    app_log("Semaphore created successfully\n");
+  }
+  else {
+    app_log("Failed to create semaphore\n");
+  }
   // Create the mutex
   app_mutex_handle = xSemaphoreCreateRecursiveMutex();
-  app_assert(app_mutex_handle != NULL, "Mutex creation failed.");
+  if(app_mutex_handle != NULL) {
+    app_log("Mutex created successfully\n");
+  }
+  else {
+    app_log("Failed to create mutex\n");
+  }
+
+  app_log("🟡 [5] Queues created\n");
+  app_log("🟡 [6] app_init_bt() EXIT\n");
 }
 
 /******************************************************************************
@@ -158,3 +194,4 @@ void app_mutex_release(void)
 {
   (void)xSemaphoreGiveRecursive(app_mutex_handle);
 }
+
