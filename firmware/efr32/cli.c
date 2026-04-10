@@ -26,6 +26,7 @@
 extern sl_iostream_t * sl_iostream_vcom_handle;
 
 QueueHandle_t uartQueue;
+QueueHandle_t cli_queue;
 TaskHandle_t cli_task_handle = NULL;
 
 
