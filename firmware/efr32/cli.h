@@ -1,8 +1,8 @@
 /*
  * cli.h
  *
- *  Created on: 21 août 2025
- *      Author: rossa
+ *  Created on: RTOS SPP Bridge Utility
+ *      Author: Auto-regenerated
  */
 
 #ifndef CLI_H_
@@ -11,13 +11,14 @@
 #include "FreeRTOS.h"
 #include "queue.h"
 
-#define UART_RX_QUEUE_LEN   128
+/* SPP UART queue configuration - optimized for single connection */
+#define UART_RX_QUEUE_LEN   32  /* Optimized: 32 bytes sufficient for single SPP connection */
+#define CLI_COMMAND_MAX_LEN 64
 
 extern TaskHandle_t cli_task_handle;
-
 extern QueueHandle_t uartQueue;
+extern QueueHandle_t cli_queue;
 
-//void EUSART0_init();
-void cli_task(void *);
+void cli_task(void *pvParameters);
 
 #endif /* CLI_H_ */

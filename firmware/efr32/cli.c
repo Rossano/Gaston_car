@@ -42,9 +42,22 @@ void cli_task(void *pvParameters)
   // Clear buffer
   memset(buffer, 0, sizeof(buffer));
 
+  // Attendi che il sistema sia stabile
+  vTaskDelay(pdMS_TO_TICKS(100));
+  app_log("[CLI] Task started on vcom_handle: %p\n", (void*)sl_iostream_vcom_handle);
+
   for (;;) {
     handled_data = 0;
-
+    
+    // Sicurezza: se l'handle non è inizializzato, prova a usare il default
+    if (sl_iostream_vcom_handle == NULL) {
+      sl_iostream_vcom_handle = sl_iostream_get_default();
+      if (sl_iostream_vcom_handle == NULL) {
+        vTaskDelay(pdMS_TO_TICKS(100));
+        continue;
+      }
+    }
+    
     // Direction 1: VCOM -> BLE
     // Read character from VCOM
     if (sl_iostream_getchar(sl_iostream_vcom_handle, &ch) == SL_STATUS_OK) {
@@ -61,10 +74,11 @@ void cli_task(void *pvParameters)
         if (len > 0) {
           send_spp_data(buffer, len);
         }
-        // Reset buffer
-        memset(buffer, 0, sizeof(buffer));
         len = 0;
       }
+    } else {
+      // Opzionale: piccolo delay per non saturare la CPU se getchar fallisce
+      // ma uartQueue è vuota
     }
 
     // Direction 2: BLE (via queue) -> VCOM

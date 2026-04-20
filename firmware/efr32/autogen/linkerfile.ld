@@ -29,8 +29,8 @@
 
  MEMORY
  {
-   FLASH      (rx)  : ORIGIN = 0x0, LENGTH = 0x7e000
-   RAM        (rwx) : ORIGIN = 0x20000000, LENGTH = 0x8000
+   FLASH      (rx)  : ORIGIN = 0x0, LENGTH = 0x80000
+   RAM        (rwx) :ORIGIN = 0x20000000, LENGTH = 0x8000
  }
 
 ENTRY(Reset_Handler)
@@ -64,26 +64,26 @@ SECTIONS
     __bss_start__ = .;
     *(SORT_BY_ALIGNMENT(.bss*))
     *(COMMON)
-    . = ALIGN(4);
+    . = ALIGN(32);
     __bss_end__ = .;
   } > RAM
 
 
-  .noinit (NOLOAD) : ALIGN(4)
+  .noinit (NOLOAD) : ALIGN(32)
   {
     *(.noinit*);
   } > RAM
 
 
-  text_application_ram : ALIGN(4)
+  text_application_ram : ALIGN(32)
   {
-    . = ALIGN(4);
+    . = ALIGN(32);
     __vma_ramfuncs_start__ = .;
 
     /* text_application_ram */
     *(text_application_ram)
 
-    . = ALIGN(4);
+    . = ALIGN(32);
     __vma_ramfuncs_end__ = .;
   } > RAM AT > FLASH
 
@@ -217,8 +217,8 @@ heap_size = heap_limit - __HeapBase;
     __HeapLimit = ORIGIN(RAM) + LENGTH(RAM);
   } > RAM
 
-  __ram_end__ = 0x20000000 + 0x8000;
-  __main_flash_end__ = 0x0 + 0x7e000;
+  __ram_end__ = 0x0 + 0x0;
+  __main_flash_end__ = 0x0 + 0x0;
    /* This is where we handle flash storage blocks. We use dummy sections for finding the configured
    * block sizes and then "place" them at the end of flash when the size is known. */
   .internal_storage (DSECT) : {
@@ -240,6 +240,7 @@ heap_size = heap_limit - __HeapBase;
 
   linker_storage_begin = linker_storage_end - SIZEOF(.internal_storage);
   ASSERT((linker_storage_begin >= (__etext + SIZEOF(.data))), "FLASH memory overflowed !")
+
 
 
 }

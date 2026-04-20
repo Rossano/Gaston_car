@@ -34,12 +34,15 @@
 #include <stdbool.h>
 #include "FreeRTOS.h"
 #include "queue.h"
+#include "semphr.h"
 
 #define CLI_COMMAND_MAX_LEN   64
 
 extern QueueHandle_t cli_queue;
-extern uint8_t connection_handle;
-extern uint8_t buffer[CLI_COMMAND_MAX_LEN];
+extern QueueHandle_t uartQueue;
+extern TaskHandle_t cli_task_handle;
+//extern SemaphoreHandle_t app_semaphore_handle;
+//extern SemaphoreHandle_t app_mutex_handle;
 
 /**************************************************************************//**
  * Proceed with execution. (Indicate that it is required to run the application

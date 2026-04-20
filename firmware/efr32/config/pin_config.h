@@ -82,41 +82,9 @@
 // [TIMER4]$
 
 // $[USART0]
-// USART0 RX on PB01
-#ifndef USART0_RX_PORT                          
-#define USART0_RX_PORT                           SL_GPIO_PORT_B
-#endif
-#ifndef USART0_RX_PIN                           
-#define USART0_RX_PIN                            1
-#endif
-
-// USART0 TX on PB02
-#ifndef USART0_TX_PORT                          
-#define USART0_TX_PORT                           SL_GPIO_PORT_B
-#endif
-#ifndef USART0_TX_PIN                           
-#define USART0_TX_PIN                            2
-#endif
-
 // [USART0]$
 
 // $[USART1]
-// USART1 RX on PB02
-#ifndef USART1_RX_PORT                          
-#define USART1_RX_PORT                           SL_GPIO_PORT_B
-#endif
-#ifndef USART1_RX_PIN                           
-#define USART1_RX_PIN                            2
-#endif
-
-// USART1 TX on PB01
-#ifndef USART1_TX_PORT                          
-#define USART1_TX_PORT                           SL_GPIO_PORT_B
-#endif
-#ifndef USART1_TX_PIN                           
-#define USART1_TX_PIN                            1
-#endif
-
 // [USART1]$
 
 // $[I2C1]
@@ -135,22 +103,6 @@
 // [I2C0]$
 
 // $[EUART0]
-// EUART0 CTS on PA08
-#ifndef EUART0_CTS_PORT                         
-#define EUART0_CTS_PORT                          SL_GPIO_PORT_A
-#endif
-#ifndef EUART0_CTS_PIN                          
-#define EUART0_CTS_PIN                           8
-#endif
-
-// EUART0 RTS on PA07
-#ifndef EUART0_RTS_PORT                         
-#define EUART0_RTS_PORT                          SL_GPIO_PORT_A
-#endif
-#ifndef EUART0_RTS_PIN                          
-#define EUART0_RTS_PIN                           7
-#endif
-
 // EUART0 RX on PA06
 #ifndef EUART0_RX_PORT                          
 #define EUART0_RX_PORT                           SL_GPIO_PORT_A
@@ -192,38 +144,6 @@
 // [MODEM]$
 
 // $[CUSTOM_PIN_NAME]
-#ifndef _PORT                                   
-#define _PORT                                    SL_GPIO_PORT_A
-#endif
-#ifndef _PIN                                    
-#define _PIN                                     0
-#endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // [CUSTOM_PIN_NAME]$
 
 

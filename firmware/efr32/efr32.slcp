@@ -1,6 +1,6 @@
 # Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
-project_name: bt_soc_gaston
-label: bt_soc_gaston
+project_name: efr32
+label: efr32
 description: |
   A minimal project structure, that serves as a starting point for custom Bluetooth applications. The application starts advertising after boot and restarts advertising after a connection is closed.
 category: Bluetooth Examples
@@ -30,7 +30,7 @@ include:
 sdk:
   vendor: silabs
   id: simplicity_sdk
-  version: 2025.12.1
+  version: 2025.12.2
 toolchain_settings: [
   ]
 component:
@@ -75,6 +75,9 @@ component:
   id: bluetooth_stack
 - package: simplicity_sdk
   vendor: silabs
+  id: brd4001a
+- package: simplicity_sdk
+  vendor: silabs
   id: brd4108a
 - package: simplicity_sdk
   vendor: silabs
@@ -97,10 +100,8 @@ component:
   vendor: silabs
   id: iostream_eusart
 - package: simplicity_sdk
-  instance:
-  - mikroe
   vendor: silabs
-  id: iostream_usart
+  id: mpu
 - package: simplicity_sdk
   vendor: silabs
   id: rail_util_pti
@@ -118,6 +119,19 @@ other_file:
 - path: image/readme_img2.png
 - path: image/readme_img3.png
 - path: image/readme_img4.png
+template_contribution:
+- name: memory_ram_start
+  priority: 0
+  value: 0
+- name: memory_ram_size
+  priority: 0
+  value: 0
+- name: memory_flash_start
+  priority: 0
+  value: 0
+- name: memory_flash_size
+  priority: 0
+  value: 0
 configuration:
 - name: SL_STACK_SIZE
   value: '2752'

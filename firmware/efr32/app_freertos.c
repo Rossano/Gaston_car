@@ -33,10 +33,10 @@
 #include "task.h"
 #include "semphr.h"
 #include "sl_main_init.h"
-//#include "app_assert.h"
-#include "app_log.h"
+#include "app_assert.h"
 #include "app.h"
 #include "sl_simple_led_instances.h"
+#include "app_log.h"
 #include "cli.h"
 #include "queue.h"
 
@@ -59,83 +59,72 @@ static SemaphoreHandle_t app_mutex_handle = NULL;
 // Application Runtime Init.
 void app_init_bt(void)
 {
-  app_log("🔵 [1] app_init_bt() ENTRY\n");
-  
-  static bool initialized = false;
-  app_log("🔵 [2] initialized=%d\n", initialized);
-  
-  if (initialized) {
-    app_log("🟢 [3] Already init, RETURN\n");
-    return;
-  }
-  initialized = true;
-  
-  app_log("🟡 [4] Starting init...\n");
-  
   BaseType_t ret;
-
-  // Create Queues FIRST, before tasks start using them
-  cli_queue = xQueueCreate(1, CLI_COMMAND_MAX_LEN);
-  if(cli_queue != NULL) {
-    app_log("CLI queue created successfully\n");
-  }
-  else {
-    app_log("Failed to create CLI queue\n");
-  }
-
-  uartQueue = xQueueCreate(UART_RX_QUEUE_LEN, sizeof(uint8_t));
-  if(uartQueue != NULL) {
-    app_log("UART RX queue created successfully\n");
-  }
-  else {
-    app_log("Failed to create UART RX queue\n");
-  }
-
-  // Create the task for sl_app_process_action
+  
+  // // Create Queues FIRST - CRITICAL
+  // cli_queue = xQueueCreate(1, CLI_COMMAND_MAX_LEN);
+  // if(cli_queue == NULL) {
+  //   app_log("CLI queue creation failed");
+  //   while(1);
+  // } else {
+  //   app_log("CLI queue created successfully");
+  // }
+  
+  // uartQueue = xQueueCreate(UART_RX_QUEUE_LEN, sizeof(uint8_t));
+  // if(uartQueue == NULL) {
+  //   app_log("UART queue creation failed");
+  //   while(1);
+  // } else {
+  //   app_log("UART queue created successfully");
+  // }
+  
+  // Create the app_task
   ret = xTaskCreate(app_task,
                     APP_TASK_NAME,
                     APP_TASK_STACK_SIZE,
                     NULL,
                     APP_TASK_PRIO,
                     &app_task_handle);
-  if (ret != pdPASS) {
-    app_log("Failed to create app task\n");
-  }
-  else {
-    app_log("App task created successfully\n");
+  if(ret != pdPASS) {
+    app_log("Application task creation failed");
+    while(1);
+  } else {
+    app_log("Application task created successfully");
   }
   
+  // Create the cli_task
   ret = xTaskCreate(cli_task,
-                      "cli_task",
-                      1024,
-                      NULL,
-                      20,
-                      &cli_task_handle);
+                    "cli_task",
+                    512,  // Stack size in words
+                    NULL,
+                    20,   // Priority
+                    &cli_task_handle);
   if(ret != pdPASS) {
-    app_log("Failed to create CLI task\n");
+    app_log("CLI task creation failed");
+    while(1);
+  } else {
+    app_log("CLI task created successfully");
   }
-  else {
-    app_log("CLI task created successfully\n");
-  }
-  // Create the semaphore
-  app_semaphore_handle = xSemaphoreCreateCounting(UINT16_MAX, 0);
-  if(app_semaphore_handle != NULL) {
-    app_log("Semaphore created successfully\n");
-  }
-  else {
-    app_log("Failed to create semaphore\n");
-  }
-  // Create the mutex
-  app_mutex_handle = xSemaphoreCreateRecursiveMutex();
-  if(app_mutex_handle != NULL) {
-    app_log("Mutex created successfully\n");
-  }
-  else {
-    app_log("Failed to create mutex\n");
-  }
-
-  app_log("🟡 [5] Queues created\n");
-  app_log("🟡 [6] app_init_bt() EXIT\n");
+  
+  // // Create the semaphore
+  // app_semaphore_handle = xSemaphoreCreateCounting(UINT16_MAX, 0);
+  // if(app_semaphore_handle == NULL) {
+  //   app_log("Semaphore creation failed");
+  //   while(1);
+  // } else {
+  //   app_log("Semaphore created successfully");
+  // }
+  
+  // // Create the mutex
+  // app_mutex_handle = xSemaphoreCreateRecursiveMutex();
+  // if(app_mutex_handle == NULL) {
+  //   app_log("Mutex creation failed");
+  //   while(1);
+  // } else {
+  //   app_log("Mutex created successfully");
+  // }
+  
+  // app_log("app_init_bt() completed successfully");
 }
 
 /******************************************************************************
@@ -144,10 +133,9 @@ void app_init_bt(void)
 static void app_task(void *p_arg)
 {
   (void)p_arg;
-  TickType_t last_blink_time = xTaskGetTickCount();
-
   while (1) {
-    app_process_action();
+    //app_process_action();
+    TickType_t last_blink_time = xTaskGetTickCount();
 
     // Controllo del LED (ogni 500ms)
     if ((xTaskGetTickCount() - last_blink_time) >= pdMS_TO_TICKS(BLINK_PERIOD_MS)) {
@@ -174,10 +162,7 @@ void app_proceed(void)
 // Check if it is required to process with execution.
 bool app_is_process_required(void)
 {
-  // Usiamo un timeout (es. 100ms) invece di portMAX_DELAY.
-  // Questo permette al loop di app_task di girare e controllare il LED
-  // anche se non ci sono eventi Bluetooth.
-  BaseType_t ret = xSemaphoreTake(app_semaphore_handle, pdMS_TO_TICKS(100));
+  BaseType_t ret = xSemaphoreTake(app_semaphore_handle, portMAX_DELAY);
   return (ret == pdTRUE);
 }
 
@@ -194,4 +179,3 @@ void app_mutex_release(void)
 {
   (void)xSemaphoreGiveRecursive(app_mutex_handle);
 }
-

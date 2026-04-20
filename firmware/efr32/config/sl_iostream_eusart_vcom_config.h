@@ -65,11 +65,11 @@
 // <SL_IOSTREAM_EUSART_UART_FLOW_CTRL_CTS_RTS=> CTS/RTS
 // <SL_IOSTREAM_EUSART_UART_FLOW_CTRL_SOFT=> Software Flow control (XON/XOFF)
 // <i> Default: SL_IOSTREAM_EUSART_UART_FLOW_CTRL_NONE
-#define SL_IOSTREAM_EUSART_VCOM_FLOW_CONTROL_TYPE     SL_IOSTREAM_EUSART_UART_FLOW_CTRL_NONE
+#define SL_IOSTREAM_EUSART_VCOM_FLOW_CONTROL_TYPE     SL_IOSTREAM_EUSART_UART_FLOW_CTRL_CTS_RTS
 
 // <o SL_IOSTREAM_EUSART_VCOM_RX_BUFFER_SIZE> Receive buffer size
 // <i> Default: 32
-#define SL_IOSTREAM_EUSART_VCOM_RX_BUFFER_SIZE    256
+#define SL_IOSTREAM_EUSART_VCOM_RX_BUFFER_SIZE    32
 
 // <q SL_IOSTREAM_EUSART_VCOM_CONVERT_BY_DEFAULT_LF_TO_CRLF> Convert \n to \r\n
 // <i> It can be changed at runtime using the C API.
@@ -111,12 +111,7 @@
 #define SL_IOSTREAM_EUSART_VCOM_RX_PIN           6
 #endif
 
-// CTS/RTS disabled to avoid hardware flow control conflicts
-// when software flow control is disabled
-// #define SL_IOSTREAM_EUSART_VCOM_CTS_PORT         SL_GPIO_PORT_A
-// #define SL_IOSTREAM_EUSART_VCOM_CTS_PIN          8
-// #define SL_IOSTREAM_EUSART_VCOM_RTS_PORT         SL_GPIO_PORT_A
-// #define SL_IOSTREAM_EUSART_VCOM_RTS_PIN          7
+
 // [EUSART_SL_IOSTREAM_EUSART_VCOM]$
 // <<< sl:end pin_tool >>>
 

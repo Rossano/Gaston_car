@@ -12,7 +12,7 @@
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
- * arising from the aplication of this software.
+ * arising from the use of this software.
  *
  * Permission is granted to anyone to use this software for any purpose,
  * including commercial applications, and to alter it and redistribute it
@@ -29,7 +29,6 @@
  ******************************************************************************/
 #include "sl_component_catalog.h"
 #include "sl_main_init.h"
-#include "app_log.h"
 #if defined(SL_CATALOG_POWER_MANAGER_PRESENT)
 #include "sl_power_manager.h"
 #endif
@@ -46,14 +45,27 @@ int main(void)
   // component initialization will take place there.
   sl_main_init();
 
-  app_log("main: sl_main_init() completed\n");
-
 #if defined(SL_CATALOG_KERNEL_PRESENT)
   // Start the kernel. The start task will be executed (Highest priority) to complete
   // the Simplicity SDK components initialization and the user app_init() hook function will be called.
-  app_log("main: Starting FreeRTOS kernel\n");
   sl_main_kernel_start();
 #else // SL_CATALOG_KERNEL_PRESENT
-#error "Kernel not present"
+
+  // User provided code.
+  app_init();
+
+  while (1) {
+    // Silicon Labs components process action routine
+    // must be called from the super loop.
+    sl_main_process_action();
+
+    // User provided code. Application process.
+    app_process_action();
+
+#if defined(SL_CATALOG_POWER_MANAGER_PRESENT)
+    // Let the CPU go to sleep if the system allows it.
+    sl_power_manager_sleep();
+#endif
+  }
 #endif // SL_CATALOG_KERNEL_PRESENT
 }

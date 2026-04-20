@@ -104,9 +104,10 @@ function Write-Status {
 function Write-Header {
     param([string]$Title)
     Write-Host ""
-    Write-Host "╔═══════════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
-    Write-Host "║ $Title.PadRight(61) ║" -ForegroundColor Cyan
-    Write-Host "╚═══════════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
+   # Write-Host "╔═══════════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
+   # Write-Host "║ $Title.PadRight(61) ║" -ForegroundColor Cyan
+   # Write-Host "╚═══════════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
+    Write-Host "=== $Title ===" -ForegroundColor Cyan
     Write-Host ""
 }
 
@@ -128,14 +129,14 @@ if (-not (Test-Path $CommanderPath)) {
     Write-Status "Simplicity Commander not found at $CommanderPath" "FAIL"
     exit 1
 }
-Write-Status "✓ Simplicity Commander found" "OK"
+Write-Status " Simplicity Commander found" "OK"
 
 # Check project directory
 if (-not (Test-Path $CmakeDir)) {
     Write-Status "CMake directory not found: $CmakeDir" "FAIL"
     exit 1
 }
-Write-Status "✓ CMake directory found" "OK"
+Write-Status " CMake directory found" "OK"
 
 # ============================================================================
 # Step 2: Configure CMake
@@ -150,9 +151,9 @@ if (-not $SkipConfigure) {
         & $CmakePath --preset project
         
         if ($LASTEXITCODE -eq 0) {
-            Write-Status "✓ CMake configuration successful" "OK"
+            Write-Status "CMake configuration successful" "OK"
         } else {
-            Write-Status "✗ CMake configuration failed (exit code: $LASTEXITCODE)" "FAIL"
+            Write-Status "CMake configuration failed (exit code: $LASTEXITCODE)" "FAIL"
             exit 1
         }
     } finally {
@@ -175,9 +176,9 @@ try {
     & $CmakePath --build --preset default_config
     
     if ($LASTEXITCODE -eq 0) {
-        Write-Status "✓ Build successful" "OK"
+        Write-Status "Build successful" "OK"
     } else {
-        Write-Status "✗ Build failed (exit code: $LASTEXITCODE)" "FAIL"
+        Write-Status "Build failed (exit code: $LASTEXITCODE)" "FAIL"
         exit 1
     }
 } finally {
@@ -189,7 +190,7 @@ if (-not (Test-Path $HexFile)) {
     Write-Status "Hex file not found: $HexFile" "FAIL"
     exit 1
 }
-Write-Status "✓ Hex file found: $(Split-Path -Leaf $HexFile)" "OK"
+Write-Status "Hex file found: $(Split-Path -Leaf $HexFile)" "OK"
 
 # ============================================================================
 # Step 4: Flash Device
@@ -212,9 +213,9 @@ Write-Status "  File: $(Split-Path -Leaf $HexFile)" "INFO"
 & $CommanderPath @flashArgs
 
 if ($LASTEXITCODE -eq 0) {
-    Write-Status "✓ Flash successful" "OK"
+    Write-Status "Flash successful" "OK"
 } else {
-    Write-Status "✗ Flash failed (exit code: $LASTEXITCODE)" "FAIL"
+    Write-Status "Flash failed (exit code: $LASTEXITCODE)" "FAIL"
     exit 1
 }
 
@@ -287,10 +288,10 @@ try {
     }
     
     if ($bootSuccess) {
-        Write-Status "✓ Device booted successfully" "OK"
+        Write-Status "  Device booted successfully" "OK"
         Write-Status "  Received: $(($output -split "`n")[0].Trim())" "INFO"
     } else {
-        Write-Status "✗ Device did not respond with boot message" "WARN"
+        Write-Status "  Device did not respond with boot message" "WARN"
         Write-Status "  First 200 chars: $($output.Substring(0, [Math]::Min(200, $output.Length)))" "INFO"
         Write-Status "  This may still be OK if flash succeeded and device is running" "INFO"
     }
@@ -298,6 +299,7 @@ try {
 } catch {
     Write-Status "Could not open COM port $Port : $_" "WARN"
     Write-Status "Skipping VCOM verification (flash likely succeeded)" "INFO"
+    Write-Status "<$Port> : $($_.Exception.Message)" "INFO"
 }
 
 # ============================================================================
@@ -306,10 +308,10 @@ try {
 
 Step6:
 Write-Header "Workflow Complete"
-Write-Status "✓ Build → Flash → Verify succeeded" "OK"
+Write-Status "Build -> Flash -> Verify succeeded" "OK"
 Write-Status "Device: $DeviceId" "INFO"
 Write-Status "Hex file: $(Split-Path -Leaf $HexFile)" "INFO"
-Write-Status "Next step: Open Simplicity Connect app to test BLE communication" "INFO"
+# Write-Status "Next step: Open Simplicity Connect app to test BLE communication" "INFO"
 
 exit 0
 

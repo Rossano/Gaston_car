@@ -66,7 +66,7 @@
 // <i> advertising and scanning. The default value is an estimation for achieving adequate throughput
 // <i> and supporting multiple simultaneous connections. Consider increasing this value for
 // <i> higher data throughput over connections, advertising or scanning long advertisement data.
-#define SL_BT_CONFIG_BUFFER_SIZE    (3150)
+#define SL_BT_CONFIG_BUFFER_SIZE    2000
 
 // <e SL_BT_CONFIG_SET_CUSTOM_ADDRESS_FROM_NVM3> Enable using a custom Bluetooth address stored in NVM3
 // <i> Enable or disable using a custom Bluetooth address stored the Bluetooth space of NVM3. When enabled,

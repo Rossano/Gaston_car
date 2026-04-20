@@ -78,7 +78,7 @@ void send_spp_data(uint8_t *data, uint8_t len)
   if (len == 0) {
     return;
   }
-  app_log("Checkpoint 4: entering spp_send_data(%s, %d)\r\n", data, len);
+  app_log("Checkpoint 4: entering spp_send_data(len=%d)\r\n", len);
 
   if(conn_handle != 0xFF) {    
     // Stack may return "out-of-memory" (SL_STATUS_NO_MORE_RESOURCE) error if

@@ -46,10 +46,6 @@
 //QueueHandle_t cli_queue; 
 uint8_t led0_state = 0;
 uint16_t sent_len = 0;
-uint8_t b[20], len = 0;
-uint8_t len_stm32 = 0;
-uint8_t buffer[CLI_COMMAND_MAX_LEN];
-uint8_t buffer_stm32[CLI_COMMAND_MAX_LEN];
 
 // Application Init.
 void app_init(void)
@@ -58,12 +54,22 @@ void app_init(void)
   // Put your additional application init code here!                         //
   // This is called once during start-up.                                    //
   /////////////////////////////////////////////////////////////////////////////
-  app_log("🟣 [APP_INIT] Starting\n");
+    // Create Queues FIRST - CRITICAL
+  cli_queue = xQueueCreate(1, CLI_COMMAND_MAX_LEN);
+  if(cli_queue == NULL) {
+    app_log("CLI queue creation failed");
+    while(1);
+  } else {
+    app_log("CLI queue created successfully");
+  }
   
-  // Impedisce al sistema di scendere sotto la modalità EM0 (Active)
-  //sl_power_manager_add_em_requirement(SL_POWER_MANAGER_EM0);
-  
-  app_log("🟣 [APP_INIT] EXIT\n");
+  uartQueue = xQueueCreate(UART_RX_QUEUE_LEN, sizeof(uint8_t));
+  if(uartQueue == NULL) {
+    app_log("UART queue creation failed");
+    while(1);
+  } else {
+    app_log("UART queue created successfully");
+  }
 }
 
 // Application Process Action.
@@ -75,7 +81,6 @@ void app_process_action(void)
     // This is will run each time app_proceed() is called.                     //
     // Do not call blocking functions from here!                               //
     /////////////////////////////////////////////////////////////////////////////
-    return;
   }
 }
 
@@ -120,15 +125,11 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
     // -------------------------------
     // This event indicates that a new connection was opened.
     case sl_bt_evt_connection_opened_id:
-      // Save the connection handle for SPP data transfer
-      conn_handle = evt->data.evt_connection_opened.connection;
-      main_state = STATE_CONNECTED;
       break;
 
     // -------------------------------
     // This event indicates that a connection was closed.
     case sl_bt_evt_connection_closed_id:
-      reset_variables(); // Reset handles and state
       // Generate data for advertising
       sc = sl_bt_legacy_advertiser_generate_data(advertising_set_handle,
                                                  sl_bt_advertiser_general_discoverable);

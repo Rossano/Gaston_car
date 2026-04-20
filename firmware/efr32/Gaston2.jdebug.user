@@ -1,0 +1,52 @@
+
+
+
+Breakpoint=C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/bluetooth_le_host/src/sl_bt_rtos_adaptation.c:488, State=BP_STATE_ON
+Breakpoint=C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/bluetooth_le_host/src/sl_bt_rtos_adaptation.c:545, State=BP_STATE_ON
+Breakpoint=C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/bluetooth_le_host/src/sl_bt_rtos_adaptation.c:552, State=BP_STATE_ON
+Breakpoint=C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/bluetooth_le_host/src/sl_bt_rtos_adaptation.c:556, State=BP_STATE_ON
+Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app_freertos.c:66:3, Permitted Impl.=BP_TYPE_MIXED, State=BP_STATE_DISABLED
+Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app_freertos.c:68:3, State=BP_STATE_DISABLED
+Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app_freertos.c:72, State=BP_STATE_ON
+Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app_freertos.c:74:3, State=BP_STATE_DISABLED
+Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app_freertos.c:81:3, State=BP_STATE_DISABLED
+Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app_freertos.c:88:3, State=BP_STATE_DISABLED
+Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app_freertos.c:96:3, Permitted Impl.=BP_TYPE_MIXED, State=BP_STATE_DISABLED
+Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app_freertos.c:105, State=BP_STATE_ON
+Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app_freertos.c:111:3, State=BP_STATE_DISABLED
+Breakpoint=C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/platform_core/platform/service/sl_main/src/rtos/main_retarget.c:96, State=BP_STATE_ON
+Breakpoint=C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/platform_core/platform/service/sl_main/src/rtos/main_retarget.c:100, State=BP_STATE_ON
+Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app.c:97:3, State=BP_STATE_DISABLED
+Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app.c:106:7, State=BP_STATE_DISABLED
+Breakpoint=C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/freertos/kernel/portable/GCC/ARM_CM33_NTZ/non_secure/port.c:801, State=BP_STATE_DISABLED
+OpenDocument="sl_sleeptimer.c", FilePath="C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/platform_core/platform/service/sleeptimer/src/sl_sleeptimer.c", Line=1463
+OpenDocument="main_retarget.c", FilePath="C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/platform_core/platform/service/sl_main/src/rtos/main_retarget.c", Line=57
+OpenDocument="sl_bt_rtos_adaptation.c", FilePath="C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/bluetooth_le_host/src/sl_bt_rtos_adaptation.c", Line=532
+OpenDocument="cmsis_gcc.h", FilePath="C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/cmsis/Core/Include/cmsis_gcc.h", Line=1541
+OpenDocument="em_emu.c", FilePath="C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/platform_core/platform/emlib/src/em_emu.c", Line=340
+OpenDocument="app_freertos.c", FilePath="C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app_freertos.c", Line=59
+OpenDocument="sl_main_init.c", FilePath="C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/platform_core/platform/service/sl_main/src/sl_main_init.c", Line=315
+OpenDocument="main.c", FilePath="C:/Users/rossa/Projects/Gaston_car/firmware/efr32/main.c", Line=9
+OpenDocument="sl_power_manager_hal_s2.c", FilePath="C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/platform_core/platform/service/power_manager/src/sleep_loop/sl_power_manager_hal_s2.c", Line=373
+OpenDocument="sl_bluetooth.c", FilePath="C:/Users/rossa/Projects/Gaston_car/firmware/efr32/autogen/sl_bluetooth.c", Line=41
+OpenDocument="app.c", FilePath="C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app.c", Line=54
+OpenToolbar="Debug", Floating=0, x=0, y=0
+OpenWindow="Call Stack", DockArea=RIGHT, x=0, y=2, w=900, h=167, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Registers 1", DockArea=RIGHT, x=0, y=4, w=900, h=109, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, FilteredItems=[], RefreshRate=1
+OpenWindow="Source Files", DockArea=LEFT, x=0, y=1, w=294, h=366, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Disassembly", DockArea=RIGHT, x=0, y=0, w=900, h=139, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Memory 1", DockArea=BOTTOM, x=1, y=0, w=959, h=189, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, EditorAddress=0x0
+OpenWindow="Local Data", DockArea=RIGHT, x=0, y=1, w=900, h=154, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Functions", DockArea=LEFT, x=0, y=0, w=294, h=386, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Console", DockArea=BOTTOM, x=0, y=0, w=960, h=189, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="FreeRTOS", DockArea=RIGHT, x=0, y=3, w=900, h=180, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, Showing="Task List"
+SmartViewPlugin="", Page="", Toolbar="Hidden", Window="SmartView 1"
+TableHeader="Local Data", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Value";"Location";"Size";"Type";"Scope"], ColWidths=[151;100;100;100;161;288]
+TableHeader="Functions", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Address";"Size";"#Insts";"Source"], ColWidths=[1236;100;100;100;344]
+TableHeader="Call Stack", SortCol="Function", SortOrder="ASCENDING", VisibleCols=["Function";"Stack Frame";"Source";"PC";"Return Address";"Stack Used"], ColWidths=[100;105;134;100;112;349]
+TableHeader="Source Files", SortCol="File", SortOrder="ASCENDING", VisibleCols=["File";"Status";"Size";"#Insts";"Path"], ColWidths=[330;100;100;100;1106]
+TableHeader="Power Sampling", SortCol="None", SortOrder="ASCENDING", VisibleCols=["Index";"Time";"Ch 0"], ColWidths=[100;100;100]
+TableHeader="Task List", SortCol="None", SortOrder="ASCENDING", VisibleCols=["Name";"Run Count";"Priority";"Status";"Timeout";"Stack Info";"ID";"Mutex Count";"Notified Value";"Notify State"], ColWidths=[106;110;110;110;110;110;110;110;110;110]
+TableHeader="Registers 1", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Value";"Description"], ColWidths=[140;137;606]
+TableHeader="RegisterSelectionDialog", SortCol="None", SortOrder="ASCENDING", VisibleCols=[], ColWidths=[]
+TableHeader="TargetExceptionDialog", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Value";"Address";"Description"], ColWidths=[200;100;100;359]

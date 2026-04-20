@@ -22,8 +22,6 @@ extern const sli_bt_gattdb_t gattdb;
 #define gattdb_system_id                      24
 #define gattdb_My_SPP_Service                 25
 #define gattdb_My_SPP_Write                   27
-#define gattdb_ota                            29
-#define gattdb_ota_control                    31
 
 #define gattdb_generic_attribute_len          2
 #define gattdb_service_changed_char_len       4
@@ -38,7 +36,6 @@ extern const sli_bt_gattdb_t gattdb;
 #define gattdb_system_id_len                  8
 #define gattdb_My_SPP_Service_len             16
 #define gattdb_My_SPP_Write_len               20
-#define gattdb_ota_len                        16
 
 
 #endif // __GATT_DB_H
