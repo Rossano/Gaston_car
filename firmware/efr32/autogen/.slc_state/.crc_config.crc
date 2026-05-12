@@ -1,2 +1,5 @@
 #CRC Codes for initially generated config files -- do not modify!
+SEGGER_RTT_Conf.h=946725479
 nvm3_default_config.h=44458093
+sl_event_system_config.h=295359316
+sl_hfxo_manager_config.h=-1268678693

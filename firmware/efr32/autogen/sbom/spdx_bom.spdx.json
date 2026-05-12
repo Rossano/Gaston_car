@@ -5,7 +5,7 @@
   "name" : "Silicon-Laboratories",
   "documentNamespace" : "https://silabs.com",
   "creationInfo" : {
-    "created" : "2026-04-01T23:57:06Z",
+    "created" : "2026-05-01T11:29:39Z",
     "creators" : [ "Tool: Silicon Labs Configuration Tooling" ]
   },
   "comment" : "TERMS OF USE - SILICON LABORATORIES INC.\n(With respect to Silicon Labs software components, this Software Bill of Materials (SBOM) is based upon Silicon Labs'\nreview and analysis of the code version when released.  It is provided \"AS IS\" and does not modify, change or alter\nthe terms or conditions of your use of Silicon Labs' software and/or SDKs based upon license terms and/or agreements\nassociated with this software or SDKs when distributed to you, received by you, or installed by you.  Further, no\nwarranties or obligations are created by this SBOM.  It is your obligation to comply with the terms of licenses\nreferenced in this SBOM.)",
@@ -1088,14 +1088,6 @@
     "supplier" : "Organization: Silicon Laboratories, Inc.",
     "licenseConcluded" : "Zlib"
   }, {
-    "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.1-power_manager_deepsleep_blocking_hfxo_restore",
-    "name" : "Power Manager: Deepsleep with blocking on HFXO restore",
-    "versionInfo" : "2025.12.1",
-    "primaryPackagePurpose" : "LIBRARY",
-    "downloadLocation" : "NOASSERTION",
-    "supplier" : "Organization: Silicon Laboratories, Inc.",
-    "licenseConcluded" : "Zlib"
-  }, {
     "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.1-debug_swo",
     "name" : "SWO Debug",
     "versionInfo" : "2025.12.1",
@@ -1492,6 +1484,38 @@
     "downloadLocation" : "NOASSERTION",
     "supplier" : "Organization: Silicon Laboratories, Inc.",
     "licenseConcluded" : "Zlib"
+  }, {
+    "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.1-event_system",
+    "name" : "Event System API",
+    "versionInfo" : "2025.12.1",
+    "primaryPackagePurpose" : "LIBRARY",
+    "downloadLocation" : "NOASSERTION",
+    "supplier" : "Organization: Silicon Laboratories, Inc.",
+    "licenseConcluded" : "Zlib"
+  }, {
+    "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.1-power_manager_no_deepsleep",
+    "name" : "Power Manager: No Deepsleep",
+    "versionInfo" : "2025.12.1",
+    "primaryPackagePurpose" : "LIBRARY",
+    "downloadLocation" : "NOASSERTION",
+    "supplier" : "Organization: Silicon Laboratories, Inc.",
+    "licenseConcluded" : "Zlib"
+  }, {
+    "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.1-iostream_rtt",
+    "name" : "IO Stream: RTT",
+    "versionInfo" : "2025.12.1",
+    "primaryPackagePurpose" : "LIBRARY",
+    "downloadLocation" : "NOASSERTION",
+    "supplier" : "Organization: Silicon Laboratories, Inc.",
+    "licenseConcluded" : "Zlib"
+  }, {
+    "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.1-segger_rtt",
+    "name" : "SEGGER RTT",
+    "versionInfo" : "2025.12.1",
+    "primaryPackagePurpose" : "LIBRARY",
+    "downloadLocation" : "NOASSERTION",
+    "supplier" : "Organization: Silicon Laboratories, Inc.",
+    "licenseConcluded" : "Segger"
   } ],
   "relationships" : [ {
     "spdxElementId" : "SPDXRef-DOCUMENT",
@@ -2023,10 +2047,6 @@
     "relationshipType" : "CONTAINS"
   }, {
     "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.1",
-    "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.1-power_manager_deepsleep_blocking_hfxo_restore",
-    "relationshipType" : "CONTAINS"
-  }, {
-    "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.1",
     "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.1-debug_swo",
     "relationshipType" : "CONTAINS"
   }, {
@@ -2212,6 +2232,22 @@
   }, {
     "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.1",
     "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.1-gpio",
+    "relationshipType" : "CONTAINS"
+  }, {
+    "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.1",
+    "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.1-event_system",
+    "relationshipType" : "CONTAINS"
+  }, {
+    "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.1",
+    "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.1-power_manager_no_deepsleep",
+    "relationshipType" : "CONTAINS"
+  }, {
+    "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.1",
+    "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.1-iostream_rtt",
+    "relationshipType" : "CONTAINS"
+  }, {
+    "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.1",
+    "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.1-segger_rtt",
     "relationshipType" : "CONTAINS"
   } ]
 }

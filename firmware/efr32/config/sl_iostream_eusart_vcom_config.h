@@ -69,7 +69,7 @@
 
 // <o SL_IOSTREAM_EUSART_VCOM_RX_BUFFER_SIZE> Receive buffer size
 // <i> Default: 32
-#define SL_IOSTREAM_EUSART_VCOM_RX_BUFFER_SIZE    256
+#define SL_IOSTREAM_EUSART_VCOM_RX_BUFFER_SIZE    32
 
 // <q SL_IOSTREAM_EUSART_VCOM_CONVERT_BY_DEFAULT_LF_TO_CRLF> Convert \n to \r\n
 // <i> It can be changed at runtime using the C API.
@@ -79,7 +79,7 @@
 // <q SL_IOSTREAM_EUSART_VCOM_RESTRICT_ENERGY_MODE_TO_ALLOW_RECEPTION> Restrict the energy mode to allow the reception.
 // <i> Default: 1
 // <i> Limits the lowest energy mode the system can sleep to in order to keep the reception on. May cause higher power consumption.
-#define SL_IOSTREAM_EUSART_VCOM_RESTRICT_ENERGY_MODE_TO_ALLOW_RECEPTION    1
+#define SL_IOSTREAM_EUSART_VCOM_RESTRICT_ENERGY_MODE_TO_ALLOW_RECEPTION    0
 
 // </h>
 
@@ -111,12 +111,7 @@
 #define SL_IOSTREAM_EUSART_VCOM_RX_PIN           6
 #endif
 
-// CTS/RTS disabled to avoid hardware flow control conflicts
-// when software flow control is disabled
-// #define SL_IOSTREAM_EUSART_VCOM_CTS_PORT         SL_GPIO_PORT_A
-// #define SL_IOSTREAM_EUSART_VCOM_CTS_PIN          8
-// #define SL_IOSTREAM_EUSART_VCOM_RTS_PORT         SL_GPIO_PORT_A
-// #define SL_IOSTREAM_EUSART_VCOM_RTS_PIN          7
+
 // [EUSART_SL_IOSTREAM_EUSART_VCOM]$
 // <<< sl:end pin_tool >>>
 

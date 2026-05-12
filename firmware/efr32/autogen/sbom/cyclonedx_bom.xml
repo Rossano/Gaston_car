@@ -10,7 +10,7 @@ referenced in this SBOM.)
 -->
 <bom xmlns="http://cyclonedx.org/schema/bom/1.6" version="1">
   <metadata>
-    <timestamp>2026-04-01T23:57:06Z</timestamp>
+    <timestamp>2026-05-01T11:29:39Z</timestamp>
     <authors>
       <author>
         <name>Silicon Laboratories, Inc.</name>
@@ -1369,16 +1369,6 @@ referenced in this SBOM.)
             <expression>Zlib</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:power_manager_deepsleep_blocking_hfxo_restore" type="library">
-          <name>Power Manager: Deepsleep with blocking on HFXO restore</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:debug_swo" type="library">
           <name>SWO Debug</name>
           <version>2025.12.1</version>
@@ -1877,6 +1867,46 @@ referenced in this SBOM.)
 	      </supplier>
           <licenses>
             <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:event_system" type="library">
+          <name>Event System API</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:power_manager_no_deepsleep" type="library">
+          <name>Power Manager: No Deepsleep</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_rtt" type="library">
+          <name>IO Stream: RTT</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:segger_rtt" type="library">
+          <name>SEGGER RTT</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Segger</expression>
           </licenses>
         </component>
       </components>

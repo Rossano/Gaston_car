@@ -3,7 +3,7 @@
   "specVersion" : "1.6",
   "version" : 1,
   "metadata" : {
-    "timestamp" : "2026-04-01T23:57:06Z",
+    "timestamp" : "2026-05-01T11:29:39Z",
     "authors" : [ {
       "name" : "Silicon Laboratories, Inc."
     } ],
@@ -1623,18 +1623,6 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:power_manager_deepsleep_blocking_hfxo_restore",
-      "name" : "Power Manager: Deepsleep with blocking on HFXO restore",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:debug_swo",
       "name" : "SWO Debug",
       "version" : "2025.12.1",
@@ -2219,6 +2207,54 @@
       },
       "licenses" : [ {
         "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:event_system",
+      "name" : "Event System API",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:power_manager_no_deepsleep",
+      "name" : "Power Manager: No Deepsleep",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_rtt",
+      "name" : "IO Stream: RTT",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:segger_rtt",
+      "name" : "SEGGER RTT",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Segger"
       } ]
     } ]
   } ]

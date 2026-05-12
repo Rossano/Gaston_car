@@ -5,6 +5,7 @@
 #include "sl_rail_util_compatible_pa.h"
 #include "sl_rail_util_power_manager_init.h"
 #include "sl_rail_util_pti.h"
+#include "sl_event_system.h"
 #include "sl_board_control.h"
 #include "app_log.h"
 #include "app.h"
@@ -13,6 +14,7 @@
 #include "sl_debug_swo.h"
 #include "sl_gpio.h"
 #include "sl_iostream_init_eusart_instances.h"
+#include "sl_iostream_rtt.h"
 #include "sl_iostream_stdlib_config.h"
 #include "sl_iostream_init_usart_instances.h"
 #include "sl_mbedtls.h"
@@ -49,6 +51,7 @@ void sl_platform_init(void)
   sl_board_preinit();
   sl_clock_manager_runtime_init();
   sl_board_init();
+  sl_event_system_init();
   nvm3_initDefault();
 }
 
@@ -101,6 +104,7 @@ void sl_internal_app_init(void)
 void sl_iostream_init_instances_stage_1(void)
 {
   sl_iostream_eusart_init_instances();
+  sl_iostream_rtt_init();
   sl_iostream_usart_init_instances();
 }
 

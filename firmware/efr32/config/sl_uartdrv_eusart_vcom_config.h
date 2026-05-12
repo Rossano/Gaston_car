@@ -118,21 +118,7 @@
 #define SL_UARTDRV_EUSART_VCOM_RX_PIN            6
 #endif
 
-// EUART0 CTS on PA08
-#ifndef SL_UARTDRV_EUSART_VCOM_CTS_PORT         
-#define SL_UARTDRV_EUSART_VCOM_CTS_PORT          SL_GPIO_PORT_A
-#endif
-#ifndef SL_UARTDRV_EUSART_VCOM_CTS_PIN          
-#define SL_UARTDRV_EUSART_VCOM_CTS_PIN           8
-#endif
 
-// EUART0 RTS on PA07
-#ifndef SL_UARTDRV_EUSART_VCOM_RTS_PORT         
-#define SL_UARTDRV_EUSART_VCOM_RTS_PORT          SL_GPIO_PORT_A
-#endif
-#ifndef SL_UARTDRV_EUSART_VCOM_RTS_PIN          
-#define SL_UARTDRV_EUSART_VCOM_RTS_PIN           7
-#endif
 // [EUSART_SL_UARTDRV_EUSART_VCOM]$
 // <<< sl:end pin_tool >>>
 #endif // SL_UARTDRV_EUSART_VCOM_CONFIG_H

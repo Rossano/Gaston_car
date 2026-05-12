@@ -135,22 +135,6 @@
 // [I2C0]$
 
 // $[EUART0]
-// EUART0 CTS on PA08
-#ifndef EUART0_CTS_PORT                         
-#define EUART0_CTS_PORT                          SL_GPIO_PORT_A
-#endif
-#ifndef EUART0_CTS_PIN                          
-#define EUART0_CTS_PIN                           8
-#endif
-
-// EUART0 RTS on PA07
-#ifndef EUART0_RTS_PORT                         
-#define EUART0_RTS_PORT                          SL_GPIO_PORT_A
-#endif
-#ifndef EUART0_RTS_PIN                          
-#define EUART0_RTS_PIN                           7
-#endif
-
 // EUART0 RX on PA06
 #ifndef EUART0_RX_PORT                          
 #define EUART0_RX_PORT                           SL_GPIO_PORT_A
