@@ -6,8 +6,6 @@ const sl_iostream_instance_info_t *sl_iostream_instances_info[] = {
 
     &sl_iostream_instance_vcom_info,
   
-    &sl_iostream_instance_rtt_info,
-  
     &sl_iostream_instance_mikroe_info,
   
 };

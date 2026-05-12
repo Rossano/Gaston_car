@@ -34,18 +34,12 @@
 #include <stdbool.h>
 #include "FreeRTOS.h"
 #include "queue.h"
-#include "task.h"
 
-#define CLI_COMMAND_MAX_LEN   16
+#define CLI_COMMAND_MAX_LEN   64
 
 extern QueueHandle_t cli_queue;
-//extern uint8_t connection_handle;
+extern uint8_t connection_handle;
 extern uint8_t buffer[CLI_COMMAND_MAX_LEN];
-
-void app_init(void);
-void app_process_action(void);
-
-void send_cli_output(const char *msg);
 
 /**************************************************************************//**
  * Proceed with execution. (Indicate that it is required to run the application
@@ -89,5 +83,10 @@ void app_mutex_release(void);
  * @note Must not be used from ISR context.
  *****************************************************************************/
 void app_init_bt(void);
+
+/**************************************************************************//**
+ * Create FreeRTOS tasks after kernel is started
+ *****************************************************************************/
+void app_create_tasks(void);
 
 #endif // APP_H

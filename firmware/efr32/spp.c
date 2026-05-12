@@ -10,7 +10,6 @@
 #include "sl_iostream_handles.h"
 #include "sl_bluetooth.h"
 #include "gatt_db.h"
-//#include "task.h"
 #include "app.h"
 
 #include "app_log.h"
@@ -29,11 +28,12 @@
  *    Local Variables
  ******************************************************************************/
 
-// Global variables are now defined in app.c and app_freertos.c
-// BLE handles (defined in app.c - avoid duplicate definition)
-extern uint8_t advertising_set_handle;
-extern uint8_t conn_handle;
-extern uint8_t main_state;
+// The advertising set handle allocated from Bluetooth stack.
+uint8_t advertising_set_handle = 0xff;
+uint8_t conn_handle = 0xFF;
+uint8_t main_state;
+uint32_t service_handle;
+uint16_t char_handle;
 
 ts_counters counters;
 
@@ -46,6 +46,7 @@ void reset_variables()
 {
   conn_handle = 0xFF;
   main_state = STATE_ADVERTISING;
+  service_handle = 0;
   char_handle = 0;
   max_packet_size = 20;
 
@@ -88,11 +89,7 @@ void send_spp_data(uint8_t *data, uint8_t len)
                                                   len,
                                                   data);
       counters.num_writes++;
-      
-      if (result == SL_STATUS_NO_MORE_RESOURCE) {
-        // Buffer pieno: aspetta 1 tick (o 1ms) per lasciare tempo allo stack di trasmettere
-        vTaskDelay(pdMS_TO_TICKS(1));
-      }
+      app_log("Check_point 2: %s\r\n", data);
     } while (result == SL_STATUS_NO_MORE_RESOURCE);
 
     if (result != 0) {

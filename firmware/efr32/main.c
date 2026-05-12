@@ -12,7 +12,7 @@
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
- * arising from the aplication of this software.
+ * arising from the use of this software.
  *
  * Permission is granted to anyone to use this software for any purpose,
  * including commercial applications, and to alter it and redistribute it
@@ -40,26 +40,23 @@
 
 #if 1
 
+#include "sl_main_init.h"
+#include "sl_main_kernel.h"
+
 int main(void)
 {
   // Initialize Silicon Labs device, system, service(s) and protocol stack(s).
-  // Note that if the kernel is present, the start task will be started and software
-  // component initialization will take place there.
   sl_main_second_stage_init();
 
-  while(sl_main_start_task_should_continue()) {
-    // Silicon Labs components process action routine
-    // must be called from the super loop.
-//    sl_main_process_action();
+  app_init();
 
-    // User provided code. Application process.
-    app_process_action(); 
+  while (sl_main_start_task_should_continue()) {
+    app_process_action();
   }
 }
 
-#else
-
-int main(void)
+#else 
+main(void)
 {
   // Initialize Silicon Labs device, system, service(s) and protocol stack(s).
   // Note that if the kernel is present, the start task will be started and software
@@ -91,4 +88,4 @@ int main(void)
 #endif // SL_CATALOG_KERNEL_PRESENT
 }
 
-#endif // 1
+#endif // main()
