@@ -10,7 +10,7 @@
 #include "sl_iostream_handles.h"
 #include "sl_bluetooth.h"
 #include "gatt_db.h"
-#include "task.h"
+//#include "task.h"
 #include "app.h"
 
 #include "app_log.h"
@@ -29,12 +29,11 @@
  *    Local Variables
  ******************************************************************************/
 
-// The advertising set handle allocated from Bluetooth stack.
-uint8_t advertising_set_handle = 0xff;
-uint8_t conn_handle = 0xFF;
-uint8_t main_state;
-uint32_t service_handle;
-uint16_t char_handle;
+// Global variables are now defined in app.c and app_freertos.c
+// BLE handles (defined in app.c - avoid duplicate definition)
+extern uint8_t advertising_set_handle;
+extern uint8_t conn_handle;
+extern uint8_t main_state;
 
 ts_counters counters;
 
@@ -47,7 +46,6 @@ void reset_variables()
 {
   conn_handle = 0xFF;
   main_state = STATE_ADVERTISING;
-  service_handle = 0;
   char_handle = 0;
   max_packet_size = 20;
 

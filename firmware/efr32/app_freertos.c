@@ -1,6 +1,6 @@
 /***************************************************************************//**
  * @file
- * @brief FreeRTOS helper functions for the application task.
+ * @brief FreeRTOS task management for BLE application.
  *******************************************************************************
  * # License
  * <b>Copyright 2025 Silicon Laboratories Inc. www.silabs.com</b>
@@ -8,23 +8,9 @@
  *
  * SPDX-License-Identifier: Zlib
  *
- * The licensor of this software is Silicon Laboratories Inc.
- *
- * This software is provided 'as-is', without any express or implied
+ * The licensor of this software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
  * arising from the use of this software.
- *
- * Permission is granted to anyone to use this software for any purpose,
- * including commercial applications, and to alter it and redistribute it
- * freely, subject to the following restrictions:
- *
- * 1. The origin of this software must not be misrepresented; you must not
- *    claim that you wrote the original software. If you use this software
- *    in a product, an acknowledgment in the product documentation would be
- *    appreciated but is not required.
- * 2. Altered source versions must be plainly marked as such, and must not be
- *    misrepresented as being the original software.
- * 3. This notice may not be removed or altered from any source distribution.
  *
  ******************************************************************************/
 #include <stdint.h>
@@ -32,8 +18,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
-#include "sl_main_init.h"
-//#include "app_assert.h"
+#include "app_assert.h"
 #include "app_log.h"
 #include "app.h"
 #include "sl_simple_led_instances.h"
@@ -43,125 +28,141 @@
 #define APP_TASK_NAME          "app_task"
 #define APP_TASK_STACK_SIZE    512u
 #define APP_TASK_PRIO          24u
-#define APP_MUTEX_WAIT         100 // Timeout to wait for mutex in ticks
+#define CLI_TASK_STACK_SIZE    1024u
+#define CLI_TASK_PRIO          20u
 #define BLINK_PERIOD_MS        500
 
-// Application task.
+// Application task
 static void app_task(void *p_arg);
+static void cli_task_wrapper(void *p_arg);
 
-// Task handle
+// Task handles
 static TaskHandle_t      app_task_handle  = NULL;
-// Semaphore handle
+TaskHandle_t             cli_task_handle  = NULL;  // Must be extern for cli.h
+
+// Semaphore and mutex handles
 static SemaphoreHandle_t app_semaphore_handle = NULL;
-// Mutex handle
 static SemaphoreHandle_t app_mutex_handle = NULL;
 
-// Application Runtime Init.
+// Global queues
+QueueHandle_t cli_queue = NULL;
+QueueHandle_t uartQueue = NULL;
+
+/******************************************************************************
+ * Application Runtime Init - called after BLE stack is ready.
+ *****************************************************************************/
 void app_init_bt(void)
 {
-  app_log("🔵 [1] app_init_bt() ENTRY\n");
-  
   static bool initialized = false;
-  app_log("🔵 [2] initialized=%d\n", initialized);
-  
   if (initialized) {
-    app_log("🟢 [3] Already init, RETURN\n");
-    return;
+    return;  // Prevent double initialization
   }
   initialized = true;
-  
-  app_log("🟡 [4] Starting init...\n");
-  
+
   BaseType_t ret;
 
-  // Create Queues FIRST, before tasks start using them
-  cli_queue = xQueueCreate(1, CLI_COMMAND_MAX_LEN);
-  if(cli_queue != NULL) {
-    app_log("CLI queue created successfully\n");
-  }
-  else {
-    app_log("Failed to create CLI queue\n");
+  app_log("=== Initializing FreeRTOS Tasks and Synchronization ===\n");
+
+  // Create queues FIRST, before tasks start using them
+  cli_queue = xQueueCreate(4, CLI_COMMAND_MAX_LEN);
+  if(cli_queue == NULL) {
+    app_log("X CLI queue NOT created\n");
+  } else {
+    app_log("o CLI queue created\n");
   }
 
   uartQueue = xQueueCreate(UART_RX_QUEUE_LEN, sizeof(uint8_t));
-  if(uartQueue != NULL) {
-    app_log("UART RX queue created successfully\n");
-  }
-  else {
-    app_log("Failed to create UART RX queue\n");
+  if(uartQueue == NULL) {
+    app_log("X UART RX queue NOT created\n");
+  } else {
+    app_log("o UART RX queue created\n");
   }
 
-  // Create the task for sl_app_process_action
+  // // Create the semaphore for BLE event signaling
+  // app_semaphore_handle = xSemaphoreCreateCounting(UINT16_MAX, 0);
+  // if(app_semaphore_handle == NULL) {
+  //   app_log("X Semaphore NOT created\n");
+  // } else {
+  //   app_log("o Semaphore created\n");
+  // }
+
+  // // Create the mutex for BLE stack thread-safety protection
+  // app_mutex_handle = xSemaphoreCreateRecursiveMutex();
+  // if(app_mutex_handle == NULL) {
+  //   app_log("X Mutex NOT created\n");
+  // } else {
+  //   app_log("o Mutex created\n");
+  // }
+
+  // Create application task
   ret = xTaskCreate(app_task,
                     APP_TASK_NAME,
                     APP_TASK_STACK_SIZE,
                     NULL,
                     APP_TASK_PRIO,
                     &app_task_handle);
-  if (ret != pdPASS) {
-    app_log("Failed to create app task\n");
-  }
-  else {
-    app_log("App task created successfully\n");
-  }
-  
-  ret = xTaskCreate(cli_task,
-                      "cli_task",
-                      1024,
-                      NULL,
-                      20,
-                      &cli_task_handle);
-  if(ret != pdPASS) {
-    app_log("Failed to create CLI task\n");
-  }
-  else {
-    app_log("CLI task created successfully\n");
-  }
-  // Create the semaphore
-  app_semaphore_handle = xSemaphoreCreateCounting(UINT16_MAX, 0);
-  if(app_semaphore_handle != NULL) {
-    app_log("Semaphore created successfully\n");
-  }
-  else {
-    app_log("Failed to create semaphore\n");
-  }
-  // Create the mutex
-  app_mutex_handle = xSemaphoreCreateRecursiveMutex();
-  if(app_mutex_handle != NULL) {
-    app_log("Mutex created successfully\n");
-  }
-  else {
-    app_log("Failed to create mutex\n");
+  if(app_task_handle == NULL) {
+    app_log("X Application task NOT created\n");
+  } else {
+    app_log("o Application task created\n");
   }
 
-  app_log("🟡 [5] Queues created\n");
-  app_log("🟡 [6] app_init_bt() EXIT\n");
+  // Create CLI task
+  ret = xTaskCreate(cli_task_wrapper,
+                    "cli_task",
+                    CLI_TASK_STACK_SIZE,
+                    NULL,
+                    CLI_TASK_PRIO,
+                    &cli_task_handle);
+  if(cli_task_handle == NULL) {
+    app_log("X CLI task NOT created\n");
+  } else {
+    app_log("o CLI task created\n");
+  }
+
+  app_log("=== FreeRTOS Initialization Complete ===\n");
 }
 
 /******************************************************************************
- * Application task.
+ * Application Task - main application loop
  *****************************************************************************/
 static void app_task(void *p_arg)
 {
   (void)p_arg;
-  TickType_t last_blink_time = xTaskGetTickCount();
+  uint32_t blink_counter = 0;
+
+  app_log("app_task: Started\n");
 
   while (1) {
-    app_process_action();
-
-    // Controllo del LED (ogni 500ms)
-    if ((xTaskGetTickCount() - last_blink_time) >= pdMS_TO_TICKS(BLINK_PERIOD_MS)) {
+    app_process_action();  // Process BLE events and other app actions
+    // Blink LED every 500ms
+    if (++blink_counter >= 50) {
       sl_led_toggle(&sl_led_led0);
-      last_blink_time = xTaskGetTickCount();
+      blink_counter = 0;
+      app_log("app_task: Heartbeat (LED toggle)\n");
     }
+
+    // Delay 10ms to prevent CPU hogging
+    vTaskDelay(pdMS_TO_TICKS(10));
   }
 }
 
-// Proceed with execution.
+/******************************************************************************
+ * CLI Task Wrapper - delegates to actual CLI task
+ *****************************************************************************/
+static void cli_task_wrapper(void *p_arg)
+{
+  app_log("cli_task: Started\n");
+  cli_task(p_arg);  // Call the actual CLI task from cli.c
+}
+
+/******************************************************************************
+ * Signal Handler - called by BLE event handler to wake app_task
+ *****************************************************************************/
 void app_proceed(void)
 {
   if (xPortIsInsideInterrupt()) {
-    // Interrupt context
+    // Interrupt context - use ISR-safe version
     BaseType_t woken = pdFALSE;
     (void)xSemaphoreGiveFromISR(app_semaphore_handle, &woken);
     portYIELD_FROM_ISR(woken);
@@ -171,25 +172,29 @@ void app_proceed(void)
   }
 }
 
-// Check if it is required to process with execution.
+/******************************************************************************
+ * Process Check - check if BLE event processing is required
+ *****************************************************************************/
 bool app_is_process_required(void)
 {
-  // Usiamo un timeout (es. 100ms) invece di portMAX_DELAY.
-  // Questo permette al loop di app_task di girare e controllare il LED
-  // anche se non ci sono eventi Bluetooth.
+  // Wait on semaphore with 100ms timeout to allow periodic processing
   BaseType_t ret = xSemaphoreTake(app_semaphore_handle, pdMS_TO_TICKS(100));
   return (ret == pdTRUE);
 }
 
-// Acquire access to protected variables
+/******************************************************************************
+ * Mutex Acquire - protect BLE stack access
+ *****************************************************************************/
 bool app_mutex_acquire(void)
 {
   BaseType_t response;
-  response = xSemaphoreTakeRecursive(app_mutex_handle, (TickType_t)APP_MUTEX_WAIT);
+  response = xSemaphoreTakeRecursive(app_mutex_handle, pdMS_TO_TICKS(100));
   return response == pdTRUE;
 }
 
-// Finish access to protected variables
+/******************************************************************************
+ * Mutex Release - unprotect BLE stack
+ *****************************************************************************/
 void app_mutex_release(void)
 {
   (void)xSemaphoreGiveRecursive(app_mutex_handle);

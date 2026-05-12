@@ -29,7 +29,6 @@
  ******************************************************************************/
 #include "sl_component_catalog.h"
 #include "sl_main_init.h"
-#include "app_log.h"
 #if defined(SL_CATALOG_POWER_MANAGER_PRESENT)
 #include "sl_power_manager.h"
 #endif
@@ -39,6 +38,27 @@
 #include "sl_main_process_action.h"
 #endif // SL_CATALOG_KERNEL_PRESENT
 
+#if 1
+
+int main(void)
+{
+  // Initialize Silicon Labs device, system, service(s) and protocol stack(s).
+  // Note that if the kernel is present, the start task will be started and software
+  // component initialization will take place there.
+  sl_main_second_stage_init();
+
+  while(sl_main_start_task_should_continue()) {
+    // Silicon Labs components process action routine
+    // must be called from the super loop.
+//    sl_main_process_action();
+
+    // User provided code. Application process.
+    app_process_action(); 
+  }
+}
+
+#else
+
 int main(void)
 {
   // Initialize Silicon Labs device, system, service(s) and protocol stack(s).
@@ -46,14 +66,29 @@ int main(void)
   // component initialization will take place there.
   sl_main_init();
 
-  app_log("main: sl_main_init() completed\n");
-
 #if defined(SL_CATALOG_KERNEL_PRESENT)
   // Start the kernel. The start task will be executed (Highest priority) to complete
   // the Simplicity SDK components initialization and the user app_init() hook function will be called.
-  app_log("main: Starting FreeRTOS kernel\n");
   sl_main_kernel_start();
 #else // SL_CATALOG_KERNEL_PRESENT
-#error "Kernel not present"
+
+  // User provided code.
+  app_init();
+
+  while (1) {
+    // Silicon Labs components process action routine
+    // must be called from the super loop.
+    sl_main_process_action();
+
+    // User provided code. Application process.
+    app_process_action();
+
+#if defined(SL_CATALOG_POWER_MANAGER_PRESENT)
+    // Let the CPU go to sleep if the system allows it.
+    sl_power_manager_sleep();
+#endif
+  }
 #endif // SL_CATALOG_KERNEL_PRESENT
 }
+
+#endif // 1
