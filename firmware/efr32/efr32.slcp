@@ -66,9 +66,6 @@ component:
   id: bluetooth_feature_legacy_scanner
 - package: simplicity_sdk
   vendor: silabs
-#  id: bluetooth_feature_sm
-#- package: simplicity_sdk
-#  vendor: silabs
   id: bluetooth_feature_system
 - package: simplicity_sdk
   vendor: silabs
@@ -84,9 +81,6 @@ component:
   id: device_init
 - package: simplicity_sdk
   vendor: silabs
-#  id: event_system
-#- package: simplicity_sdk
-#  vendor: silabs
   id: freertos
 - package: simplicity_sdk
   vendor: silabs
@@ -100,18 +94,12 @@ component:
   vendor: silabs
   id: iostream_eusart
 - package: simplicity_sdk
-#  vendor: silabs
-#  id: iostream_rtt
-#- package: simplicity_sdk
   instance:
   - mikroe
   vendor: silabs
   id: iostream_usart
 - package: simplicity_sdk
   vendor: silabs
-#  id: power_manager_no_deepsleep
-#- package: simplicity_sdk
-#  vendor: silabs
   id: rail_util_pti
 - package: simplicity_sdk
   instance:

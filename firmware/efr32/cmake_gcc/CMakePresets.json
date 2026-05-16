@@ -8,7 +8,7 @@
     "configurePresets": [
       {
         "name": "project",
-        "displayName": "Configure bt_soc_gaston",
+        "displayName": "Configure efr32",
         "generator": "Ninja Multi-Config",
         "binaryDir": "${sourceDir}/build",
         "toolchainFile": "${sourceDir}/toolchain.cmake",
@@ -20,10 +20,10 @@
     "buildPresets": [
       {
         "name": "default_config",
-        "displayName": "Build bt_soc_gaston",
+        "displayName": "Build efr32",
         "configurePreset": "project",
         "configuration": "base",
-        "targets": ["bt_soc_gaston"]
+        "targets": ["efr32"]
       }
     ],
     "workflowPresets": [

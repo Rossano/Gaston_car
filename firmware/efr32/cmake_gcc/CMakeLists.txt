@@ -8,55 +8,55 @@ project(
 	LANGUAGES C CXX ASM
 )
 
-# Include the definition of the slc_bt_soc_gaston target,
+# Include the definition of the slc_efr32 target,
 # which contains the content of the SLC project
-include(bt_soc_gaston.cmake)
+include(efr32.cmake)
 
-add_executable(bt_soc_gaston
+add_executable(efr32
     # Add additional sources here
 )
 
-target_include_directories(bt_soc_gaston PUBLIC
+target_include_directories(efr32 PUBLIC
     # Add additional include paths here
 )
 
-target_compile_definitions(bt_soc_gaston PUBLIC
+target_compile_definitions(efr32 PUBLIC
     # Add additional macros here
 )
 
-target_compile_options(bt_soc_gaston PUBLIC
+target_compile_options(efr32 PUBLIC
     # Set additional compiler flags here
 )
 
-target_link_options(bt_soc_gaston PUBLIC
+target_link_options(efr32 PUBLIC
     # Set additional linker flags here
 )
 
 # Link with the content defined in the SLC project
-target_link_libraries(bt_soc_gaston PRIVATE
+target_link_libraries(efr32 PRIVATE
     slc
 )
 
 # Include managed project content if available
-include(bt_soc_gaston_project.cmake OPTIONAL RESULT_VARIABLE managed_project)
+include(efr32_project.cmake OPTIONAL RESULT_VARIABLE managed_project)
 if(managed_project)
     message(STATUS "Using managed project content from ${managed_project}")
 endif()
 
 # Force the gcc linker command
-set_target_properties(bt_soc_gaston PROPERTIES LINKER_LANGUAGE C)
+set_target_properties(efr32 PROPERTIES LINKER_LANGUAGE C)
 
 # Create .bin, .hex and .s37 artifacts after building the project
-add_custom_command(TARGET bt_soc_gaston
+add_custom_command(TARGET efr32
     POST_BUILD
-    COMMAND ${CMAKE_OBJCOPY} ${OBJCOPY_SREC_CMD} "$<TARGET_FILE:bt_soc_gaston>" "$<TARGET_FILE_DIR:bt_soc_gaston>/$<TARGET_FILE_BASE_NAME:bt_soc_gaston>.s37"
-    COMMAND ${CMAKE_OBJCOPY} ${OBJCOPY_IHEX_CMD} "$<TARGET_FILE:bt_soc_gaston>" "$<TARGET_FILE_DIR:bt_soc_gaston>/$<TARGET_FILE_BASE_NAME:bt_soc_gaston>.hex"
-    COMMAND ${CMAKE_OBJCOPY} ${OBJCOPY_BIN_CMD}  "$<TARGET_FILE:bt_soc_gaston>" "$<TARGET_FILE_DIR:bt_soc_gaston>/$<TARGET_FILE_BASE_NAME:bt_soc_gaston>.bin" 
+    COMMAND ${CMAKE_OBJCOPY} ${OBJCOPY_SREC_CMD} "$<TARGET_FILE:efr32>" "$<TARGET_FILE_DIR:efr32>/$<TARGET_FILE_BASE_NAME:efr32>.s37"
+    COMMAND ${CMAKE_OBJCOPY} ${OBJCOPY_IHEX_CMD} "$<TARGET_FILE:efr32>" "$<TARGET_FILE_DIR:efr32>/$<TARGET_FILE_BASE_NAME:efr32>.hex"
+    COMMAND ${CMAKE_OBJCOPY} ${OBJCOPY_BIN_CMD}  "$<TARGET_FILE:efr32>" "$<TARGET_FILE_DIR:efr32>/$<TARGET_FILE_BASE_NAME:efr32>.bin" 
 )
 
 # Run post-build pipeline to perform additional post-processing
 if(post_build_command)
-add_custom_command(TARGET bt_soc_gaston
+add_custom_command(TARGET efr32
     POST_BUILD
     WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/..
     COMMAND ${post_build_command}

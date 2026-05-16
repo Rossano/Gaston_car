@@ -49,7 +49,7 @@
 // <i> and jumps to the location of the assertion in case it fails.
 // <i> When both schedule lock and breakpoint are present,
 // <i> breakpoint will be used
-#define APP_ASSERT_BREAKPOINT      0
+#define APP_ASSERT_BREAKPOINT      1
 
 // <e APP_ASSERT_LOG_ENABLE> Logging
 // <i> Enables logging for assert.

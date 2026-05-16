@@ -62,17 +62,6 @@ void app_init_bt(void)
   }
   initialized = true;
 
-  // Create the semaphore (before kernel starts, it's safe)
-  app_semaphore_handle = xSemaphoreCreateCounting(UINT16_MAX, 0);
-  app_assert(app_semaphore_handle != NULL, "Semaphore creation failed.");
-  // Create the mutex (before kernel starts, it's safe)
-  app_mutex_handle = xSemaphoreCreateRecursiveMutex();
-  app_assert(app_mutex_handle != NULL, "Mutex creation failed.");
-}
-
-// Create FreeRTOS tasks after kernel is started
-void app_create_tasks(void)
-{
   BaseType_t ret;
   // Create the task for sl_app_process_action
   ret = xTaskCreate(app_task,
@@ -82,6 +71,12 @@ void app_create_tasks(void)
                     APP_TASK_PRIO,
                     &app_task_handle);
   app_assert(ret == pdPASS, "Application task creation failed.");
+  // Create the semaphore
+  app_semaphore_handle = xSemaphoreCreateCounting(UINT16_MAX, 0);
+  app_assert(app_semaphore_handle != NULL, "Semaphore creation failed.");
+  // Create the mutex
+  app_mutex_handle = xSemaphoreCreateRecursiveMutex();
+  app_assert(app_mutex_handle != NULL, "Mutex creation failed.");
 }
 
 /******************************************************************************

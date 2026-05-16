@@ -47,7 +47,6 @@ void app_init(void)
   // Put your additional application init code here!                         //
   // This is called once during start-up.                                    //
   /////////////////////////////////////////////////////////////////////////////
-  app_create_tasks();
 }
 
 // Application Process Action.
@@ -79,12 +78,12 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
     case sl_bt_evt_system_boot_id:
       // Create an advertising set.
       sc = sl_bt_advertiser_create_set(&advertising_set_handle);
-//      app_assert_status(sc);
+      app_assert_status(sc);
 
       // Generate data for advertising
       sc = sl_bt_legacy_advertiser_generate_data(advertising_set_handle,
                                                  sl_bt_advertiser_general_discoverable);
-//      app_assert_status(sc);
+      app_assert_status(sc);
 
       // Set advertising interval to 100ms.
       sc = sl_bt_advertiser_set_timing(
@@ -93,11 +92,11 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
         160, // max. adv. interval (milliseconds * 1.6)
         0,   // adv. duration
         0);  // max. num. adv. events
-//      app_assert_status(sc);
+      app_assert_status(sc);
       // Start advertising and enable connections.
       sc = sl_bt_legacy_advertiser_start(advertising_set_handle,
                                          sl_bt_legacy_advertiser_connectable);
-//      app_assert_status(sc);
+      app_assert_status(sc);
       break;
 
     // -------------------------------
@@ -111,12 +110,12 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
       // Generate data for advertising
       sc = sl_bt_legacy_advertiser_generate_data(advertising_set_handle,
                                                  sl_bt_advertiser_general_discoverable);
-//      app_assert_status(sc);
+      app_assert_status(sc);
 
       // Restart advertising after client has disconnected.
       sc = sl_bt_legacy_advertiser_start(advertising_set_handle,
                                          sl_bt_legacy_advertiser_connectable);
-//      app_assert_status(sc);
+      app_assert_status(sc);
       break;
 
     ///////////////////////////////////////////////////////////////////////////
