@@ -3,7 +3,7 @@
   "specVersion" : "1.6",
   "version" : 1,
   "metadata" : {
-    "timestamp" : "2026-04-01T23:57:06Z",
+    "timestamp" : "2026-03-19T23:31:00Z",
     "authors" : [ {
       "name" : "Silicon Laboratories, Inc."
     } ],
@@ -38,18 +38,6 @@
       "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:app_assert",
       "name" : "Assert",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:app_log",
-      "name" : "Log",
       "version" : "2025.12.1",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."
@@ -120,18 +108,6 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:bluetooth_feature_sm",
-      "name" : "Security Manager",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "MSLA"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:bluetooth_feature_system",
       "name" : "System",
       "version" : "2025.12.1",
@@ -192,38 +168,6 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:freertos",
-      "name" : "FreeRTOS Kernel",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "MSLA"
-      } ],
-      "pedigree" : {
-        "ancestors" : [ {
-          "scope" : "required",
-          "type" : "library",
-          "bom-ref" : "freertos:11.1.0",
-          "name" : "FreeRTOS kernel",
-          "version" : "11.1.0",
-          "supplier" : {
-            "name" : "AWS open source"
-          },
-          "externalReferences" : [ {
-            "type" : "website",
-            "url" : "https://github.com/FreeRTOS/FreeRTOS-Kernel"
-          } ],
-          "purl" : "https://github.com/FreeRTOS/FreeRTOS-Kernel/releases/tag/V11.1.0",
-          "pedigree" : {
-            "notes" : "FreeRTOS kernel, Version 11.1.0"
-          }
-        } ]
-      }
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:gatt_configuration",
       "name" : "Static GATT Database and Configuration",
       "version" : "2025.12.1",
@@ -248,30 +192,6 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_eusart",
-      "name" : "IO Stream: EUSART",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_usart",
-      "name" : "IO Stream: USART",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:rail_util_pti",
       "name" : "RAIL Utility, PTI (RAIL 2.x)",
       "version" : "2025.12.1",
@@ -284,44 +204,8 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:simple_led",
-      "name" : "Simple LED",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:sl_main",
       "name" : "System Setup (sl_main)",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:bgapi_protocol_rtos_adaptation",
-      "name" : "BGAPI Protocol RTOS adaptation",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib AND MSLA"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:dmadrv_core",
-      "name" : "DMADRV Core",
       "version" : "2025.12.1",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."
@@ -346,30 +230,6 @@
       "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:device_manager",
       "name" : "Device Manager",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:emlib_eusart",
-      "name" : "EUSART",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:led",
-      "name" : "Generic LED API",
       "version" : "2025.12.1",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."
@@ -500,100 +360,8 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_retarget_stdio",
-      "name" : "IO Stream: Retarget STDIO",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:freertos_kernel_cortexm",
-      "name" : "FreeRTOS Kernel ARM Cortex-M Port",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Apache 2.0"
-      } ],
-      "pedigree" : {
-        "ancestors" : [ {
-          "scope" : "required",
-          "type" : "library",
-          "bom-ref" : "freertos_kernel_cortexm:11.1.0",
-          "name" : "CMSIS-FreeRTOS",
-          "version" : "11.1.0",
-          "supplier" : {
-            "name" : "ARM-software"
-          },
-          "externalReferences" : [ {
-            "type" : "website",
-            "url" : "https://github.com/ARM-software/CMSIS-FreeRTOS"
-          } ],
-          "purl" : "https://github.com/ARM-software/CMSIS-FreeRTOS/releases/tag/v11.1.0",
-          "pedigree" : {
-            "notes" : "CMSIS-FreeRTOS, Version 11.1.0"
-          }
-        } ]
-      }
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:nvm3_source",
-      "name" : "NVM3 Core (source)",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:nvm3_default_config",
-      "name" : "NVM3 Default Config",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:bluetooth_crypto",
-      "name" : "Bluetooth Core Crypto Configuration",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "MSLA"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:psa_crypto_config",
       "name" : "Configuration",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream",
-      "name" : "IO Stream",
       "version" : "2025.12.1",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."
@@ -612,18 +380,6 @@
       },
       "licenses" : [ {
         "expression" : "MSLA"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:hal_prs",
-      "name" : "PRS",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
       } ]
     }, {
       "scope" : "required",
@@ -676,32 +432,20 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:enum",
-      "name" : "Enumerations",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:mbedtls_threading_alt_cmsis_rtos2",
-      "name" : "Silicon Labs Threading support Mbed TLS",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:sli_crypto_s2",
       "name" : "Accelerated Crypto Primitives for Series-2 devices",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:enum",
+      "name" : "Enumerations",
       "version" : "2025.12.1",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."
@@ -744,18 +488,6 @@
       },
       "licenses" : [ {
         "expression" : "MSLA"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:nvm3_optimization_disable",
-      "name" : "NVM3 disable optimization",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
       } ]
     }, {
       "scope" : "required",
@@ -820,42 +552,6 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_usart_core",
-      "name" : "IO Stream: USART Core",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:sl_main_kernel",
-      "name" : "SL Main Kernel",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:configuration_over_swo",
-      "name" : "Configuration Over SWO",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:memory_manager",
       "name" : "Memory Manager",
       "version" : "2025.12.1",
@@ -882,18 +578,6 @@
       "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:rail_lib_singleprotocol",
       "name" : "RAIL Library, Single Protocol",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "MSLA"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:bluetooth_feature_builtin_bonding_database",
-      "name" : "Built-in Bluetooth bonding database",
       "version" : "2025.12.1",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."
@@ -940,42 +624,6 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:emlib_ldma",
-      "name" : "LDMA",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:bluetooth_rtos_adaptation",
-      "name" : "Bluetooth RTOS Adaptation",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib AND MSLA"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:cmsis_os2_ext_task_register",
-      "name" : "Task registers abstraction layer",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:bluetooth_device_compatibility",
       "name" : "Device compatibility defines for Bluetooth features",
       "version" : "2025.12.1",
@@ -985,38 +633,6 @@
       "licenses" : [ {
         "expression" : "MSLA"
       } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:cmsis_rtos2_tick",
-      "name" : "CMSIS-RTOS2 OS Tick",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Apache 2.0"
-      } ],
-      "pedigree" : {
-        "ancestors" : [ {
-          "scope" : "required",
-          "type" : "library",
-          "bom-ref" : "cmsis_rtos2_tick:5.8.0",
-          "name" : "CMSIS_5",
-          "version" : "5.8.0",
-          "supplier" : {
-            "name" : "ARM-software"
-          },
-          "externalReferences" : [ {
-            "type" : "website",
-            "url" : "https://github.com/ARM-software/CMSIS_5"
-          } ],
-          "purl" : "pkg:github/ARM-software/CMSIS_5@5.8.0",
-          "pedigree" : {
-            "notes" : "The CMSIS is a set of tools, APIs, frameworks, and work flows"
-          }
-        } ]
-      }
     }, {
       "scope" : "required",
       "type" : "library",
@@ -1107,18 +723,6 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:dmadrv",
-      "name" : "DMADRV",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:hal_common",
       "name" : "Common Headers",
       "version" : "2025.12.1",
@@ -1181,18 +785,6 @@
       "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:emlib_rtcc",
       "name" : "RTCC",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_uart_common",
-      "name" : "IO Stream: Common code for UART-type streams",
       "version" : "2025.12.1",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."
@@ -1299,18 +891,6 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:nvm3_default",
-      "name" : "NVM3 Default Instance",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:se_manager_mailbox",
       "name" : "SE mailbox utilities",
       "version" : "2025.12.1",
@@ -1355,18 +935,6 @@
       },
       "licenses" : [ {
         "expression" : "MSLA"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:simple_led_core",
-      "name" : "Simple LED Core",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
       } ]
     }, {
       "scope" : "required",
@@ -1421,18 +989,6 @@
       "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:power_manager_core",
       "name" : "Power Manager: Core",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:cmsis_common",
-      "name" : "Common APIs for CMSIS-Compliant Kernels",
       "version" : "2025.12.1",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."
@@ -1635,18 +1191,6 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:debug_swo",
-      "name" : "SWO Debug",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:rail_util_features",
       "name" : "RAIL Library Features, Core",
       "version" : "2025.12.1",
@@ -1667,18 +1211,6 @@
       },
       "licenses" : [ {
         "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:bluetooth_controller_rtos_adaptation",
-      "name" : "Bluetooth Core",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "MSLA"
       } ]
     }, {
       "scope" : "required",
@@ -1707,18 +1239,6 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:sl_string",
-      "name" : "String Functions",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:bluetooth_host_adaptation",
       "name" : "System adaptation layer used by the Bluetooth host stack",
       "version" : "2025.12.1",
@@ -1727,18 +1247,6 @@
       },
       "licenses" : [ {
         "expression" : "Zlib AND MSLA"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:emlib_usart",
-      "name" : "USART",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
       } ]
     }, {
       "scope" : "required",
@@ -1769,18 +1277,6 @@
       "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:emlib_gpio",
       "name" : "GPIO",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:nvm3_default_flash_backend",
-      "name" : "NVM3 back-end for default instance in flash",
       "version" : "2025.12.1",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."
@@ -1839,38 +1335,6 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:cmsis_rtos2_init",
-      "name" : "CMSIS-RTOS2 Initialization",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Apache 2.0"
-      } ],
-      "pedigree" : {
-        "ancestors" : [ {
-          "scope" : "required",
-          "type" : "library",
-          "bom-ref" : "cmsis_rtos2_init:5.8.0",
-          "name" : "CMSIS_5",
-          "version" : "5.8.0",
-          "supplier" : {
-            "name" : "ARM-software"
-          },
-          "externalReferences" : [ {
-            "type" : "website",
-            "url" : "https://github.com/ARM-software/CMSIS_5"
-          } ],
-          "purl" : "pkg:github/ARM-software/CMSIS_5@5.8.0",
-          "pedigree" : {
-            "notes" : "The CMSIS is a set of tools, APIs, frameworks, and work flows"
-          }
-        } ]
-      }
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:mbedtls_slcrypto",
       "name" : "Silicon Labs Mbed TLS support",
       "version" : "2025.12.1",
@@ -1892,38 +1356,6 @@
       "licenses" : [ {
         "expression" : "Zlib"
       } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:cmsis_rtos2_headers",
-      "name" : "CMSIS-RTOS2 Headers",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Apache 2.0"
-      } ],
-      "pedigree" : {
-        "ancestors" : [ {
-          "scope" : "required",
-          "type" : "library",
-          "bom-ref" : "cmsis_rtos2_headers:5.8.0",
-          "name" : "CMSIS_5",
-          "version" : "5.8.0",
-          "supplier" : {
-            "name" : "ARM-software"
-          },
-          "externalReferences" : [ {
-            "type" : "website",
-            "url" : "https://github.com/ARM-software/CMSIS_5"
-          } ],
-          "purl" : "pkg:github/ARM-software/CMSIS_5@5.8.0",
-          "pedigree" : {
-            "notes" : "The CMSIS is a set of tools, APIs, frameworks, and work flows."
-          }
-        } ]
-      }
     }, {
       "scope" : "required",
       "type" : "library",
@@ -1987,30 +1419,6 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:psa_its",
-      "name" : "PSA Persistent Storage Support (ITS)",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:hal_eusart",
-      "name" : "EUSART",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:bluetooth_controller_crypto",
       "name" : "Bluetooth Core Crypto Configuration for Controller",
       "version" : "2025.12.1",
@@ -2019,18 +1427,6 @@
       },
       "licenses" : [ {
         "expression" : "MSLA"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_eusart_core",
-      "name" : "IO Stream: EUSART Core",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
       } ]
     }, {
       "scope" : "required",
@@ -2049,18 +1445,6 @@
       "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:sl_core",
       "name" : "core",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_stdlib_config",
-      "name" : "IO Stream: STDLIB Configuration",
       "version" : "2025.12.1",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."
@@ -2163,8 +1547,8 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:sl_common",
-      "name" : "Common Functions",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:mbedtls_config",
+      "name" : "Configuration",
       "version" : "2025.12.1",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."
@@ -2175,8 +1559,8 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:mbedtls_config",
-      "name" : "Configuration",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:sl_common",
+      "name" : "Common Functions",
       "version" : "2025.12.1",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."
@@ -2213,6 +1597,514 @@
       "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:gpio",
       "name" : "GPIO Driver",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:app_log",
+      "name" : "Log",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:dmadrv_core",
+      "name" : "DMADRV Core",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_retarget_stdio",
+      "name" : "IO Stream: Retarget STDIO",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream",
+      "name" : "IO Stream",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:configuration_over_swo",
+      "name" : "Configuration Over SWO",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:emlib_ldma",
+      "name" : "LDMA",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:dmadrv",
+      "name" : "DMADRV",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_uart_common",
+      "name" : "IO Stream: Common code for UART-type streams",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:debug_swo",
+      "name" : "SWO Debug",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:sl_string",
+      "name" : "String Functions",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_stdlib_config",
+      "name" : "IO Stream: STDLIB Configuration",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:freertos",
+      "name" : "FreeRTOS Kernel",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "MSLA"
+      } ],
+      "pedigree" : {
+        "ancestors" : [ {
+          "scope" : "required",
+          "type" : "library",
+          "bom-ref" : "freertos:11.1.0",
+          "name" : "FreeRTOS kernel",
+          "version" : "11.1.0",
+          "supplier" : {
+            "name" : "AWS open source"
+          },
+          "externalReferences" : [ {
+            "type" : "website",
+            "url" : "https://github.com/FreeRTOS/FreeRTOS-Kernel"
+          } ],
+          "purl" : "https://github.com/FreeRTOS/FreeRTOS-Kernel/releases/tag/V11.1.0",
+          "pedigree" : {
+            "notes" : "FreeRTOS kernel, Version 11.1.0"
+          }
+        } ]
+      }
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:bgapi_protocol_rtos_adaptation",
+      "name" : "BGAPI Protocol RTOS adaptation",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib AND MSLA"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:freertos_kernel_cortexm",
+      "name" : "FreeRTOS Kernel ARM Cortex-M Port",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Apache 2.0"
+      } ],
+      "pedigree" : {
+        "ancestors" : [ {
+          "scope" : "required",
+          "type" : "library",
+          "bom-ref" : "freertos_kernel_cortexm:11.1.0",
+          "name" : "CMSIS-FreeRTOS",
+          "version" : "11.1.0",
+          "supplier" : {
+            "name" : "ARM-software"
+          },
+          "externalReferences" : [ {
+            "type" : "website",
+            "url" : "https://github.com/ARM-software/CMSIS-FreeRTOS"
+          } ],
+          "purl" : "https://github.com/ARM-software/CMSIS-FreeRTOS/releases/tag/v11.1.0",
+          "pedigree" : {
+            "notes" : "CMSIS-FreeRTOS, Version 11.1.0"
+          }
+        } ]
+      }
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:mbedtls_threading_alt_cmsis_rtos2",
+      "name" : "Silicon Labs Threading support Mbed TLS",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:sl_main_kernel",
+      "name" : "SL Main Kernel",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:bluetooth_rtos_adaptation",
+      "name" : "Bluetooth RTOS Adaptation",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib AND MSLA"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:cmsis_os2_ext_task_register",
+      "name" : "Task registers abstraction layer",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:cmsis_rtos2_tick",
+      "name" : "CMSIS-RTOS2 OS Tick",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Apache 2.0"
+      } ],
+      "pedigree" : {
+        "ancestors" : [ {
+          "scope" : "required",
+          "type" : "library",
+          "bom-ref" : "cmsis_rtos2_tick:5.8.0",
+          "name" : "CMSIS_5",
+          "version" : "5.8.0",
+          "supplier" : {
+            "name" : "ARM-software"
+          },
+          "externalReferences" : [ {
+            "type" : "website",
+            "url" : "https://github.com/ARM-software/CMSIS_5"
+          } ],
+          "purl" : "pkg:github/ARM-software/CMSIS_5@5.8.0",
+          "pedigree" : {
+            "notes" : "The CMSIS is a set of tools, APIs, frameworks, and work flows"
+          }
+        } ]
+      }
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:cmsis_common",
+      "name" : "Common APIs for CMSIS-Compliant Kernels",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:bluetooth_controller_rtos_adaptation",
+      "name" : "Bluetooth Core",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "MSLA"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:cmsis_rtos2_init",
+      "name" : "CMSIS-RTOS2 Initialization",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Apache 2.0"
+      } ],
+      "pedigree" : {
+        "ancestors" : [ {
+          "scope" : "required",
+          "type" : "library",
+          "bom-ref" : "cmsis_rtos2_init:5.8.0",
+          "name" : "CMSIS_5",
+          "version" : "5.8.0",
+          "supplier" : {
+            "name" : "ARM-software"
+          },
+          "externalReferences" : [ {
+            "type" : "website",
+            "url" : "https://github.com/ARM-software/CMSIS_5"
+          } ],
+          "purl" : "pkg:github/ARM-software/CMSIS_5@5.8.0",
+          "pedigree" : {
+            "notes" : "The CMSIS is a set of tools, APIs, frameworks, and work flows"
+          }
+        } ]
+      }
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:cmsis_rtos2_headers",
+      "name" : "CMSIS-RTOS2 Headers",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Apache 2.0"
+      } ],
+      "pedigree" : {
+        "ancestors" : [ {
+          "scope" : "required",
+          "type" : "library",
+          "bom-ref" : "cmsis_rtos2_headers:5.8.0",
+          "name" : "CMSIS_5",
+          "version" : "5.8.0",
+          "supplier" : {
+            "name" : "ARM-software"
+          },
+          "externalReferences" : [ {
+            "type" : "website",
+            "url" : "https://github.com/ARM-software/CMSIS_5"
+          } ],
+          "purl" : "pkg:github/ARM-software/CMSIS_5@5.8.0",
+          "pedigree" : {
+            "notes" : "The CMSIS is a set of tools, APIs, frameworks, and work flows."
+          }
+        } ]
+      }
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_usart",
+      "name" : "IO Stream: USART",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_usart_core",
+      "name" : "IO Stream: USART Core",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:emlib_usart",
+      "name" : "USART",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_eusart",
+      "name" : "IO Stream: EUSART",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:emlib_eusart",
+      "name" : "EUSART",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:hal_prs",
+      "name" : "PRS",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:hal_eusart",
+      "name" : "EUSART",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:iostream_eusart_core",
+      "name" : "IO Stream: EUSART Core",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:simple_led",
+      "name" : "Simple LED",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:led",
+      "name" : "Generic LED API",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:simple_led_core",
+      "name" : "Simple LED Core",
       "version" : "2025.12.1",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."

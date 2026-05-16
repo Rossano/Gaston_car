@@ -10,7 +10,7 @@ referenced in this SBOM.)
 -->
 <bom xmlns="http://cyclonedx.org/schema/bom/1.6" version="1">
   <metadata>
-    <timestamp>2026-04-01T23:57:06Z</timestamp>
+    <timestamp>2026-03-19T23:31:00Z</timestamp>
     <authors>
       <author>
         <name>Silicon Laboratories, Inc.</name>
@@ -37,16 +37,6 @@ referenced in this SBOM.)
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:app_assert" type="library">
           <name>Assert</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:app_log" type="library">
-          <name>Log</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -105,16 +95,6 @@ referenced in this SBOM.)
             <expression>MSLA</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_feature_sm" type="library">
-          <name>Security Manager</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>MSLA</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_feature_system" type="library">
           <name>System</name>
           <version>2025.12.1</version>
@@ -165,36 +145,6 @@ referenced in this SBOM.)
             <expression>Zlib</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:freertos" type="library">
-          <name>FreeRTOS Kernel</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>MSLA</expression>
-          </licenses>
-          <pedigree>
-            <ancestors>
-              <component bom-ref="freertos:11.1.0" type="library">
-                <supplier>
-                  <name>AWS open source</name>
-                </supplier>
-                <name>FreeRTOS kernel</name>
-                <version>11.1.0</version>
-                <purl>https://github.com/FreeRTOS/FreeRTOS-Kernel/releases/tag/V11.1.0</purl>
-                <pedigree>
-                  <notes>FreeRTOS kernel, Version 11.1.0</notes>
-                </pedigree>
-                <externalReferences>
-                  <reference type="website">
-                    <url>https://github.com/FreeRTOS/FreeRTOS-Kernel</url>
-                  </reference>
-                </externalReferences>
-              </component>
-            </ancestors>
-          </pedigree>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:gatt_configuration" type="library">
           <name>Static GATT Database and Configuration</name>
           <version>2025.12.1</version>
@@ -215,26 +165,6 @@ referenced in this SBOM.)
             <expression>Zlib</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_eusart" type="library">
-          <name>IO Stream: EUSART</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_usart" type="library">
-          <name>IO Stream: USART</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:rail_util_pti" type="library">
           <name>RAIL Utility, PTI (RAIL 2.x)</name>
           <version>2025.12.1</version>
@@ -245,38 +175,8 @@ referenced in this SBOM.)
             <expression>Zlib</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:simple_led" type="library">
-          <name>Simple LED</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:sl_main" type="library">
           <name>System Setup (sl_main)</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:bgapi_protocol_rtos_adaptation" type="library">
-          <name>BGAPI Protocol RTOS adaptation</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib AND MSLA</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:dmadrv_core" type="library">
-          <name>DMADRV Core</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -297,26 +197,6 @@ referenced in this SBOM.)
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:device_manager" type="library">
           <name>Device Manager</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:emlib_eusart" type="library">
-          <name>EUSART</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:led" type="library">
-          <name>Generic LED API</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -425,88 +305,8 @@ referenced in this SBOM.)
             <expression>Zlib</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_retarget_stdio" type="library">
-          <name>IO Stream: Retarget STDIO</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:freertos_kernel_cortexm" type="library">
-          <name>FreeRTOS Kernel ARM Cortex-M Port</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Apache 2.0</expression>
-          </licenses>
-          <pedigree>
-            <ancestors>
-              <component bom-ref="freertos_kernel_cortexm:11.1.0" type="library">
-                <supplier>
-                  <name>ARM-software</name>
-                </supplier>
-                <name>CMSIS-FreeRTOS</name>
-                <version>11.1.0</version>
-                <purl>https://github.com/ARM-software/CMSIS-FreeRTOS/releases/tag/v11.1.0</purl>
-                <pedigree>
-                  <notes>CMSIS-FreeRTOS, Version 11.1.0</notes>
-                </pedigree>
-                <externalReferences>
-                  <reference type="website">
-                    <url>https://github.com/ARM-software/CMSIS-FreeRTOS</url>
-                  </reference>
-                </externalReferences>
-              </component>
-            </ancestors>
-          </pedigree>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:nvm3_source" type="library">
-          <name>NVM3 Core (source)</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:nvm3_default_config" type="library">
-          <name>NVM3 Default Config</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_crypto" type="library">
-          <name>Bluetooth Core Crypto Configuration</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>MSLA</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:psa_crypto_config" type="library">
           <name>Configuration</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream" type="library">
-          <name>IO Stream</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -523,16 +323,6 @@ referenced in this SBOM.)
 	      </supplier>
           <licenses>
             <expression>MSLA</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:hal_prs" type="library">
-          <name>PRS</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
           </licenses>
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:se_manager_crypto" type="library">
@@ -575,28 +365,18 @@ referenced in this SBOM.)
             <expression>Zlib</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:enum" type="library">
-          <name>Enumerations</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:mbedtls_threading_alt_cmsis_rtos2" type="library">
-          <name>Silicon Labs Threading support Mbed TLS</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:sli_crypto_s2" type="library">
           <name>Accelerated Crypto Primitives for Series-2 devices</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:enum" type="library">
+          <name>Enumerations</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -633,16 +413,6 @@ referenced in this SBOM.)
 	      </supplier>
           <licenses>
             <expression>MSLA</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:nvm3_optimization_disable" type="library">
-          <name>NVM3 disable optimization</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
           </licenses>
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:sli_protocol_crypto" type="library">
@@ -695,36 +465,6 @@ referenced in this SBOM.)
             <expression>Zlib</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_usart_core" type="library">
-          <name>IO Stream: USART Core</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:sl_main_kernel" type="library">
-          <name>SL Main Kernel</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:configuration_over_swo" type="library">
-          <name>Configuration Over SWO</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:memory_manager" type="library">
           <name>Memory Manager</name>
           <version>2025.12.1</version>
@@ -747,16 +487,6 @@ referenced in this SBOM.)
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:rail_lib_singleprotocol" type="library">
           <name>RAIL Library, Single Protocol</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>MSLA</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_feature_builtin_bonding_database" type="library">
-          <name>Built-in Bluetooth bonding database</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -795,36 +525,6 @@ referenced in this SBOM.)
             <expression>Zlib</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:emlib_ldma" type="library">
-          <name>LDMA</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_rtos_adaptation" type="library">
-          <name>Bluetooth RTOS Adaptation</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib AND MSLA</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:cmsis_os2_ext_task_register" type="library">
-          <name>Task registers abstraction layer</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_device_compatibility" type="library">
           <name>Device compatibility defines for Bluetooth features</name>
           <version>2025.12.1</version>
@@ -834,36 +534,6 @@ referenced in this SBOM.)
           <licenses>
             <expression>MSLA</expression>
           </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:cmsis_rtos2_tick" type="library">
-          <name>CMSIS-RTOS2 OS Tick</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Apache 2.0</expression>
-          </licenses>
-          <pedigree>
-            <ancestors>
-              <component bom-ref="cmsis_rtos2_tick:5.8.0" type="library">
-                <supplier>
-                  <name>ARM-software</name>
-                </supplier>
-                <name>CMSIS_5</name>
-                <version>5.8.0</version>
-                <purl>pkg:github/ARM-software/CMSIS_5@5.8.0</purl>
-                <pedigree>
-                  <notes>The CMSIS is a set of tools, APIs, frameworks, and work flows</notes>
-                </pedigree>
-                <externalReferences>
-                  <reference type="website">
-                    <url>https://github.com/ARM-software/CMSIS_5</url>
-                  </reference>
-                </externalReferences>
-              </component>
-            </ancestors>
-          </pedigree>
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:emlib_cmu" type="library">
           <name>CMU</name>
@@ -939,16 +609,6 @@ referenced in this SBOM.)
             </ancestors>
           </pedigree>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:dmadrv" type="library">
-          <name>DMADRV</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:hal_common" type="library">
           <name>Common Headers</name>
           <version>2025.12.1</version>
@@ -1001,16 +661,6 @@ referenced in this SBOM.)
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:emlib_rtcc" type="library">
           <name>RTCC</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_uart_common" type="library">
-          <name>IO Stream: Common code for UART-type streams</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -1099,16 +749,6 @@ referenced in this SBOM.)
             <expression>Zlib</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:nvm3_default" type="library">
-          <name>NVM3 Default Instance</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:se_manager_mailbox" type="library">
           <name>SE mailbox utilities</name>
           <version>2025.12.1</version>
@@ -1147,16 +787,6 @@ referenced in this SBOM.)
 	      </supplier>
           <licenses>
             <expression>MSLA</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:simple_led_core" type="library">
-          <name>Simple LED Core</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
           </licenses>
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:memory_profiler_api" type="library">
@@ -1201,16 +831,6 @@ referenced in this SBOM.)
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:power_manager_core" type="library">
           <name>Power Manager: Core</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:cmsis_common" type="library">
-          <name>Common APIs for CMSIS-Compliant Kernels</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -1379,16 +999,6 @@ referenced in this SBOM.)
             <expression>Zlib</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:debug_swo" type="library">
-          <name>SWO Debug</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:rail_util_features" type="library">
           <name>RAIL Library Features, Core</name>
           <version>2025.12.1</version>
@@ -1407,16 +1017,6 @@ referenced in this SBOM.)
 	      </supplier>
           <licenses>
             <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_controller_rtos_adaptation" type="library">
-          <name>Bluetooth Core</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>MSLA</expression>
           </licenses>
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:brd4108a_config" type="library">
@@ -1439,16 +1039,6 @@ referenced in this SBOM.)
             <expression>MSLA</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:sl_string" type="library">
-          <name>String Functions</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_host_adaptation" type="library">
           <name>System adaptation layer used by the Bluetooth host stack</name>
           <version>2025.12.1</version>
@@ -1457,16 +1047,6 @@ referenced in this SBOM.)
 	      </supplier>
           <licenses>
             <expression>Zlib AND MSLA</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:emlib_usart" type="library">
-          <name>USART</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
           </licenses>
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_common" type="library">
@@ -1491,16 +1071,6 @@ referenced in this SBOM.)
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:emlib_gpio" type="library">
           <name>GPIO</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:nvm3_default_flash_backend" type="library">
-          <name>NVM3 back-end for default instance in flash</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -1549,36 +1119,6 @@ referenced in this SBOM.)
             <expression>MSLA</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:cmsis_rtos2_init" type="library">
-          <name>CMSIS-RTOS2 Initialization</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Apache 2.0</expression>
-          </licenses>
-          <pedigree>
-            <ancestors>
-              <component bom-ref="cmsis_rtos2_init:5.8.0" type="library">
-                <supplier>
-                  <name>ARM-software</name>
-                </supplier>
-                <name>CMSIS_5</name>
-                <version>5.8.0</version>
-                <purl>pkg:github/ARM-software/CMSIS_5@5.8.0</purl>
-                <pedigree>
-                  <notes>The CMSIS is a set of tools, APIs, frameworks, and work flows</notes>
-                </pedigree>
-                <externalReferences>
-                  <reference type="website">
-                    <url>https://github.com/ARM-software/CMSIS_5</url>
-                  </reference>
-                </externalReferences>
-              </component>
-            </ancestors>
-          </pedigree>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:mbedtls_slcrypto" type="library">
           <name>Silicon Labs Mbed TLS support</name>
           <version>2025.12.1</version>
@@ -1598,36 +1138,6 @@ referenced in this SBOM.)
           <licenses>
             <expression>Zlib</expression>
           </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:cmsis_rtos2_headers" type="library">
-          <name>CMSIS-RTOS2 Headers</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Apache 2.0</expression>
-          </licenses>
-          <pedigree>
-            <ancestors>
-              <component bom-ref="cmsis_rtos2_headers:5.8.0" type="library">
-                <supplier>
-                  <name>ARM-software</name>
-                </supplier>
-                <name>CMSIS_5</name>
-                <version>5.8.0</version>
-                <purl>pkg:github/ARM-software/CMSIS_5@5.8.0</purl>
-                <pedigree>
-                  <notes>The CMSIS is a set of tools, APIs, frameworks, and work flows.</notes>
-                </pedigree>
-                <externalReferences>
-                  <reference type="website">
-                    <url>https://github.com/ARM-software/CMSIS_5</url>
-                  </reference>
-                </externalReferences>
-              </component>
-            </ancestors>
-          </pedigree>
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:device_clock" type="library">
           <name>Device Manager Clock</name>
@@ -1679,26 +1189,6 @@ referenced in this SBOM.)
             <expression>Zlib</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:psa_its" type="library">
-          <name>PSA Persistent Storage Support (ITS)</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:hal_eusart" type="library">
-          <name>EUSART</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_controller_crypto" type="library">
           <name>Bluetooth Core Crypto Configuration for Controller</name>
           <version>2025.12.1</version>
@@ -1707,16 +1197,6 @@ referenced in this SBOM.)
 	      </supplier>
           <licenses>
             <expression>MSLA</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_eusart_core" type="library">
-          <name>IO Stream: EUSART Core</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
           </licenses>
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:emlib_common" type="library">
@@ -1731,16 +1211,6 @@ referenced in this SBOM.)
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:sl_core" type="library">
           <name>core</name>
-          <version>2025.12.1</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>Zlib</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_stdlib_config" type="library">
-          <name>IO Stream: STDLIB Configuration</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -1829,8 +1299,8 @@ referenced in this SBOM.)
             <expression>Zlib</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:sl_common" type="library">
-          <name>Common Functions</name>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:mbedtls_config" type="library">
+          <name>Configuration</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -1839,8 +1309,8 @@ referenced in this SBOM.)
             <expression>Zlib</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.1:mbedtls_config" type="library">
-          <name>Configuration</name>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:sl_common" type="library">
+          <name>Common Functions</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -1871,6 +1341,446 @@ referenced in this SBOM.)
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.1:gpio" type="library">
           <name>GPIO Driver</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:app_log" type="library">
+          <name>Log</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:dmadrv_core" type="library">
+          <name>DMADRV Core</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_retarget_stdio" type="library">
+          <name>IO Stream: Retarget STDIO</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream" type="library">
+          <name>IO Stream</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:configuration_over_swo" type="library">
+          <name>Configuration Over SWO</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:emlib_ldma" type="library">
+          <name>LDMA</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:dmadrv" type="library">
+          <name>DMADRV</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_uart_common" type="library">
+          <name>IO Stream: Common code for UART-type streams</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:debug_swo" type="library">
+          <name>SWO Debug</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:sl_string" type="library">
+          <name>String Functions</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_stdlib_config" type="library">
+          <name>IO Stream: STDLIB Configuration</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:freertos" type="library">
+          <name>FreeRTOS Kernel</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>MSLA</expression>
+          </licenses>
+          <pedigree>
+            <ancestors>
+              <component bom-ref="freertos:11.1.0" type="library">
+                <supplier>
+                  <name>AWS open source</name>
+                </supplier>
+                <name>FreeRTOS kernel</name>
+                <version>11.1.0</version>
+                <purl>https://github.com/FreeRTOS/FreeRTOS-Kernel/releases/tag/V11.1.0</purl>
+                <pedigree>
+                  <notes>FreeRTOS kernel, Version 11.1.0</notes>
+                </pedigree>
+                <externalReferences>
+                  <reference type="website">
+                    <url>https://github.com/FreeRTOS/FreeRTOS-Kernel</url>
+                  </reference>
+                </externalReferences>
+              </component>
+            </ancestors>
+          </pedigree>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:bgapi_protocol_rtos_adaptation" type="library">
+          <name>BGAPI Protocol RTOS adaptation</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib AND MSLA</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:freertos_kernel_cortexm" type="library">
+          <name>FreeRTOS Kernel ARM Cortex-M Port</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Apache 2.0</expression>
+          </licenses>
+          <pedigree>
+            <ancestors>
+              <component bom-ref="freertos_kernel_cortexm:11.1.0" type="library">
+                <supplier>
+                  <name>ARM-software</name>
+                </supplier>
+                <name>CMSIS-FreeRTOS</name>
+                <version>11.1.0</version>
+                <purl>https://github.com/ARM-software/CMSIS-FreeRTOS/releases/tag/v11.1.0</purl>
+                <pedigree>
+                  <notes>CMSIS-FreeRTOS, Version 11.1.0</notes>
+                </pedigree>
+                <externalReferences>
+                  <reference type="website">
+                    <url>https://github.com/ARM-software/CMSIS-FreeRTOS</url>
+                  </reference>
+                </externalReferences>
+              </component>
+            </ancestors>
+          </pedigree>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:mbedtls_threading_alt_cmsis_rtos2" type="library">
+          <name>Silicon Labs Threading support Mbed TLS</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:sl_main_kernel" type="library">
+          <name>SL Main Kernel</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_rtos_adaptation" type="library">
+          <name>Bluetooth RTOS Adaptation</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib AND MSLA</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:cmsis_os2_ext_task_register" type="library">
+          <name>Task registers abstraction layer</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:cmsis_rtos2_tick" type="library">
+          <name>CMSIS-RTOS2 OS Tick</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Apache 2.0</expression>
+          </licenses>
+          <pedigree>
+            <ancestors>
+              <component bom-ref="cmsis_rtos2_tick:5.8.0" type="library">
+                <supplier>
+                  <name>ARM-software</name>
+                </supplier>
+                <name>CMSIS_5</name>
+                <version>5.8.0</version>
+                <purl>pkg:github/ARM-software/CMSIS_5@5.8.0</purl>
+                <pedigree>
+                  <notes>The CMSIS is a set of tools, APIs, frameworks, and work flows</notes>
+                </pedigree>
+                <externalReferences>
+                  <reference type="website">
+                    <url>https://github.com/ARM-software/CMSIS_5</url>
+                  </reference>
+                </externalReferences>
+              </component>
+            </ancestors>
+          </pedigree>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:cmsis_common" type="library">
+          <name>Common APIs for CMSIS-Compliant Kernels</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:bluetooth_controller_rtos_adaptation" type="library">
+          <name>Bluetooth Core</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>MSLA</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:cmsis_rtos2_init" type="library">
+          <name>CMSIS-RTOS2 Initialization</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Apache 2.0</expression>
+          </licenses>
+          <pedigree>
+            <ancestors>
+              <component bom-ref="cmsis_rtos2_init:5.8.0" type="library">
+                <supplier>
+                  <name>ARM-software</name>
+                </supplier>
+                <name>CMSIS_5</name>
+                <version>5.8.0</version>
+                <purl>pkg:github/ARM-software/CMSIS_5@5.8.0</purl>
+                <pedigree>
+                  <notes>The CMSIS is a set of tools, APIs, frameworks, and work flows</notes>
+                </pedigree>
+                <externalReferences>
+                  <reference type="website">
+                    <url>https://github.com/ARM-software/CMSIS_5</url>
+                  </reference>
+                </externalReferences>
+              </component>
+            </ancestors>
+          </pedigree>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:cmsis_rtos2_headers" type="library">
+          <name>CMSIS-RTOS2 Headers</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Apache 2.0</expression>
+          </licenses>
+          <pedigree>
+            <ancestors>
+              <component bom-ref="cmsis_rtos2_headers:5.8.0" type="library">
+                <supplier>
+                  <name>ARM-software</name>
+                </supplier>
+                <name>CMSIS_5</name>
+                <version>5.8.0</version>
+                <purl>pkg:github/ARM-software/CMSIS_5@5.8.0</purl>
+                <pedigree>
+                  <notes>The CMSIS is a set of tools, APIs, frameworks, and work flows.</notes>
+                </pedigree>
+                <externalReferences>
+                  <reference type="website">
+                    <url>https://github.com/ARM-software/CMSIS_5</url>
+                  </reference>
+                </externalReferences>
+              </component>
+            </ancestors>
+          </pedigree>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_usart" type="library">
+          <name>IO Stream: USART</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_usart_core" type="library">
+          <name>IO Stream: USART Core</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:emlib_usart" type="library">
+          <name>USART</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_eusart" type="library">
+          <name>IO Stream: EUSART</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:emlib_eusart" type="library">
+          <name>EUSART</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:hal_prs" type="library">
+          <name>PRS</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:hal_eusart" type="library">
+          <name>EUSART</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:iostream_eusart_core" type="library">
+          <name>IO Stream: EUSART Core</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:simple_led" type="library">
+          <name>Simple LED</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:led" type="library">
+          <name>Generic LED API</name>
+          <version>2025.12.1</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.1:simple_led_core" type="library">
+          <name>Simple LED Core</name>
           <version>2025.12.1</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>

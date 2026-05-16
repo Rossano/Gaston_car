@@ -37,19 +37,8 @@
 #include "sl_bluetooth.h"
 #include "gatt_db.h"
 
-#define CLI_TASK_STACK_SIZE 512
-#define CLI_TASK_PRIORITY 24
-
 // The advertising set handle allocated from Bluetooth stack.
 //static uint8_t advertising_set_handle = 0xff;
-
-//QueueHandle_t cli_queue; 
-uint8_t led0_state = 0;
-uint16_t sent_len = 0;
-uint8_t b[20], len = 0;
-uint8_t len_stm32 = 0;
-uint8_t buffer[CLI_COMMAND_MAX_LEN];
-uint8_t buffer_stm32[CLI_COMMAND_MAX_LEN];
 
 // Application Init.
 void app_init(void)
@@ -58,12 +47,6 @@ void app_init(void)
   // Put your additional application init code here!                         //
   // This is called once during start-up.                                    //
   /////////////////////////////////////////////////////////////////////////////
-  app_log("🟣 [APP_INIT] Starting\n");
-  
-  // Impedisce al sistema di scendere sotto la modalità EM0 (Active)
-  //sl_power_manager_add_em_requirement(SL_POWER_MANAGER_EM0);
-  
-  app_log("🟣 [APP_INIT] EXIT\n");
 }
 
 // Application Process Action.
@@ -75,7 +58,6 @@ void app_process_action(void)
     // This is will run each time app_proceed() is called.                     //
     // Do not call blocking functions from here!                               //
     /////////////////////////////////////////////////////////////////////////////
-    return;
   }
 }
 
@@ -120,15 +102,11 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
     // -------------------------------
     // This event indicates that a new connection was opened.
     case sl_bt_evt_connection_opened_id:
-      // Save the connection handle for SPP data transfer
-      conn_handle = evt->data.evt_connection_opened.connection;
-      main_state = STATE_CONNECTED;
       break;
 
     // -------------------------------
     // This event indicates that a connection was closed.
     case sl_bt_evt_connection_closed_id:
-      reset_variables(); // Reset handles and state
       // Generate data for advertising
       sc = sl_bt_legacy_advertiser_generate_data(advertising_set_handle,
                                                  sl_bt_advertiser_general_discoverable);
@@ -168,20 +146,16 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
         }
         break;
 
-        case sl_bt_evt_gatt_server_attribute_value_id:
+        case sl_bt_evt_gatt_server_attribute_value_id: //sl_bt_evt_gatt_server_user_read_request_id:
         {
           // Read from the client
           app_log("Checkpoint 1: %s", evt->data.evt_gatt_server_attribute_value.value.data);
-          // Data is not null-terminated, use explicit length formatting or hex dump
-          app_log("Checkpoint 1: Received %d bytes\n", evt->data.evt_gatt_server_attribute_value.value.len);
           if (evt->data.evt_gatt_server_attribute_value.value.len != 0) {
             for (uint8_t i = 0;
                  i < evt->data.evt_gatt_server_attribute_value.value.len; i++) {
-              // Push data to the UART queue
-              if (xQueueSend(uartQueue, &evt->data.evt_gatt_server_attribute_value.value.data[i], (TickType_t)0) != pdPASS) {
-                // Queue is full, data is dropped
-                app_log("UART RX queue full\r\n");
-              }
+              sl_iostream_putchar(
+                sl_iostream_vcom_handle,
+                evt->data.evt_gatt_server_attribute_value.value.data[i]);
             }
             counters.num_pack_received++;
             counters.num_bytes_received +=
