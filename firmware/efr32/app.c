@@ -37,28 +37,88 @@
 #include "sl_bluetooth.h"
 #include "gatt_db.h"
 
+#include <string.h>
+#include "sl_iostream_handles.h"
+#include "app_log.h"
+#include "sl_common.h"
+
+#define SL_BT_RTOS_APPLICATION_PRIOITY 10u
+
+QueueHandle_t cli_queue;
+
+uint8_t  buffer[CLI_COMMAND_MAX_LEN];
+uint8_t led0_state = 0;
+uint16_t sent_len = 0;
+uint8_t b[20], len = 0;
+
 // The advertising set handle allocated from Bluetooth stack.
 //static uint8_t advertising_set_handle = 0xff;
 
 // Application Init.
 void app_init(void)
 {
+    // Create CLI queues and task here (after SDK second-stage init)
+  // so the Bluetooth stack has initialized and heap is available.
+  cli_queue = xQueueCreate(4, CLI_COMMAND_MAX_LEN);
+  if (cli_queue == NULL) {
+    app_log("Failed to create CLI queue\n");
+  }
+
+  uartQueue = xQueueCreate(UART_RX_QUEUE_LEN, sizeof(uint8_t));
+  if (uartQueue == NULL) {
+    app_log("Failed to create UART RX queue\n");
+  }
   /////////////////////////////////////////////////////////////////////////////
   // Put your additional application init code here!                         //
   // This is called once during start-up.                                    //
   /////////////////////////////////////////////////////////////////////////////
+  BaseType_t ret;
+  ret = xTaskCreate(
+    cli_task,
+    CLI_TASK_NAME,
+    CLI_TASK_STACK_SIZE,
+    NULL,
+    CLI_TASK_PRIO,
+    &cli_task_handle);
+  if (ret != pdPASS) {
+    app_log("Failed to create CLI task\n");
+  }
+  else {
+    app_log("CLI task created successfully\n");
+  }
+  reset_variables();
 }
 
 // Application Process Action.
 void app_process_action(void)
 {
-  if (app_is_process_required()) {
-    /////////////////////////////////////////////////////////////////////////////
-    // Put your additional application code here!                              //
-    // This is will run each time app_proceed() is called.                     //
-    // Do not call blocking functions from here!                               //
-    /////////////////////////////////////////////////////////////////////////////
+  // if (app_is_process_required()) {
+  //   /////////////////////////////////////////////////////////////////////////////
+  //   // Put your additional application code here!                              //
+  //   // This is will run each time app_proceed() is called.                     //
+  //   // Do not call blocking functions from here!                               //
+  //   /////////////////////////////////////////////////////////////////////////////
+  // }
+  char ch;
+  if(STATE_SPP_MODE == main_state) {
+    if (xQueueReceive(uartQueue, &ch, 0) == pdPASS) {
+      b[len++] = ch;
+      if (len == 20 || ch == '\n') {
+        sl_bt_gatt_server_send_notification(
+          conn_handle,
+          gattdb_My_SPP_Write,
+          len,
+          b);
+        sent_len += len;
+        len = 0;
+      }
+    }
+    else {
+      // No data received from UART
+      vTaskDelay(pdMS_TO_TICKS(10)); // Sleep for a while to avoid busy waiting
+    }
   }
+  return;
 }
 
 /**************************************************************************//**
@@ -102,15 +162,31 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
     // -------------------------------
     // This event indicates that a new connection was opened.
     case sl_bt_evt_connection_opened_id:
+      conn_handle = evt->data.evt_connection_opened.connection;
+      app_log("Connection opened\r\n");
+      main_state = STATE_CONNECTED;
+
+      sl_bt_connection_set_parameters(conn_handle,
+                                   24,  // min. connection interval (milliseconds * 1.25)
+                                   40,  // max. connection interval (milliseconds * 1.25)
+                                   0,   // latency
+                                   200,
+                                   0,
+                                   0xFFFF); // supervision timeout (milliseconds * 10)
       break;
 
     // -------------------------------
     // This event indicates that a connection was closed.
     case sl_bt_evt_connection_closed_id:
+      print_stats(&counters);
+      if(STATE_SPP_MODE == main_state) {
+        sl_power_manager_remove_em_requirement(SL_POWER_MANAGER_EM1);
+      }
+      reset_variables();
       // Generate data for advertising
-      sc = sl_bt_legacy_advertiser_generate_data(advertising_set_handle,
-                                                 sl_bt_advertiser_general_discoverable);
-      app_assert_status(sc);
+      //sc = sl_bt_legacy_advertiser_generate_data(advertising_set_handle,
+      //                                           sl_bt_advertiser_general_discoverable);
+      //app_assert_status(sc);
 
       // Restart advertising after client has disconnected.
       sc = sl_bt_legacy_advertiser_start(advertising_set_handle,

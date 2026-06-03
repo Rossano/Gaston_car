@@ -12,6 +12,10 @@
 #include "queue.h"
 
 #define UART_RX_QUEUE_LEN   128
+#define CLI_TASK_NAME          "cli_task"
+#define CLI_TASK_STACK_SIZE    256u
+#define CLI_TASK_PRIO          23u
+
 
 extern TaskHandle_t cli_task_handle;
 
