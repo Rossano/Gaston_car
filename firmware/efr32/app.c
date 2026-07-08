@@ -101,7 +101,7 @@ void app_process_action(void)
   // }
   char ch;
   if(STATE_SPP_MODE == main_state) {
-    if (xQueueReceive(uartQueue, &ch, 0) == pdPASS) {
+    while (xQueueReceive(uartQueue, &ch, 0) == pdPASS) {
       b[len++] = ch;
       if (len == 20 || ch == '\n') {
         sl_bt_gatt_server_send_notification(
@@ -113,10 +113,10 @@ void app_process_action(void)
         len = 0;
       }
     }
-    else {
-      // No data received from UART
-      vTaskDelay(pdMS_TO_TICKS(10)); // Sleep for a while to avoid busy waiting
-    }
+    // else {
+    //   // No data received from UART
+    //   vTaskDelay(pdMS_TO_TICKS(10)); // Sleep for a while to avoid busy waiting
+    // }
   }
   return;
 }
