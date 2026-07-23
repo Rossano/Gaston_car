@@ -3,7 +3,7 @@
   "specVersion" : "1.6",
   "version" : 1,
   "metadata" : {
-    "timestamp" : "2026-07-16T21:53:37Z",
+    "timestamp" : "2026-07-22T08:40:28Z",
     "authors" : [ {
       "name" : "Silicon Laboratories, Inc."
     } ],
@@ -292,6 +292,18 @@
       },
       "licenses" : [ {
         "expression" : "Segger"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:simple_led",
+      "name" : "Simple LED",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
       } ]
     }, {
       "scope" : "required",
@@ -1404,6 +1416,18 @@
     }, {
       "scope" : "required",
       "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:led",
+      "name" : "Generic LED API",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:mbedtls_config",
       "name" : "Configuration",
       "version" : "2025.12.1",
@@ -1932,6 +1956,18 @@
     }, {
       "scope" : "required",
       "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:simple_led_core",
+      "name" : "Simple LED Core",
+      "version" : "2025.12.1",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:sl_assert",
       "name" : "Assert Functions",
       "version" : "2025.12.1",
@@ -2249,42 +2285,6 @@
       "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.1:udelay",
       "name" : "Microsecond Delay",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:simple_led",
-      "name" : "Simple LED",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:led",
-      "name" : "Generic LED API",
-      "version" : "2025.12.1",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "Zlib"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.1:simple_led_core",
-      "name" : "Simple LED Core",
       "version" : "2025.12.1",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."

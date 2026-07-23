@@ -90,6 +90,7 @@ static void app_task(void *p_arg)
       sl_led_toggle(&sl_led_led0);
       last_blink_time = xTaskGetTickCount();
     }
+    vTaskDelay(pdMS_TO_TICKS(10));
   }
 }
 

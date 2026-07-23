@@ -38,6 +38,8 @@
 #include "sl_status.h"
 #include <stdint.h>
 
+#include "uart_bridge/uart_mcu.h"
+
 // The advertising set handle allocated from Bluetooth stack.
 static uint8_t advertising_set_handle = 0xff;
 static uint8_t ble_connection = 0xff;
@@ -50,6 +52,8 @@ void app_init(void)
   // Put your additional application init code here!                         //
   // This is called once during start-up.                                    //
   /////////////////////////////////////////////////////////////////////////////
+  mcu_uart_init();
+  app_log("Application Initialized\r\n");
 }
 
 // Application Process Action.
@@ -149,6 +153,16 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
         const uint8_t *data = evt->data.evt_gatt_server_user_write_request.value.data;
         uint16_t len = evt->data.evt_gatt_server_user_write_request.value.len;
 
+        // Send to the MCU UART
+        sl_status_t uart_status = mcu_uart_send(data, len);
+        if(uart_status != SL_STATUS_OK) {
+          app_log_warning("BLE -> UART queue full, dropped %u bytes\r\n", len);
+          /*
+            Per write request puoi restituire un errore ATT. Per il primo test manteniamo successo e registiamo
+            l'overflow, più avanti definiamo una policy precisa
+          */
+        }
+
         // TODO: mettere data/len nel buffer BLE -> UART
         app_log("Write Request BLE Rx, opcode = 0x%02X, len=%u", write_evt->att_opcode, len);
         for(uint8_t i=0; i < len; i++) {
@@ -156,6 +170,12 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
         }
         app_log("\r\n");
 
+        uint8_t att_error = 0;
+        if(write_evt->att_opcode == sl_bt_gatt_write_request) {
+          sl_status_t response_status = sl_bt_gatt_server_send_user_write_response(write_evt->connection, 
+            write_evt->characteristic, att_error);
+          app_assert_status(response_status);
+        }
         // Only answer if operation requires an answer
         // Not to send Write Without Response 
         if (write_evt->att_opcode == sl_bt_gatt_write_response) {
@@ -169,22 +189,22 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
       }
       break;
 
-    case sl_bt_evt_gatt_server_attribute_value_id:
-      if (evt->data.evt_gatt_server_attribute_value.attribute == gattdb_My_SPP_Write) {
+    // case sl_bt_evt_gatt_server_attribute_value_id:
+    //   if (evt->data.evt_gatt_server_attribute_value.attribute == gattdb_My_SPP_Write) {
 
-        const uint8_t *data = evt->data.evt_gatt_server_attribute_value.value.data;
-        uint16_t len = evt->data.evt_gatt_server_attribute_value.value.len;
+    //     const uint8_t *data = evt->data.evt_gatt_server_attribute_value.value.data;
+    //     uint16_t len = evt->data.evt_gatt_server_attribute_value.value.len;
 
-        // TODO: mettere data/len nel buffer BLE -> UART
-        //(void)data;
-        //(void)len;
-        app_log("BLE Rx, len=%u: ", len);
-        for(uint8_t i=0; i < len; i++) {
-          app_log("%02X ", data[i]);
-        }
-        app_log("\r\n");
-      }
-      break;
+    //     // TODO: mettere data/len nel buffer BLE -> UART
+    //     //(void)data;
+    //     //(void)len;
+    //     app_log("BLE Rx, len=%u: ", len);
+    //     for(uint8_t i=0; i < len; i++) {
+    //       app_log("%02X ", data[i]);
+    //     }
+    //     app_log("\r\n");
+    //   }
+    //   break;
 
     case sl_bt_evt_gatt_server_characteristic_status_id:
       if (evt->data.evt_gatt_server_characteristic_status.characteristic == gattdb_My_SPP_Read) {
@@ -200,7 +220,7 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
             sl_status_t sc = sl_bt_gatt_server_send_notification(ble_connection, gattdb_My_SPP_Read, sizeof(test_msg)-1, test_msg);
             app_log_status_error(sc);
             app_log(test_msg);
-            app_log("Notification result: 0x%081X\r\n", (unsigned long)sc);
+            app_log("Notification result: 0x%081X\r\n", (unsigned int)sc);
           }
         }
         else app_log("Notifications: evt not checked");

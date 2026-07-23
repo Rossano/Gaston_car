@@ -13,7 +13,7 @@ DocumentNamespace: https://silabs.com
 
 ## Creation Information
 Creator: Organization: Silicon Laboratories, Inc.
-Created: 2026-07-16T21:53:37Z
+Created: 2026-07-22T08:40:28Z
 ## Relationships
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-silabs.simplicity_sdk-2025.12.1
 
@@ -46,6 +46,7 @@ Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.si
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-mpu
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-rail_util_pti
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-segger_rtt
+Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-simple_led
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-sl_main
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-atomic
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-axip_region0_enable
@@ -130,6 +131,7 @@ Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.si
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-iostream_retarget_stdio
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-iostream_stdlib_config
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-iostream_uart_common
+Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-led
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-mbedtls_config
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-mbedtls_slcrypto
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-mbedtls_slcrypto_driver
@@ -174,6 +176,7 @@ Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.si
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-se_manager_device_data
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-se_manager_extmem
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-se_manager_mailbox
+Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-simple_led_core
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-sl_assert
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-sl_common
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-sl_core
@@ -200,9 +203,6 @@ Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.si
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-trustzone_unaware
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-tz_non_secure_execution
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-udelay
-Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-simple_led
-Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-led
-Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.1-simple_led_core
 
 ## Package Information
 PackageName: SIMG301M104LIL
@@ -449,6 +449,17 @@ PackageSupplier: Organization: Silicon Laboratories, Inc.
 PackageLicenseConcluded: Segger
 ## Relationships
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1-segger_rtt CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.1
+
+## Package Information
+PackageName: Simple LED
+SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.1-simple_led
+PackageVersion: 2025.12.1
+PrimaryPackagePurpose: LIBRARY
+PackageDownloadLocation: NOASSERTION
+PackageSupplier: Organization: Silicon Laboratories, Inc.
+PackageLicenseConcluded: Zlib
+## Relationships
+Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1-simple_led CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.1
 
 ## Package Information
 PackageName: System Setup (sl_main)
@@ -1450,6 +1461,17 @@ PackageLicenseConcluded: Zlib
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1-iostream_uart_common CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.1
 
 ## Package Information
+PackageName: Generic LED API
+SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.1-led
+PackageVersion: 2025.12.1
+PrimaryPackagePurpose: LIBRARY
+PackageDownloadLocation: NOASSERTION
+PackageSupplier: Organization: Silicon Laboratories, Inc.
+PackageLicenseConcluded: Zlib
+## Relationships
+Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1-led CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.1
+
+## Package Information
 PackageName: Configuration
 SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.1-mbedtls_config
 PackageVersion: 2025.12.1
@@ -1934,6 +1956,17 @@ PackageLicenseConcluded: Zlib
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1-se_manager_mailbox CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.1
 
 ## Package Information
+PackageName: Simple LED Core
+SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.1-simple_led_core
+PackageVersion: 2025.12.1
+PrimaryPackagePurpose: LIBRARY
+PackageDownloadLocation: NOASSERTION
+PackageSupplier: Organization: Silicon Laboratories, Inc.
+PackageLicenseConcluded: Zlib
+## Relationships
+Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1-simple_led_core CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.1
+
+## Package Information
 PackageName: Assert Functions
 SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.1-sl_assert
 PackageVersion: 2025.12.1
@@ -2231,36 +2264,3 @@ PackageSupplier: Organization: Silicon Laboratories, Inc.
 PackageLicenseConcluded: Zlib
 ## Relationships
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1-udelay CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.1
-
-## Package Information
-PackageName: Simple LED
-SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.1-simple_led
-PackageVersion: 2025.12.1
-PrimaryPackagePurpose: LIBRARY
-PackageDownloadLocation: NOASSERTION
-PackageSupplier: Organization: Silicon Laboratories, Inc.
-PackageLicenseConcluded: Zlib
-## Relationships
-Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1-simple_led CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.1
-
-## Package Information
-PackageName: Generic LED API
-SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.1-led
-PackageVersion: 2025.12.1
-PrimaryPackagePurpose: LIBRARY
-PackageDownloadLocation: NOASSERTION
-PackageSupplier: Organization: Silicon Laboratories, Inc.
-PackageLicenseConcluded: Zlib
-## Relationships
-Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1-led CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.1
-
-## Package Information
-PackageName: Simple LED Core
-SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.1-simple_led_core
-PackageVersion: 2025.12.1
-PrimaryPackagePurpose: LIBRARY
-PackageDownloadLocation: NOASSERTION
-PackageSupplier: Organization: Silicon Laboratories, Inc.
-PackageLicenseConcluded: Zlib
-## Relationships
-Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.1-simple_led_core CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.1
