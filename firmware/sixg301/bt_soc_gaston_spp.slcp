@@ -20,6 +20,7 @@ readme:
 - path: readme.md
 source:
 - path: app.c
+- path: uart_bridge/uart_mcu.c
 tag:
 - hwfilter:device:device_supports_bluetooth
 - hwfilter:!device:device_generic_family_efr32xg22
@@ -85,6 +86,9 @@ component:
 - package: simplicity_sdk
   vendor: silabs
   id: freertos
+- package: simplicity_sdk
+  vendor: silabs
+  id: freertos_heap_4
 - package: simplicity_sdk
   vendor: silabs
   id: gatt_configuration
@@ -295,9 +299,6 @@ autoselected_components:
 - package: simplicity_sdk
   vendor: silabs
   id: event_handler
-- package: simplicity_sdk
-  vendor: silabs
-  id: freertos_heap_3
 - package: simplicity_sdk
   vendor: silabs
   id: freertos_kernel_cortexm
