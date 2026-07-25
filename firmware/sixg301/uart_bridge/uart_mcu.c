@@ -12,6 +12,7 @@
 #include "app_assert.h"
 #include "sl_status.h"
 #include "portable.h"
+#include <string.h>
 
 uart_tx_message_t msg;
 
@@ -26,6 +27,7 @@ void mcu_uart_init(void)
     static const osMessageQueueAttr_t queue_attributes = {
         .name = "mcu_uart_tx_queue"
     };
+    app_assert(sl_iostream_mcu_uart_handle != NULL, "MCU UART handle is NULL\r\n");
     static const osThreadAttr_t thread_attributes = {
         .name = "mcu_uart_tx",
         .priority = osPriorityNormal,
@@ -47,11 +49,11 @@ void mcu_uart_init(void)
     //     tskIDLE_PRIORITY + 2, 
     //     &uart_tx_task_handle);
     // //app_assert(ret != 0, "Failed to create MCU UART TX task\r\n");
-    if(ret != pdPASS) {
-        app_log("UART Task creation failed, free heap: %lu\r\n", (unsigned long)xPortGetFreeHeapSize());
-    } else {
-        app_log("UART Task creation done, free heap: %lu\r\n", (unsigned long)xPortGetFreeHeapSize());
-    }
+    // if(ret != pdPASS) {
+    //     app_log("UART Task creation failed, free heap: %lu\r\n", (unsigned long)xPortGetFreeHeapSize());
+    // } else {
+    //     app_log("UART Task creation done, free heap: %lu\r\n", (unsigned long)xPortGetFreeHeapSize());
+    // }
 }
 
 static void mcu_uart_tx_task(void *pvargs)
@@ -68,33 +70,36 @@ static void mcu_uart_tx_task(void *pvargs)
             continue;
         }
 
-        write_status = sl_iostream_write(sl_iostream_mcu_uart_handle, msg.data, msg.lenght);
+        write_status = sl_iostream_write(sl_iostream_mcu_uart_handle, msg.data, msg.length);
         if(write_status != SL_STATUS_OK) {
             app_log_error("MCU UART Tx write failed: 0x%081x\r\n", (unsigned int)write_status);
         } else {
-            app_log_debug("MCU UART Tx: %u bytes\r\n", (unsigned int)msg.lenght);
+            app_log_debug("MCU UART Tx: %u bytes\r\n", (unsigned int)msg.length);
         }
     }
 }
 
-sl_status_t mcu_uart_send(const uint8_t data[], size_t len)
+sl_status_t mcu_uart_send(const uint8_t *data, size_t len)
 {
-    if(/*(data == NULL) ||*/ (len == 0)) {
+    if((data == NULL) || (len == 0)) {
         return SL_STATUS_INVALID_PARAMETER;
+    }
+    if(uart_tx_queue == NULL) {
+        return SL_STATUS_NOT_INITIALIZED;
     }
 
     while (len > 0) {
-        uart_tx_message_t msg;
+        //uart_tx_message_t msg;
         size_t chunck_len = len;
 
         if(chunck_len > sizeof(msg.data)) {
             chunck_len = sizeof(msg.data);
         }
-        msg.lenght = (uint16_t)chunck_len;
-
-        for(size_t i=0; i < chunck_len; i++) {
-            msg.data[i] = data[i];
-        }
+        msg.length = (uint16_t)chunck_len;
+        memcpy(msg.data, data, chunck_len);
+        // for(size_t i=0; i < chunck_len; i++) {
+        //     msg.data[i] = data[i];
+        // }
 
         osStatus_t status = osMessageQueuePut(uart_tx_queue, &msg, 0U, 0U);
         if (status != osOK) {
