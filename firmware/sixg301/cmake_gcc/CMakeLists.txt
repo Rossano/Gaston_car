@@ -16,6 +16,10 @@ add_executable(bt_soc_gaston_spp
     # Add additional sources here
 )
 
+target_sources(slc PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/../uart_bridge/uart_mcu.c
+)
+
 target_include_directories(bt_soc_gaston_spp PUBLIC
     # Add additional include paths here
 )
