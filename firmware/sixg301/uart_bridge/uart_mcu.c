@@ -37,16 +37,16 @@ void mcu_uart_init(void)
     uart_tx_queue = osMessageQueueNew(8U, sizeof(uart_tx_message_t),&queue_attributes);
     app_assert(uart_tx_queue != NULL, "Failed to create MCU UART TX queue\r\n");
 
-    //uart_tx_thread = osThreadNew(mcu_uart_tx_task, NULL, &thread_attributes);
-    //app_assert(uart_tx_thread != NULL, "Failed to create MCU UART TX task\r\n");
-    ret = xTaskCreate(
-        mcu_uart_tx_task,
-        "uart Tx task", 
-        512, 
-        NULL, 
-        tskIDLE_PRIORITY + 2, 
-        &uart_tx_task_handle);
-    //app_assert(ret != 0, "Failed to create MCU UART TX task\r\n");
+    uart_tx_thread = osThreadNew(mcu_uart_tx_task, NULL, &thread_attributes);
+    app_assert(uart_tx_thread != NULL, "Failed to create MCU UART TX task\r\n");
+    // ret = xTaskCreate(
+    //     mcu_uart_tx_task,
+    //     "uart Tx task", 
+    //     512, 
+    //     NULL, 
+    //     tskIDLE_PRIORITY + 2, 
+    //     &uart_tx_task_handle);
+    // //app_assert(ret != 0, "Failed to create MCU UART TX task\r\n");
     if(ret != pdPASS) {
         app_log("UART Task creation failed, free heap: %lu\r\n", (unsigned long)xPortGetFreeHeapSize());
     } else {
