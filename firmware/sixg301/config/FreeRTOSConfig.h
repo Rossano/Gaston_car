@@ -74,7 +74,7 @@
 //  <o>Total heap size [bytes] <0-0xFFFFFFFF>
 //  <i> Heap memory size in bytes.
 //  <i> Default: 8192
-#define configTOTAL_HEAP_SIZE                     5000
+#define configTOTAL_HEAP_SIZE                     (1024*128) //5000
 
 //  <o>Kernel tick frequency [Hz] <0-0xFFFFFFFF>
 //  <i> Kernel tick rate in Hz.
@@ -200,7 +200,7 @@
 //  <i> Enable FPU when application uses floating point operations.
 //  <i> This setting is only relevant on ARMv8-M ports.
 //  <i> Default: 1
-#define configENABLE_FPU                          1
+#define configENABLE_FPU                          0
 
 //  <q>Use M-Profile Vector Extension
 //  <i> Using M-Profile Vector Extension (MVE) affects context handling.
