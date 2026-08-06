@@ -39,6 +39,7 @@
 #include <stdint.h>
 
 #include "uart_bridge/uart_mcu.h"
+#include "ble_spp/ble_spp.h"
 
 // The advertising set handle allocated from Bluetooth stack.
 static uint8_t advertising_set_handle = 0xff;
@@ -53,6 +54,7 @@ void app_init(void)
   // This is called once during start-up.                                    //
   /////////////////////////////////////////////////////////////////////////////
   mcu_uart_init();
+  ble_uart_init();
   app_log("Application Initialized\r\n");
 }
 
@@ -112,6 +114,8 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
       ble_connection = evt->data.evt_connection_opened.connection;
       notifications_enabled = false;
 
+      mcu_uart_set_ble_state(ble_connection, false);
+
       app_log("BLE Connected handle=%u\r\n", ble_connection);
       break;
 
@@ -131,6 +135,7 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
       app_log("BLE disconnected!\r\n");
       ble_connection = 0xff;
       notifications_enabled = false;
+      mcu_uart_set_ble_state(0xFFU, false); 
       sl_bt_legacy_advertiser_generate_data(
           advertising_set_handle,
           sl_bt_advertiser_general_discoverable);
@@ -212,6 +217,7 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
         if (evt->data.evt_gatt_server_characteristic_status.status_flags == sl_bt_gatt_server_client_config) {
 
           notifications_enabled = (evt->data.evt_gatt_server_characteristic_status.client_config_flags & sl_bt_gatt_notification) != 0;
+          mcu_uart_set_ble_state(ble_connection, notifications_enabled);
 
           app_log("Notifications: %s\r\n", notifications_enabled ? "enabled" : "disabled");
 
