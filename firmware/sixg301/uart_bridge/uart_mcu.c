@@ -1,5 +1,3 @@
-#include "uart_mcu.h"
-
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -15,6 +13,7 @@
 #include "sl_status.h"
 #include <string.h>
 
+#include "uart_mcu.h"
 #include "ble_spp/ble_spp.h"
 
 /*
@@ -37,12 +36,12 @@
 uart_tx_message_t tx_msg;                       // TX exchange message variable
 uart_rx_message_t rx_msg;                       // RX exchange message variable
 
-static osMessageQueueId_t uart_tx_queue;    // BLE -> MCU Tx Queue
-static osThreadId_t uart_tx_thread;         // MCU TX Task (BLE -> MCU) 
-static osMessageQueueId_t uart_rx_queue;    // MCU -> BLE Rx Queue
+static osMessageQueueId_t uart_tx_queue;        // BLE -> MCU Tx Queue
+static osThreadId_t uart_tx_thread;             // MCU TX Task (BLE -> MCU) 
+osMessageQueueId_t uart_rx_queue;               // MCU -> BLE Rx Queue
 static osThreadId_t ble_tx_thread;
 #if MCU_UART_RX_ENABLED
-static osThreadId_t uart_rx_thread;         // MCU RX Task (MCU -> BLE)
+static osThreadId_t uart_rx_thread;             // MCU RX Task (MCU -> BLE)
 #endif
 
 //static volatile uint8_t current_connection = 0xFFU;

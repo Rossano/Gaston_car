@@ -6,6 +6,7 @@
 #include <stdbool.h>
 
 #include "sl_status.h"
+#include "cmsis_os2.h"
 
 /*
  *  Module Global Defines
@@ -29,7 +30,7 @@ typedef struct {
 
 extern uart_tx_message_t tx_msg;            // MCU Uart Tx message
 extern uart_rx_message_t rx_msg;            // MCU Uart Rx message
-
+extern osMessageQueueId_t uart_rx_queue;    // MCU -> BLE Rx Queue
 /*
  *  Exported function prototypes
  */

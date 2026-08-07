@@ -13,7 +13,8 @@
 static volatile uint8_t current_connection = 0xFFU;
 static volatile bool current_notifications_enabled = false;
 
-static osMessageQueueId_t uart_rx_queue;    // MCU -> BLE Rx Queue
+//extern osMessageQueueId_t uart_rx_queue;    // MCU -> BLE Rx Queue
+osMessageQueueId_t ble_rx_queue;    // MCU -> BLE Rx Queue
 static osThreadId_t ble_tx_thread;
 
 static void ble_tx_task(void *pvargs);
@@ -21,7 +22,7 @@ static void ble_tx_task(void *pvargs);
 /*
  * BLE UART communication Init
  */
-void ble_uart_init(void)
+void ble_uart_init(osMessageQueueId_t queue)
 {
     // Define the MCU UART Rx task
     static const osThreadAttr_t ble_tx_thread_attributes = {
@@ -30,6 +31,7 @@ void ble_uart_init(void)
         .stack_size = BLE_TX_STACK_SIZE    
     };
 
+    ble_rx_queue = queue;
     // Create the BLE Tx Task
     ble_tx_thread = osThreadNew(ble_tx_task, NULL, &ble_tx_thread_attributes);
     app_assert(ble_tx_thread != NULL, "Failed to create MCU UART TX task\r\n");
@@ -42,10 +44,11 @@ static void ble_tx_task(void *pvargs)
 {
     uart_rx_message_t msg;
     (void)pvargs;
+    osDelay(1000U);
     app_log("MCU UART Rx Task started\r\n");
 
     while (true) {
-        osStatus_t status = osMessageQueueGet(uart_rx_queue, 
+        osStatus_t status = osMessageQueueGet(ble_rx_queue, // uart_rx_queue, 
             &msg, NULL,
             osWaitForever);
         if (status != osOK) {
