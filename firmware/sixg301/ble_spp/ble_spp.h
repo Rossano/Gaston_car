@@ -33,7 +33,7 @@ extern osMessageQueueId_t ble_rx_queue;    // MCU -> BLE Rx Queue
 /*
  *  Function Prototypes
  */
-void ble_uart_init(osMessageQueueId_t queue);
+void ble_uart_init();//osMessageQueueId_t queue);
 //static void ble_tx_task(void *pvargs);
 #if MCU_UART_RX_ENABLED
 sl_status_t mcu_uart_test_receive(const uint8_t *date, size_t len);

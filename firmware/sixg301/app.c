@@ -54,7 +54,7 @@ void app_init(void)
   // This is called once during start-up.                                    //
   /////////////////////////////////////////////////////////////////////////////
   mcu_uart_init();
-  ble_uart_init(uart_rx_queue);
+  ble_uart_init();//uart_rx_queue);
   app_log("Application Initialized\r\n");
 }
 
