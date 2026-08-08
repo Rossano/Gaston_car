@@ -228,7 +228,6 @@ add_library(slc OBJECT
     "../main.c"
     "../sl_gatt_service_device_information_override.c"
     "../uart_bridge/uart_mcu.c"
-    "../ble_spp/ble_spp.c"
 )
 
 target_include_directories(slc PUBLIC
