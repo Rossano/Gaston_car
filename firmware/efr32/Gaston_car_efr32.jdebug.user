@@ -1,14 +1,5 @@
 
 
-
-Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app_freertos.c:126:3, State=BP_STATE_DISABLED
-Breakpoint=C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/platform_core/platform/service/sl_main/src/sl_main_init.c:357, State=BP_STATE_ON
-Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/main.c:49:3, State=BP_STATE_ON
-Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app.c:75:3, State=BP_STATE_ON
-Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app.c:112:7, State=BP_STATE_DISABLED
-Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app.c:117:7, State=BP_STATE_DISABLED
-Breakpoint=C:/Users/rossa/Projects/Gaston_car/firmware/efr32/app.c:129, State=BP_STATE_ON
-Breakpoint=C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/freertos/cmsis/Source/cmsis_os2.c:317, State=BP_STATE_ON
 OpenDocument="sl_main_init.c", FilePath="C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/platform_core/platform/service/sl_main/src/sl_main_init.c", Line=319
 OpenDocument="tasks.c", FilePath="C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/freertos/kernel/tasks.c", Line=5341
 OpenDocument="tick_power_manager.c", FilePath="C:/Users/rossa/.silabs/slt/installs/conan/p/simpl1a11563c2e399/p/freertos/kernel/portable/SiliconLabs/cortexm/tick_power_manager.c", Line=110
@@ -31,19 +22,18 @@ OpenToolbar="Debug", Floating=0, x=0, y=0
 OpenWindow="Call Stack", DockArea=RIGHT, x=0, y=3, w=518, h=136, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
 OpenWindow="Registers 1", DockArea=RIGHT, x=0, y=4, w=518, h=142, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, FilteredItems=[], RefreshRate=1
 OpenWindow="Source Files", DockArea=LEFT, x=0, y=1, w=294, h=335, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
-OpenWindow="Disassembly", DockArea=RIGHT, x=0, y=1, w=518, h=120, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Disassembly", DockArea=RIGHT, x=0, y=1, w=518, h=122, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
 OpenWindow="Memory 1", DockArea=BOTTOM, x=1, y=0, w=959, h=248, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, EditorAddress=0x0
-OpenWindow="Local Data", DockArea=RIGHT, x=0, y=2, w=518, h=126, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Local Data", DockArea=RIGHT, x=0, y=2, w=518, h=127, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
 OpenWindow="Functions", DockArea=LEFT, x=0, y=0, w=294, h=358, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
 OpenWindow="Console", DockArea=BOTTOM, x=0, y=0, w=960, h=248, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
-OpenWindow="FreeRTOS", DockArea=RIGHT, x=0, y=0, w=518, h=166, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, Showing="Task List"
+OpenWindow="FreeRTOS", DockArea=RIGHT, x=0, y=0, w=518, h=163, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, Showing="Task List"
 SmartViewPlugin="", Page="", Toolbar="Hidden", Window="SmartView 1"
-TableHeader="Local Data", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Value";"Location";"Size";"Type";"Scope"], ColWidths=[151;100;100;100;161;248]
-TableHeader="Functions", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Address";"Size";"#Insts";"Source"], ColWidths=[1236;100;100;100;344]
+TableHeader="Local Data", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Value";"Location";"Size";"Type";"Scope"], ColWidths=[151;100;100;100;161;100]
+TableHeader="Functions", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Address";"Size";"#Insts";"Source"], ColWidths=[1236;100;100;100;100]
 TableHeader="Call Stack", SortCol="Function", SortOrder="ASCENDING", VisibleCols=["Function";"Stack Frame";"Source";"PC";"Return Address";"Stack Used"], ColWidths=[124;105;134;100;112;100]
-TableHeader="Source Files", SortCol="File", SortOrder="ASCENDING", VisibleCols=["File";"Status";"Size";"#Insts";"Path"], ColWidths=[330;100;100;100;1106]
+TableHeader="Source Files", SortCol="File", SortOrder="ASCENDING", VisibleCols=["File";"Status";"Size";"#Insts";"Path"], ColWidths=[330;100;100;100;100]
 TableHeader="Power Sampling", SortCol="None", SortOrder="ASCENDING", VisibleCols=["Index";"Time";"Ch 0"], ColWidths=[100;100;100]
 TableHeader="Task List", SortCol="None", SortOrder="ASCENDING", VisibleCols=["Name";"Run Count";"Priority";"Status";"Timeout";"Stack Info";"ID";"Mutex Count";"Notified Value";"Notify State"], ColWidths=[110;110;110;110;110;110;110;110;110;110]
 TableHeader="Registers 1", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Value";"Description"], ColWidths=[140;137;224]
 TableHeader="RegisterSelectionDialog", SortCol="None", SortOrder="ASCENDING", VisibleCols=[], ColWidths=[]
-TableHeader="TargetExceptionDialog", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Value";"Address";"Description"], ColWidths=[200;100;100;359]

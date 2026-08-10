@@ -36,7 +36,7 @@ toolchain_settings: [
 component:
 - package: simplicity_sdk
   vendor: silabs
-  id: EFR32BG22C224F512IM40
+  id: SIMG301M104LIL
 - package: simplicity_sdk
   vendor: silabs
   id: app_assert
@@ -72,7 +72,10 @@ component:
   id: bluetooth_stack
 - package: simplicity_sdk
   vendor: silabs
-  id: brd4108a
+  id: brd2719a
+- package: simplicity_sdk
+  vendor: silabs
+  id: brd4001a
 - package: simplicity_sdk
   vendor: silabs
   id: clock_manager

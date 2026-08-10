@@ -27,16 +27,31 @@
  *
  ******************************************************************************/
 
+
  MEMORY
  {
-   FLASH      (rx)  : ORIGIN = 0x0, LENGTH = 0x7e000
-   RAM        (rwx) : ORIGIN = 0x20000000, LENGTH = 0x8000
+   FLASH      (rx)  : ORIGIN = 0x1000000, LENGTH = 0x391000
+   RAM        (rwx) : ORIGIN = 0x20000000, LENGTH = 0x80000
+   RAM_ALIAS  (x)   : ORIGIN = 0x800000, LENGTH = 0x80000
  }
+__flash_size__ = 0x391000;
+__flash_page_size__ = 0x1000;
+__mspu_region_size__ = 0x8000;
 
 ENTRY(Reset_Handler)
 
 SECTIONS
 {
+  .secure_app :
+  {
+    __Secure_Vectors = .;
+    KEEP(*(.secure_vectors))
+    KEEP(*(.secure_config_data))
+    __Secure_Reset_Handler = .;
+    KEEP(*(.secure_reset_handler))
+    KEEP(*(.secure_fault_handler))
+    . = ALIGN(__mspu_region_size__);
+  } > FLASH
 
   .vectors :
   {
@@ -47,35 +62,7 @@ SECTIONS
     __Vectors_End = .;
     __Vectors_Size = __Vectors_End - __Vectors;
   } > FLASH
-
-  .stack (NOLOAD):
-  {
-    . = ALIGN(8);
-    __StackLimit = .;
-    KEEP(*(.stack*))
-    . = ALIGN(4);
-    __StackTop = .;
-    PROVIDE(__stack = __StackTop);
-  } > RAM
-
-  .bss :
-  {
-    . = ALIGN(4);
-    __bss_start__ = .;
-    *(SORT_BY_ALIGNMENT(.bss*))
-    *(COMMON)
-    . = ALIGN(4);
-    __bss_end__ = .;
-  } > RAM
-
-
-  .noinit (NOLOAD) : ALIGN(4)
-  {
-    *(.noinit*);
-  } > RAM
-
-
-  text_application_ram : ALIGN(4)
+  text_ram :
   {
     . = ALIGN(4);
     __vma_ramfuncs_start__ = .;
@@ -84,11 +71,115 @@ SECTIONS
     *(text_application_ram)
 
     . = ALIGN(4);
-    __vma_ramfuncs_end__ = .;
-  } > RAM AT > FLASH
 
-  __lma_ramfuncs_start__ = LOADADDR(text_application_ram);
-  __lma_ramfuncs_end__ = LOADADDR(text_application_ram) + SIZEOF(text_application_ram);
+    /* text_<component>_ram */
+    __text_system_ram_start__ = .;
+    *(text_system_*timecritical*)
+
+    . = ALIGN(4);
+    __text_system_ram_end__ = .;
+    __text_clock_manager_ram_start__ = .;
+    *(text_clock_manager_*timecritical*)
+
+    . = ALIGN(4);
+    __text_clock_manager_ram_end__ = .;
+    __text_device_peripheral_ram_start__ = .;
+    *(text_device_peripheral_*timecritical*)
+
+    . = ALIGN(4);
+    __text_device_peripheral_ram_end__ = .;
+    __text_dmadrv_ram_start__ = .;
+    *(text_dmadrv_*timecritical*)
+
+    . = ALIGN(4);
+    __text_dmadrv_ram_end__ = .;
+    __text_gpio_ram_start__ = .;
+    *(text_gpio_*timecritical*)
+
+    . = ALIGN(4);
+    __text_gpio_ram_end__ = .;
+    __text_hal_common_ram_start__ = .;
+    *(text_hal_common_*timecritical*)
+
+    . = ALIGN(4);
+    __text_hal_common_ram_end__ = .;
+    __text_hal_gpio_ram_start__ = .;
+    *(text_hal_gpio_*timecritical*)
+
+    . = ALIGN(4);
+    __text_hal_gpio_ram_end__ = .;
+    __text_hal_ldma_ram_start__ = .;
+    *(text_hal_ldma_*timecritical*)
+
+    . = ALIGN(4);
+    __text_hal_ldma_ram_end__ = .;
+    __text_hal_sysrtc_ram_start__ = .;
+    *(text_hal_sysrtc_*timecritical*)
+
+    . = ALIGN(4);
+    __text_hal_sysrtc_ram_end__ = .;
+    __text_interrupt_manager_ram_start__ = .;
+    *(text_interrupt_manager_*timecritical*)
+
+    . = ALIGN(4);
+    __text_interrupt_manager_ram_end__ = .;
+    __text_memory_manager_ram_start__ = .;
+    *(text_memory_manager_*timecritical*)
+
+    . = ALIGN(4);
+    __text_memory_manager_ram_end__ = .;
+    __text_power_manager_ram_start__ = .;
+    *(text_power_manager_*timecritical*)
+
+    . = ALIGN(4);
+    __text_power_manager_ram_end__ = .;
+    __text_rail_lib_ram_start__ = .;
+    *(text_rail_lib_*timecritical*)
+
+    . = ALIGN(4);
+    __text_rail_lib_ram_end__ = .;
+    __text_se_manager_ram_start__ = .;
+    *(text_se_manager_*timecritical*)
+
+    . = ALIGN(4);
+    __text_se_manager_ram_end__ = .;
+    __text_core_ram_start__ = .;
+    *(text_core_*timecritical*)
+
+    . = ALIGN(4);
+    __text_core_ram_end__ = .;
+    __text_sleeptimer_ram_start__ = .;
+    *(text_sleeptimer_*timecritical*)
+
+    . = ALIGN(4);
+    __text_sleeptimer_ram_end__ = .;
+    __text_sli_crypto_ram_start__ = .;
+    *(text_sli_crypto_*timecritical*)
+
+    . = ALIGN(4);
+    __text_sli_crypto_ram_end__ = .;
+    __text_psec_osal_ram_start__ = .;
+    *(text_psec_osal_*timecritical*)
+
+    . = ALIGN(4);
+    __text_psec_osal_ram_end__ = .;
+    __text_sxsymcrypt_ram_start__ = .;
+    *(text_sxsymcrypt_*timecritical*)
+
+    . = ALIGN(4);
+    __text_sxsymcrypt_ram_end__ = .;
+    *libgcc.a:_*.*(.text*)
+    *libgcc.a:_*.*(.rodata*)
+    *memset.*(.text*)
+    *memset.*(.rodata*)
+    *(text_freertos_kernel_*timecritical*)
+
+    . = ALIGN(4);
+    __vma_ramfuncs_end__ = .;
+  } > RAM_ALIAS AT > FLASH
+
+  __lma_ramfuncs_start__ = LOADADDR(text_ram);
+  __lma_ramfuncs_end__ = LOADADDR(text_ram) + SIZEOF(text_ram);
 
   .rodata (READONLY):
   {
@@ -118,7 +209,6 @@ SECTIONS
     *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
     *(SORT(.dtors.*))
     *(.dtors)
-
     *(.rodata*)
     *(.eh_frame*)
   } > FLASH
@@ -150,7 +240,6 @@ SECTIONS
     LONG (__data2_start__)
     LONG ((__data2_end__ - __data2_start__) / 4)
     */
-
     __copy_table_end__ = .;
   } > FLASH
 
@@ -163,10 +252,43 @@ SECTIONS
     LONG (__bss2_start__)
     LONG ((__bss2_end__ - __bss2_start__) / 4)
     */
-
     __zero_table_end__ = .;
     __etext = .;
   } > FLASH
+  text_ram_vma (NOLOAD):
+  {
+    /* Offset the location counter to account for RAM code that was placed in
+       the aliased RAM region.
+     */
+    . += (__vma_ramfuncs_end__ - __vma_ramfuncs_start__);
+  } > RAM
+
+  .stack (NOLOAD):
+  {
+    . = ALIGN(8);
+    __StackLimit = .;
+    KEEP(*(.stack*))
+    . = ALIGN(4);
+    __StackTop = .;
+    PROVIDE(__stack = __StackTop);
+  } > RAM
+
+  .noinit (NOLOAD):
+  {
+    __noinit_start__ = .;
+    *(.noinit*);
+    __noinit_end__ = .;
+  } > RAM
+
+  .bss :
+  {
+    . = ALIGN(4);
+    __bss_start__ = .;
+    *(SORT_BY_ALIGNMENT(.bss*))
+    *(COMMON)
+    . = ALIGN(4);
+    __bss_end__ = .;
+  } > RAM
 
   .data :
   {
@@ -197,11 +319,21 @@ SECTIONS
     PROVIDE_HIDDEN (__fini_array_end = .);
 
     . = ALIGN(4);
+    /* Shareable data sections here */
+    __start_shareable = .;
+    *(.rail_shareable)
+    /* Add each additional shareable sections here */
+    __stop_shareable = .;
+
+    . = ALIGN(4);
     /* All data end */
     __data_end__ = .;
 
   } > RAM AT > FLASH
 
+.code_flash_end : {
+  code_flash_end = .;
+} > FLASH
 
 /* Calculate heap size based on RAM limits. */
 heap_limit = ORIGIN(RAM) + LENGTH(RAM);  /* End of RAM */
@@ -217,8 +349,8 @@ heap_size = heap_limit - __HeapBase;
     __HeapLimit = ORIGIN(RAM) + LENGTH(RAM);
   } > RAM
 
-  __ram_end__ = 0x20000000 + 0x8000;
-  __main_flash_end__ = 0x0 + 0x7e000;
+  __ram_end__ = 0x20000000 + 0x80000;
+  __main_flash_end__ = 0x1000000 + 0x391000;
    /* This is where we handle flash storage blocks. We use dummy sections for finding the configured
    * block sizes and then "place" them at the end of flash when the size is known. */
   .internal_storage (DSECT) : {
@@ -229,11 +361,14 @@ heap_size = heap_limit - __HeapBase;
   .nvm (DSECT) : {
     KEEP(*(.simee*))
   } > FLASH
+  __ramfuncs_start__ = ORIGIN(RAM) + (__vma_ramfuncs_start__ - ORIGIN(RAM_ALIAS));
+  __ramfuncs_end__ = ORIGIN(RAM) + (__vma_ramfuncs_end__ - ORIGIN(RAM_ALIAS));
 
-  __ramfuncs_start__ = __vma_ramfuncs_start__;
-  __ramfuncs_end__ = __vma_ramfuncs_end__;
+  /* Static secure tokens reserve flash memory at the end of the flash */
+  linker_static_secure_tokens_end = __main_flash_end__;
+  linker_static_secure_tokens_begin = linker_static_secure_tokens_end - 0x2000;
 
-  linker_nvm_end = __main_flash_end__;
+  linker_nvm_end = linker_static_secure_tokens_begin;
   linker_nvm_begin = linker_nvm_end - SIZEOF(.nvm);
   linker_storage_end = linker_nvm_begin;
   __nvm3Base = linker_nvm_begin;
@@ -241,5 +376,9 @@ heap_size = heap_limit - __HeapBase;
   linker_storage_begin = linker_storage_end - SIZEOF(.internal_storage);
   ASSERT((linker_storage_begin >= (__etext + SIZEOF(.data))), "FLASH memory overflowed !")
 
-
+  app_flash_end = 0x1000000 + 0x391000;
+  ASSERT( (linker_nvm_begin + SIZEOF(.nvm)) <= linker_static_secure_tokens_begin, "NVM3 is excessing the flash size !")
+  ASSERT( (linker_static_secure_tokens_begin + 0x2000) <= app_flash_end, "Static secure storage is exceeding the flash size !")
+  ASSERT( code_flash_end - 0x1000000 <= 0x1f0000, "Code size exceeds code region 1 capacity. Flash partitions can be reconfigured: https://docs.silabs.com/gecko-platform/latest/flash-partitions-series3/")
 }
+

@@ -2,6 +2,7 @@
 
 #include "sl_board_init.h"
 #include "sl_clock_manager.h"
+#include "sl_rail_util_load_devinfo.h"
 #include "sl_rail_util_compatible_pa.h"
 #include "sl_rail_util_power_manager_init.h"
 #include "sl_rail_util_pti.h"
@@ -19,10 +20,12 @@
 #include "sl_simple_led_instances.h"
 #include "psa/crypto.h"
 #include "sl_se_manager.h"
-#include "sli_protocol_crypto.h"
+#include "sli_sxsymcrypt.h"
 #include "sli_crypto.h"
+#include "sli_crypto_ksu_manager.h"
 #include "sl_iostream_init_instances.h"
 #include "cmsis_os2.h"
+#include "sl_token_manager_api.h"
 #include "sl_cos.h"
 #include "sl_iostream_handles.h"
 
@@ -52,6 +55,7 @@ void sl_platform_init(void)
 
 void sli_internal_init_early(void)
 {
+  sl_rail_util_load_devinfo();
   app_init_bt();
 }
 
@@ -76,11 +80,12 @@ void sl_service_init(void)
   sl_mbedtls_init();
   psa_crypto_init();
   sl_se_init();
-  sli_protocol_crypto_init();
+  sli_sxsymcrypt_init_locks();
   sli_crypto_init();
-  sli_aes_seed_mask();
+  sli_ksu_init();
   sl_iostream_init_instances_stage_1();
   sl_iostream_init_instances_stage_2();
+  sl_token_manager_init();
 }
 
 void sl_stack_init(void)
