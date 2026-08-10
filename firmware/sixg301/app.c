@@ -228,14 +228,6 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
             app_log(test_msg);
             app_log("Notification result: 0x%081X\r\n", (unsigned int)sc);
           }
-#else // MCU is simulated
-          if(notifications_enabled) {
-            static uint8_t test_data[] = "Simulated MCU response\r\n";
-
-            sl_status_t sc = mcu_uart_test_receive(test_data, sizeof(test_data));
-            app_assert_status(sc);
-          }
-#endif
         }
         else app_log("Notifications: evt not checked");
       }

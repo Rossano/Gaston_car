@@ -8,7 +8,7 @@
     "configurePresets": [
       {
         "name": "project",
-        "displayName": "Configure bt_soc_gaston_spp",
+        "displayName": "Configure sixg301",
         "generator": "Ninja Multi-Config",
         "binaryDir": "${sourceDir}/build",
         "toolchainFile": "${sourceDir}/toolchain.cmake",
@@ -20,10 +20,10 @@
     "buildPresets": [
       {
         "name": "default_config",
-        "displayName": "Build bt_soc_gaston_spp",
+        "displayName": "Build sixg301",
         "configurePreset": "project",
         "configuration": "base",
-        "targets": ["bt_soc_gaston_spp"]
+        "targets": ["sixg301"]
       }
     ],
     "workflowPresets": [

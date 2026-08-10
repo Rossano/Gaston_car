@@ -324,8 +324,6 @@ SECTIONS
     *(.rail_shareable)
     /* Add each additional shareable sections here */
     __stop_shareable = .;
-    . = ALIGN(4);
-    *(SEGGER_RTT)
 
     . = ALIGN(4);
     /* All data end */

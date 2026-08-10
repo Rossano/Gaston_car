@@ -141,22 +141,6 @@
 // [I2C1]$
 
 // $[EUSART1]
-// EUSART1 RX on PA08
-#ifndef EUSART1_RX_PORT                         
-#define EUSART1_RX_PORT                          SL_GPIO_PORT_A
-#endif
-#ifndef EUSART1_RX_PIN                          
-#define EUSART1_RX_PIN                           8
-#endif
-
-// EUSART1 TX on PA07
-#ifndef EUSART1_TX_PORT                         
-#define EUSART1_TX_PORT                          SL_GPIO_PORT_A
-#endif
-#ifndef EUSART1_TX_PIN                          
-#define EUSART1_TX_PIN                           7
-#endif
-
 // [EUSART1]$
 
 // $[EUSART2]
@@ -191,52 +175,6 @@
 // [MODEM]$
 
 // $[CUSTOM_PIN_NAME]
-#ifndef _PORT                                   
-#define _PORT                                    SL_GPIO_PORT_A
-#endif
-#ifndef _PIN                                    
-#define _PIN                                     0
-#endif
-
-
-
-
-
-
-
-#ifndef MCU_UART_TX_PORT                        
-#define MCU_UART_TX_PORT                         SL_GPIO_PORT_A
-#endif
-#ifndef MCU_UART_TX_PIN                         
-#define MCU_UART_TX_PIN                          7
-#endif
-
-#ifndef MCU_UART_RX_PORT                        
-#define MCU_UART_RX_PORT                         SL_GPIO_PORT_A
-#endif
-#ifndef MCU_UART_RX_PIN                         
-#define MCU_UART_RX_PIN                          8
-#endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // [CUSTOM_PIN_NAME]$
 
 

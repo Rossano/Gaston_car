@@ -33,6 +33,15 @@
 
 #include <stdbool.h>
 
+#include "FreeRTOS.h"
+#include "queue.h"
+
+#define CLI_COMMAND_MAX_LEN   64
+
+extern QueueHandle_t cli_queue;
+extern uint8_t connection_handle;
+extern uint8_t buffer[CLI_COMMAND_MAX_LEN];
+
 /**************************************************************************//**
  * Proceed with execution. (Indicate that it is required to run the application
  * process action.)

@@ -30,8 +30,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "FreeRTOS.h"
-#include "projdefs.h"
-#include "sl_led.h"
 #include "task.h"
 #include "semphr.h"
 #include "sl_main_init.h"
@@ -58,6 +56,12 @@ static SemaphoreHandle_t app_mutex_handle = NULL;
 // Application Runtime Init.
 void app_init_bt(void)
 {
+  static bool initialized = false;
+  if (initialized) {
+    return;
+  }
+  initialized = true;
+  
   BaseType_t ret;
   // Create the task for sl_app_process_action
   ret = xTaskCreate(app_task,
@@ -82,15 +86,14 @@ static void app_task(void *p_arg)
 {
   (void)p_arg;
   TickType_t last_blink_time = xTaskGetTickCount();
-
   while (1) {
     app_process_action();
 
-    if((xTaskGetTickCount() - last_blink_time) >= pdMS_TO_TICKS(BLINK_PERIOD_MS)) {
+    // Controllo del LED (ogni 500ms)
+    if ((xTaskGetTickCount() - last_blink_time) >= pdMS_TO_TICKS(BLINK_PERIOD_MS)) {
       sl_led_toggle(&sl_led_led0);
       last_blink_time = xTaskGetTickCount();
     }
-    vTaskDelay(pdMS_TO_TICKS(10));
   }
 }
 

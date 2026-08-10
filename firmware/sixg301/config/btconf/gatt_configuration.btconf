@@ -8,7 +8,7 @@
 
     <!--Device Name-->
     <characteristic const="false" id="device_name" name="Device Name" sourceId="org.bluetooth.characteristic.gap.device_name" uuid="2A00">
-      <value length="14" type="utf-8" variable_length="false">Blinky Example</value>
+      <value length="13" type="utf-8" variable_length="false">Empty Example</value>
       <properties>
         <read authenticated="false" bonded="false" encrypted="false"/>
         <write authenticated="false" bonded="false" encrypted="false"/>
@@ -75,25 +75,14 @@
     </characteristic>
   </service>
 
-  <!--My SPP-->
-  <service advertise="true" id="My_SPP_Service" name="My SPP" requirement="mandatory" sourceId="My_SPP_Service" type="primary" uuid="238caa21-7ef5-4be6-9c29-c430b459a66a">
+  <!--My_SPP_Service-->
+  <service advertise="true" id="My_SPP_Service" name="My_SPP_Service" requirement="mandatory" sourceId="" type="primary" uuid="238caa21-7ef5-4be6-9c29-c430b459a66a">
 
     <!--My_SPP_Write-->
-    <characteristic const="false" id="My_SPP_Write" name="My_SPP_Write" sourceId="My SPP Write" uuid="5a223b57-b290-447a-b772-547839d797ee">
-      <description>My SPP Write</description>
-      <value length="20" type="user" variable_length="true">00</value>
+    <characteristic const="false" id="My_SPP_Write" name="My_SPP_Write" sourceId="" uuid="5a223b57-b290-447a-b772-547839d797ee">
+      <value length="20" type="hex" variable_length="true">00</value>
       <properties>
-        <write authenticated="false" bonded="false" encrypted="false"/>
         <write_no_response authenticated="false" bonded="false" encrypted="false"/>
-      </properties>
-    </characteristic>
-
-    <!--My_SPP_Read-->
-    <characteristic const="false" id="My_SPP_Read" name="My_SPP_Read" sourceId="My SPP Read" uuid="5a223b57-b290-447a-b772-547839d797ee">
-      <description>My SPP Read</description>
-      <value length="20" type="user" variable_length="false">00</value>
-      <properties>
-        <read authenticated="false" bonded="false" encrypted="false"/>
         <notify authenticated="false" bonded="false" encrypted="false"/>
       </properties>
     </characteristic>
