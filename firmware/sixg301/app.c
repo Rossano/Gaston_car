@@ -220,7 +220,7 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
           mcu_uart_set_ble_state(ble_connection, notifications_enabled);
 
           app_log("Notifications: %s\r\n", notifications_enabled ? "enabled" : "disabled");
-
+#if MCU_UART_RX_ENABLED == 1
           if(notifications_enabled) {
             static const uint8_t test_msg[] = "SigxG301 Ready\r\n";
             sl_status_t sc = sl_bt_gatt_server_send_notification(ble_connection, gattdb_My_SPP_Read, sizeof(test_msg)-1, test_msg);
@@ -228,6 +228,14 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
             app_log(test_msg);
             app_log("Notification result: 0x%081X\r\n", (unsigned int)sc);
           }
+#else // MCU is simulated
+          if(notifications_enabled) {
+            static uint8_t test_data[] = "Simulated MCU response\r\n";
+
+            sl_status_t sc = mcu_uart_test_receive(test_data, sizeof(test_data));
+            app_assert_status(sc);
+          }
+#endif
         }
         else app_log("Notifications: evt not checked");
       }
