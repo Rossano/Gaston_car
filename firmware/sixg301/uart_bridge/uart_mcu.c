@@ -219,3 +219,19 @@ sl_status_t mcu_uart_send(const uint8_t *data, size_t len)
 //     current_connection = connection;
 //     current_notifications_enabled = notifications_enabled;
 // }
+
+sl_status_t mcu_uart_test_receive(const uint8_t *data, size_t len)
+{
+    uart_rx_message_t msg;
+
+    if((data == NULL) || (len == 0) || (len > sizeof(msg.data))) {
+        return SL_STATUS_INVALID_PARAMETER;
+    }
+
+    memcpy(msg.data, data, len);
+    msg.length = (uint16_t)len;
+
+    osStatus_t status = osMessageQueuePut(uart_rx_queue, &msg, 0U, 0U);
+
+    return (status == osOK) ? SL_STATUS_OK : SL_STATUS_FULL;
+}

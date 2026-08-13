@@ -37,5 +37,6 @@ extern osMessageQueueId_t uart_rx_queue;    // MCU -> BLE Rx Queue
 void mcu_uart_init(void);
 sl_status_t mcu_uart_send(const uint8_t *data, size_t len);
 void mcu_uart_set_ble_state(uint8_t connection, bool notifications_enabled);
+sl_status_t mcu_uart_test_receive(const uint8_t *data, size_t len);
 
 #endif
