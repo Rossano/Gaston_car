@@ -47,6 +47,7 @@ static void ble_tx_task(void *pvargs)
     osDelay(1000U);
     app_log("MCU UART Rx Task started\r\n");
 
+    vTaskDelay(1000);
     while (true) {
         osStatus_t status = osMessageQueueGet(uart_rx_queue, 
             &msg, NULL,
@@ -82,7 +83,7 @@ void mcu_uart_set_ble_state(uint8_t connection, bool notifications_enabled)
 }
 
 #if MCU_UART_RX_ENABLED == 0
-sl_status_t mcu_uart_test_receive(const uint8_t *data, size_t len)
+sl_status_t mcu_uart_test_receive2(const uint8_t *data, size_t len)
 {
     uart_rx_message_t msg;
 
